@@ -1,0 +1,14 @@
+.image {
+  margin-bottom: 20px;
+}
+
+.controls {
+  position: absolute;
+  right: 30px;
+  top: 0;
+}
+
+.back {
+  display: block;
+  margin-top: 40px;
+}
