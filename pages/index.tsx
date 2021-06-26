@@ -6,12 +6,12 @@ import { API_URL } from "@config/index";
 const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
   return (
     <Layout>
-      <h1>Courses</h1>
+      {/* <h1>Courses</h1>
       {courses.length === 0 && <h3>No courses to show</h3>}
 
       {courses.map((course) => (
         <CourseItem key={course._id} course={course} />
-      ))}
+      ))} */}
     </Layout>
   );
 };
