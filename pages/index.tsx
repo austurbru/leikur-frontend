@@ -3,7 +3,7 @@ import CourseItem from "@components/CourseItem";
 import Layout from "@components/Layout";
 import { API_URL } from "@config/index";
 
-const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
+const CoursesPage: React.FC<{ courses: Level[] }> = () => {
   return (
     <Layout>
       {/* <h1>Courses</h1>
