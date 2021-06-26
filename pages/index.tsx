@@ -1,5 +1,4 @@
 import { Level } from "@models/strapi-types";
-import CourseItem from "@components/CourseItem";
 import Layout from "@components/Layout";
 import { API_URL } from "@config/index";
 
