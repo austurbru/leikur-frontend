@@ -34,6 +34,7 @@ export async function getStaticProps(context: { params: any }) {
   let breakFlag = false;
   let previousSlug = "";
   let nextSlug = "";
+  let currentSlug = "";
 
 
   //Double loop to find the lesson and the page that match the incoming slug
@@ -41,6 +42,7 @@ export async function getStaticProps(context: { params: any }) {
     for (let j = 0; j < lessons[i].pages.length; j++) {
       if(lessons[i].pages[j].pageInfo.slug === params.slug){
         page = lessons[i].pages[j];
+        currentSlug = lessons[i].pages[j].pageInfo.slug;
 
         if(j > 0){
           previousSlug = `/lessons/${lessons[i].pages[j-1].pageInfo.slug}`;
@@ -58,6 +60,7 @@ export async function getStaticProps(context: { params: any }) {
   //To know wich page we are
   const navSlugs = {
     previousSlug: previousSlug,
+    currentSlug: currentSlug,
     nextSlug: nextSlug
   };
 
