@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import AudioPlayer from "react-h5-audio-player";
 import ReactMarkdown from "react-markdown";
 import NavSlugs from "@models/nav-slugs";
