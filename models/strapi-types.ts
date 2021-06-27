@@ -257,7 +257,6 @@ export interface User {
   currentLesson: Lesson;
   id: string;
   motto: string;
-  password: string;
 }
 
 export interface Role {

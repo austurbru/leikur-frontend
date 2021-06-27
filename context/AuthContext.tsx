@@ -6,13 +6,13 @@ import { User } from "@models/strapi-types";
 type UserContextObj = {
   user?: User | null;
   error: any;
-  register: (loginInfo: LoginInfo) => void;
-  login: (loginInfo: LoginInfo) => void;
+  register: (userCredentials: UserCredentials) => void;
+  login: (userCredentials: UserCredentials) => void;
   logout: () => void;
   setMotto: (newMotto: string) => void;
 };
 
-export interface LoginInfo {
+export interface UserCredentials {
   username?: string | null;
   email: string;
   password: string;
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC = (props) => {
   }, []);
 
   //Register user
-  const register = async (loginInfo: LoginInfo) => {
+  const register = async (loginInfo: UserCredentials) => {
     const res = await fetch(`${NEXT_URL}/api/register`, {
       method: "POST",
       headers: {
@@ -59,9 +59,9 @@ export const AuthProvider: React.FC = (props) => {
   };
 
   //Login user
-  const login = async (loginInfo: LoginInfo) => {
-    let identifier = loginInfo.email;
-    let password = loginInfo.password;
+  const login = async (userCredentials: UserCredentials) => {
+    let identifier = userCredentials.email;
+    let password = userCredentials.password;
 
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: "POST",

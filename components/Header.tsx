@@ -25,7 +25,7 @@ const Header: React.FC = () => {
                 <Link href="/courses">Courses</Link>
               </li>
               <li>
-                <button onClick={() => setMotto("This is another motto!")} className="btn-secondary btn-icon">
+                <button onClick={() => setMotto("This is Paula's motto")} className="btn-secondary btn-icon">
                   <FaSignOutAlt />
                   updateUser
                 </button>

@@ -26,9 +26,7 @@ export default async (req, res) => {
       res.status(403).json({ message: "User forbidden" });
     }
   } else if (req.method === "PUT") {
-    // Update of the user
-
-    
+    // If the method is PUT -> Update of the user:    
 
     if (!req.headers.cookie) {
       res.status(403).json({ message: "Not Authorized" });
