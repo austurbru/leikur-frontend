@@ -24,7 +24,7 @@ const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
 
 export default LessonPage;
 
-//Function that creates individual Pages
+//Function that creates individual Pages------------------------------------
 export async function getStaticProps(context: { params: any }) {
   const { params } = context;
   const res = await fetch(`${API_URL}/lessons`);
@@ -35,6 +35,8 @@ export async function getStaticProps(context: { params: any }) {
   let previousSlug = "";
   let nextSlug = "";
 
+
+  //Double loop to find the lesson and the page that match the incoming slug
   for (let i = 0; i < lessons.length && breakFlag===false; i++) {
     for (let j = 0; j < lessons[i].pages.length; j++) {
       if(lessons[i].pages[j].pageInfo.slug === params.slug){
@@ -69,19 +71,26 @@ export async function getStaticProps(context: { params: any }) {
 
 //check the possible pages that exists in Strapi
 export async function getStaticPaths() {
+  //Get all lessons
   const res = await fetch(`${API_URL}/lessons`);
   const lessons: Lesson[] = await res.json();
 
   const pages: PagesEntity[] = [];
 
+
+  //double loop
+  //1 loop goes thought all the lessons
   lessons.forEach(lesson => {
     if(lesson.pages){
+      //2nd loop : if the current lesson has pages, we push it into the the "pages" array
       lesson.pages.forEach(page => {
         pages.push(page)
       });
     }
   });
 
+
+  //create a new array called "paths"
   const paths = pages.map((page) => ({
     params: { slug: page.pageInfo.slug },
   }));

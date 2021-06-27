@@ -239,3 +239,60 @@ export interface RootObject {
   levelNo: number;
   id: string;
 }
+
+export interface User {
+  confirmed: boolean;
+  blocked: boolean;
+  lessonsCompleted: LessonsCompletedEntity[];
+  coursesCompleted: CoursesCompletedEntity[];
+  _id: string;
+  username: string;
+  email: string;
+  provider: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  role: Role;
+  currentCourse: Level;
+  currentLesson: Lesson;
+  id: string;
+  motto: string;
+}
+
+export interface Role {
+  _id: string;
+  name: string;
+  description: string;
+  type: string;
+  __v: number;
+  id: string;
+}
+
+export interface CoursesCompletedEntity {
+  color: string;
+  _id: string;
+  levelNo: number;
+  description: string;
+  published_at: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  id: string;
+}
+
+export interface LessonsCompletedEntity {
+  color?: null;
+  _id: string;
+  published_at: string;
+  description: string;
+  lessonNo: number;
+  key: string;
+  levelNo: number;
+  pages?: (PagesEntity)[] | null;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  level: string;
+  image: Image;
+  id: string;
+}
