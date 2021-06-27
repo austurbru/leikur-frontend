@@ -60,12 +60,8 @@ export const AuthProvider: React.FC = (props) => {
 
   //Login user
   const login = async (userCredentials: UserCredentials) => {
-    console.log("er ad loggadfgdfgdfg")
-
     let identifier = userCredentials.email;
     let password = userCredentials.password;
-
-    console.log("er ad logga")
 
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: "POST",
