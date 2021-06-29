@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { NEXT_URL } from "@config/index";
 import { User } from "@models/strapi-types";
+import { Lesson } from '../models/strapi-types';
 
 type UserContextObj = {
   user?: User | null;
@@ -10,6 +11,7 @@ type UserContextObj = {
   login: (userCredentials: UserCredentials) => void;
   logout: () => void;
   setMotto: (newMotto: string) => void;
+  setCurrentLesson: (currentLesson: Lesson) => void;
 };
 
 export interface UserCredentials {
@@ -25,6 +27,7 @@ export const AuthContext = createContext<UserContextObj>({
   login: () => {},
   logout: () => {},
   setMotto: () => {},
+  setCurrentLesson: () => {},
 });
 
 export const AuthProvider: React.FC = (props) => {
@@ -113,6 +116,7 @@ export const AuthProvider: React.FC = (props) => {
       let userForUpdate: User = user!;
 
       let motto = userForUpdate.motto
+      let currentLesson = userForUpdate.currentLesson
       let currentCourse = userForUpdate.currentCourse
 
       const res = await fetch(`${NEXT_URL}/api/user`, {
@@ -120,7 +124,7 @@ export const AuthProvider: React.FC = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ motto, currentCourse }),
+        body: JSON.stringify({ motto, currentCourse, currentLesson }),
       });
 
       const data = await res.json();
@@ -141,6 +145,15 @@ export const AuthProvider: React.FC = (props) => {
     }
   };
 
+  const setCurrentLesson = async (currentLesson: Lesson) => {
+    if (user) {
+      let userForUpdate: User = user!;
+      userForUpdate.currentLesson = currentLesson;
+      userForUpdate.currentCourse = currentLesson.level;
+      await updateUser();
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -149,7 +162,8 @@ export const AuthProvider: React.FC = (props) => {
         register,
         login,
         logout,
-        setMotto
+        setMotto,
+        setCurrentLesson
       }}
     >
       {props.children}

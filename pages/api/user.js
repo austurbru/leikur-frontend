@@ -48,7 +48,7 @@ export default async (req, res) => {
     if (strapiRes.ok) {
       // Update User:
 
-      const { motto, currentCourse } = req.body;
+      const { motto, currentCourse, currentLesson } = req.body;
       
       const strapiRes = await fetch(`${API_URL}/users/${user.id}`, {
         method: "PUT",
@@ -57,7 +57,7 @@ export default async (req, res) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          motto, currentCourse
+          motto, currentCourse, currentLesson
         }),
       });
 
