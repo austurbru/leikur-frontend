@@ -4,7 +4,7 @@ import TemplateMissing from "@components/TemplateMissing";
 import TextWithImageAndAudio from "@components/TextWithImageAndAudio";
 import TextWithImageAndVideo from "@components/TextWithImageAndVideo";
 import { API_URL } from "@config/index";
-
+import SuperSimplePage from '../../components/SuperSimplePage';
 
 interface Props {
   page: PagesEntity;
@@ -14,9 +14,11 @@ interface Props {
 const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   switch (page.__component) {
     case "page-content.image-with-audio":
-      return <TextWithImageAndAudio page={page} navSlugs={navSlugs}/>;
+      return <TextWithImageAndAudio page={page} navSlugs={navSlugs} />;
     case "page-content.video-text":
       return <TextWithImageAndVideo page={page} navSlugs={navSlugs} />;
+    case "page-content.super-simple-page":
+      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
     default:
       return <TemplateMissing />;
   }
@@ -36,20 +38,19 @@ export async function getStaticProps(context: { params: any }) {
   let nextSlug = "";
   let currentSlug = "";
 
-
   //Double loop to find the lesson and the page that match the incoming slug
-  for (let i = 0; i < lessons.length && breakFlag===false; i++) {
+  for (let i = 0; i < lessons.length && breakFlag === false; i++) {
     for (let j = 0; j < lessons[i].pages.length; j++) {
-      if(lessons[i].pages[j].pageInfo.slug === params.slug){
+      if (lessons[i].pages[j].pageInfo.slug === params.slug) {
         page = lessons[i].pages[j];
         currentSlug = lessons[i].pages[j].pageInfo.slug;
 
-        if(j > 0){
-          previousSlug = `/lessons/${lessons[i].pages[j-1].pageInfo.slug}`;
+        if (j > 0) {
+          previousSlug = `/lessons/${lessons[i].pages[j - 1].pageInfo.slug}`;
         }
 
-        if(j < (lessons[i].pages.length - 1)){
-          nextSlug = `/lessons/${lessons[i].pages[j+1].pageInfo.slug}`;
+        if (j < lessons[i].pages.length - 1) {
+          nextSlug = `/lessons/${lessons[i].pages[j + 1].pageInfo.slug}`;
         }
         breakFlag = true;
         break;
@@ -61,7 +62,7 @@ export async function getStaticProps(context: { params: any }) {
   const navSlugs = {
     previousSlug: previousSlug,
     currentSlug: currentSlug,
-    nextSlug: nextSlug
+    nextSlug: nextSlug,
   };
 
   return {
@@ -80,18 +81,16 @@ export async function getStaticPaths() {
 
   const pages: PagesEntity[] = [];
 
-
   //double loop
   //1 loop goes thought all the lessons
-  lessons.forEach(lesson => {
-    if(lesson.pages){
+  lessons.forEach((lesson) => {
+    if (lesson.pages) {
       //2nd loop : if the current lesson has pages, we push it into the the "pages" array
-      lesson.pages.forEach(page => {
-        pages.push(page)
+      lesson.pages.forEach((page) => {
+        pages.push(page);
       });
     }
   });
-
 
   //create a new array called "paths"
   const paths = pages.map((page) => ({
