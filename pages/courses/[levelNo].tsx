@@ -1,4 +1,4 @@
-import { Lesson, Level } from "@models/strapi-types";
+import { Lesson } from "@models/strapi-types";
 import Layout from "@components/Layout";
 import LessonItem from "@components/LessonItem";
 import { API_URL } from "@config/index";
@@ -18,7 +18,7 @@ const LessonsOfCourse: React.FC<{ lessons: Lesson[] }> = (props) => {
 
 export default LessonsOfCourse;
 
-export async function getStaticProps(context: { params: any }) {
+export async function getServerSideProps(context: { params: any }) {
   const { params } = context;
 
   const res = await fetch(`${API_URL}/lessons?levelNo=${params.levelNo}&_sort=lessonNo:ASC`);
@@ -31,16 +31,16 @@ export async function getStaticProps(context: { params: any }) {
   };
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(`${API_URL}/levels`);
-  const levels: Level[] = await res.json();
+// export async function getStaticPaths() {
+//   const res = await fetch(`${API_URL}/levels`);
+//   const levels: Level[] = await res.json();
 
-  const paths = levels.map((level) => ({
-    params: { levelNo: `${level.levelNo}` },
-  }));
+//   const paths = levels.map((level) => ({
+//     params: { levelNo: `${level.levelNo}` },
+//   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }

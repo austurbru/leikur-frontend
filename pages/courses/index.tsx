@@ -3,6 +3,7 @@ import Layout from "@components/Layout";
 import { Level } from "@models/strapi-types";
 import { API_URL } from "@config/index";
 
+
 const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
   return (
     <Layout>
@@ -18,13 +19,13 @@ const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
 
 export default CoursesPage;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`${API_URL}/levels?_sort=levelNo:ASC`);
   const courses = await res.json();
 
   return {
     props: { courses },
-    revalidate: 1,
+   // revalidate: 1,
   };
 }
 
