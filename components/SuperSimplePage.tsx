@@ -16,6 +16,8 @@ interface Props {
 
 const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
+  const [progress, setProgress] = useState<number>( (page.pageInfo.pageNo - 1) * 100 / page.pageInfo.lessonTotalPageCount);
+
 
   return (
     <div>
@@ -24,9 +26,11 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
           <button onClick={() => setFeedback(Feedback.Correct)}>Send Correct</button>
           <button onClick={() => setFeedback(Feedback.Incorrect)}>Send Wrong</button>
           <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button>
+          <button onClick={() => setProgress( (page.pageInfo.pageNo) * 100 / page.pageInfo.lessonTotalPageCount)}>Complete Page</button>
+          <p>{`Progress: ${progress}%`}</p>
+          <p>{`Page: ${page.pageInfo.pageNo} of ${page.pageInfo.lessonTotalPageCount}`}</p>
           <h3>{page.title}</h3>
           <div>
-          
             <div>
               <ReactMarkdown>{page.content}</ReactMarkdown>
             </div>

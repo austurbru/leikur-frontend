@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import AudioPlayer from "react-h5-audio-player";
 import ReactMarkdown from "react-markdown";
@@ -15,9 +16,22 @@ interface Props {
 }
 
 const TextWithImageAndAudio: React.FC<Props> = ({ page, navSlugs }: Props) => {
+  const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
+  const [progress, setProgress] = useState<number>(
+    ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
+  );
+
   return (
     <LessonPageLayout>
       <div>
+        <button onClick={() => setFeedback(Feedback.Correct)}>Send Correct</button>
+        <button onClick={() => setFeedback(Feedback.Incorrect)}>Send Wrong</button>
+        <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button>
+        <button onClick={() => setProgress((page.pageInfo.pageNo * 100) / page.pageInfo.lessonTotalPageCount)}>
+          Complete Page
+        </button>
+        <p>{`Progress: ${progress}%`}</p>
+        <p>{`Page: ${page.pageInfo.pageNo} of ${page.pageInfo.lessonTotalPageCount}`}</p>
         <h3>{page.title}</h3>
         <div>
           <div>
@@ -33,7 +47,7 @@ const TextWithImageAndAudio: React.FC<Props> = ({ page, navSlugs }: Props) => {
           </div>
         </div>
       </div>
-      <LessonNavigation navSlugs={navSlugs} feedback={Feedback.None} />
+      <LessonNavigation navSlugs={navSlugs} feedback={feedback} />
     </LessonPageLayout>
   );
 };

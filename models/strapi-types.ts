@@ -162,6 +162,7 @@ export interface PageInfo {
   _id: string;
   pageNo: number;
   slug: string;
+  lessonTotalPageCount: number;
   __v: number;
   id: string;
 }
