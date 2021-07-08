@@ -1,35 +1,36 @@
-import { useState } from "react";
-import { Feedback } from "@models/enums";
+// import { useState } from "react";
+// import { Feedback } from "@models/enums";
 
-import LessonPageLayout from "@components/LessonPageLayout";
-import LessonNavigation from "@components/LessonNavigation";
-import ReactMarkdown from "react-markdown";
-import {
-  Player,
-  ControlBar,
-  CurrentTimeDisplay,
-  TimeDivider,
-  PlaybackRateMenuButton,
-  VolumeMenuButton,
-  ClosedCaptionButton,
-  BigPlayButton,
-} from "video-react";
-import { PagesEntity } from "@models/strapi-types";
-import NavSlugs from "@models/nav-slugs";
+// import LessonPageLayout from "@components/LessonPageLayout";
+// import LessonNavigation from "@components/LessonNavigation";
+// import ReactMarkdown from "react-markdown";
+// import {
+//   Player,
+//   ControlBar,
+//   CurrentTimeDisplay,
+//   TimeDivider,
+//   PlaybackRateMenuButton,
+//   VolumeMenuButton,
+//   ClosedCaptionButton,
+//   BigPlayButton,
+// } from "video-react";
+// import { PagesEntity } from "@models/strapi-types";
+// import NavSlugs from "@models/nav-slugs";
 import "../node_modules/video-react/dist/video-react.css";
 
-interface Props {
-  page: PagesEntity;
-  navSlugs: NavSlugs;
-}
+// interface Props {
+//   page: PagesEntity;
+//   navSlugs: NavSlugs;
+// }
 
-const TextWithImageAndVideo: React.FC<Props> = ({ page, navSlugs }: Props) => {
-  const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
+//const TextWithImageAndVideo: React.FC<Props> = ({ page, navSlugs }: Props) => {
+const TextWithImageAndVideo: React.FC = () => {
+  // const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
 
-  //Variable progress to use in the progress bar
-  const [progress, setProgress] = useState<number>(
-    ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
-  );
+  // //Variable progress to use in the progress bar
+  // const [progress, setProgress] = useState<number>(
+  //   ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
+  // );
 
   
   return (<div></div>);

@@ -1,8 +1,8 @@
 import { PagesEntity, Lesson } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
-import TemplateMissing from "@components/TemplateMissing";
-import TextWithImageAndAudio from "@components/TextWithImageAndAudio";
-import TextWithImageAndVideo from "@components/TextWithImageAndVideo";
+//import TemplateMissing from "@components/TemplateMissing";
+// import TextWithImageAndAudio from "@components/TextWithImageAndAudio";
+// import TextWithImageAndVideo from "@components/TextWithImageAndVideo";
 import { API_URL } from "@config/index";
 import SuperSimplePage from '../../components/SuperSimplePage';
 
@@ -14,9 +14,9 @@ interface Props {
 const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   switch (page.__component) {
     case "page-content.image-with-audioXXX":
-      return <TextWithImageAndAudio page={page} navSlugs={navSlugs} />;
+      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
     case "page-content.video-textXXX":
-      return <TextWithImageAndVideo page={page} navSlugs={navSlugs} />;
+      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
     case "page-content.super-simple-page":
       return <SuperSimplePage page={page} navSlugs={navSlugs} />;
     default:

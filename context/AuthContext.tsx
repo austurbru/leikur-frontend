@@ -11,7 +11,6 @@ type UserContextObj = {
   register: (userCredentials: UserCredentials) => void;
   login: (userCredentials: UserCredentials) => void;
   logout: () => void;
-  setMotto: (newMotto: string) => void;
   setCurrentLesson: (currentLesson: Lesson) => void;
   setCurrentLessonCompleted: () => void;
 };
@@ -28,7 +27,6 @@ export const AuthContext = createContext<UserContextObj>({
   register: () => {},
   login: () => {},
   logout: () => {},
-  setMotto: () => {},
   setCurrentLesson: () => {},
   setCurrentLessonCompleted: () => {},
 });
@@ -121,11 +119,9 @@ export const AuthProvider: React.FC = (props) => {
       //that the user is NEVER null. That is guaranteed by the if statement above (  --- if (user) ---  ) 
       let userForUpdate: User = user!;
 
-      let motto = userForUpdate.motto;
       let currentLesson = userForUpdate.currentLesson;
       let currentCourse = userForUpdate.currentCourse;
       let lessonsCompleted = userForUpdate.lessonsCompleted;
-      let coursesCompleted = userForUpdate.coursesCompleted;
 
       console.log("updateUser: lessonsCompleted");
       console.log(lessonsCompleted);
@@ -135,7 +131,7 @@ export const AuthProvider: React.FC = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ motto, currentCourse, currentLesson, lessonsCompleted, coursesCompleted }),
+        body: JSON.stringify({ currentCourse, currentLesson, lessonsCompleted }),
       });
 
       const data = await res.json();
@@ -145,14 +141,6 @@ export const AuthProvider: React.FC = (props) => {
         setError(data.message);
         setError(null);
       }
-    }
-  };
-
-  const setMotto = async (newMotto: string) => {
-    if (user) {
-      let userForUpdate: User = user!;
-      userForUpdate.motto = newMotto;
-      await updateUser();
     }
   };
 
@@ -193,7 +181,6 @@ export const AuthProvider: React.FC = (props) => {
         register,
         login,
         logout,
-        setMotto,
         setCurrentLesson,
         setCurrentLessonCompleted,
       }}

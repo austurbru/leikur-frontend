@@ -6,7 +6,7 @@ import AuthContext from "@context/AuthContext";
 import styles from "@styles/Header.module.css";
 
 const Header: React.FC = () => {
-  const { user, logout, setMotto } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <header className={styles.header}>

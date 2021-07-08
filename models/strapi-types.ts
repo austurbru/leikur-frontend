@@ -246,7 +246,6 @@ export interface User {
   confirmed: boolean;
   blocked: boolean;
   lessonsCompleted: string[];
-  coursesCompleted: Level[];
   _id: string;
   username: string;
   email: string;
@@ -258,7 +257,6 @@ export interface User {
   currentCourse: Level;
   currentLesson: Lesson;
   id: string;
-  motto: string;
 }
 
 export interface Role {
