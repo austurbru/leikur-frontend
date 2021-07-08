@@ -13,14 +13,14 @@ interface Props {
 
 const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   switch (page.__component) {
-    case "page-content.image-with-audio":
+    case "page-content.image-with-audioXXX":
       return <TextWithImageAndAudio page={page} navSlugs={navSlugs} />;
-    case "page-content.video-text":
+    case "page-content.video-textXXX":
       return <TextWithImageAndVideo page={page} navSlugs={navSlugs} />;
     case "page-content.super-simple-page":
       return <SuperSimplePage page={page} navSlugs={navSlugs} />;
     default:
-      return <TemplateMissing />;
+      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
   }
 };
 

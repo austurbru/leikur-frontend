@@ -15,7 +15,6 @@ const Header: React.FC = () => {
           <a>Það er leikur að læra</a>
         </Link>
       </div>
-
       <nav>
         <ul>
           {user ? (
@@ -23,12 +22,6 @@ const Header: React.FC = () => {
             <>
               <li>
                 <Link href="/courses">Courses</Link>
-              </li>
-              <li>
-                <button onClick={() => setMotto("This is Paula's motto")} className="btn-secondary btn-icon">
-                  <FaSignOutAlt />
-                  updateUser
-                </button>
               </li>
               <li>
                 <button onClick={() => logout()} className="btn-secondary btn-icon">

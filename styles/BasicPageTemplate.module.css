@@ -12,6 +12,10 @@
   display: inline;
 }
 
+.redBackground {
+  background-color: red;
+}
+
 .button {
   float: left;
   margin-right: 10px;

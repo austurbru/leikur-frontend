@@ -2,9 +2,10 @@ import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { NEXT_URL } from "@config/index";
 import { User } from "@models/strapi-types";
-import { Lesson } from '../models/strapi-types';
+import { Lesson } from "../models/strapi-types";
 
 type UserContextObj = {
+  //user is null when NOT logged in
   user?: User | null;
   error: any;
   register: (userCredentials: UserCredentials) => void;
@@ -12,6 +13,7 @@ type UserContextObj = {
   logout: () => void;
   setMotto: (newMotto: string) => void;
   setCurrentLesson: (currentLesson: Lesson) => void;
+  setCurrentLessonCompleted: () => void;
 };
 
 export interface UserCredentials {
@@ -28,6 +30,7 @@ export const AuthContext = createContext<UserContextObj>({
   logout: () => {},
   setMotto: () => {},
   setCurrentLesson: () => {},
+  setCurrentLessonCompleted: () => {},
 });
 
 export const AuthProvider: React.FC = (props) => {
@@ -104,27 +107,35 @@ export const AuthProvider: React.FC = (props) => {
 
     if (res.ok) {
       setUser(data.user);
-      router.push("/courses");
+      //      router.push("/courses");
     } else {
       setUser(null);
     }
   };
 
-
   const updateUser = async () => {
     if (user) {
+
+      //typescript complains if we try to use the user object because it is possible that it can be null
+      //therefore we have to create a variable that contains the user and we are promising here 
+      //that the user is NEVER null. That is guaranteed by the if statement above (  --- if (user) ---  ) 
       let userForUpdate: User = user!;
 
-      let motto = userForUpdate.motto
-      let currentLesson = userForUpdate.currentLesson
-      let currentCourse = userForUpdate.currentCourse
+      let motto = userForUpdate.motto;
+      let currentLesson = userForUpdate.currentLesson;
+      let currentCourse = userForUpdate.currentCourse;
+      let lessonsCompleted = userForUpdate.lessonsCompleted;
+      let coursesCompleted = userForUpdate.coursesCompleted;
+
+      console.log("updateUser: lessonsCompleted");
+      console.log(lessonsCompleted);
 
       const res = await fetch(`${NEXT_URL}/api/user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ motto, currentCourse, currentLesson }),
+        body: JSON.stringify({ motto, currentCourse, currentLesson, lessonsCompleted, coursesCompleted }),
       });
 
       const data = await res.json();
@@ -147,10 +158,30 @@ export const AuthProvider: React.FC = (props) => {
 
   const setCurrentLesson = async (currentLesson: Lesson) => {
     if (user) {
+
+      
       let userForUpdate: User = user!;
-      userForUpdate.currentLesson = currentLesson;
-      userForUpdate.currentCourse = currentLesson.level;
-      await updateUser();
+
+      //update the user IF the currentLesson is actually changing
+      if (currentLesson.key !== userForUpdate.currentLesson.key) {
+        userForUpdate.currentLesson = currentLesson;
+        userForUpdate.currentCourse = currentLesson.level;
+        await updateUser();
+      }
+    }
+  };
+
+  const setCurrentLessonCompleted = async () => {
+    if (user) {
+      let userForUpdate: User = user!;
+
+      //if the current lesson does not exist already
+      //in the array of completedLessons -> currentLesson.key is added to the array
+      //then -> the user is updated
+      if (userForUpdate.lessonsCompleted.indexOf(userForUpdate.currentLesson.key) === -1) {
+        userForUpdate.lessonsCompleted.push(userForUpdate.currentLesson.key);
+        await updateUser();
+      }
     }
   };
 
@@ -163,7 +194,8 @@ export const AuthProvider: React.FC = (props) => {
         login,
         logout,
         setMotto,
-        setCurrentLesson
+        setCurrentLesson,
+        setCurrentLessonCompleted,
       }}
     >
       {props.children}

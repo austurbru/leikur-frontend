@@ -31,7 +31,9 @@ const TextWithImageAndVideo: React.FC<Props> = ({ page, navSlugs }: Props) => {
     ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
   );
 
-  return (
+  
+  return (<div></div>);
+/*   return (
     <div>
       <LessonPageLayout>
         <div>
@@ -66,7 +68,7 @@ const TextWithImageAndVideo: React.FC<Props> = ({ page, navSlugs }: Props) => {
         <LessonNavigation navSlugs={navSlugs} feedback={feedback} />
       </LessonPageLayout>
     </div>
-  );
+  ); */
 };
 
 export default TextWithImageAndVideo;

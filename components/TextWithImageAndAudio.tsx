@@ -21,7 +21,10 @@ const TextWithImageAndAudio: React.FC<Props> = ({ page, navSlugs }: Props) => {
     ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
   );
 
-  return (
+  return(<div></div>);
+
+
+/*   return (
     <LessonPageLayout>
       <div>
         <button onClick={() => setFeedback(Feedback.Correct)}>Send Correct</button>
@@ -49,7 +52,7 @@ const TextWithImageAndAudio: React.FC<Props> = ({ page, navSlugs }: Props) => {
       </div>
       <LessonNavigation navSlugs={navSlugs} feedback={feedback} />
     </LessonPageLayout>
-  );
+  ); */
 };
 
 export default TextWithImageAndAudio;

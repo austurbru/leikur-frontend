@@ -10,9 +10,10 @@ import styles from "@styles/LessonNavigation.module.css";
 interface Props {
   navSlugs: NavSlugs;
   feedback: Feedback;
+  notifyContinue: () => void;
 }
 
-const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback }: Props) => {
+const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue }: Props) => {
   const [currentFeedback, setCurrentFeedback] = useState<Feedback>(Feedback.None);
 
   const levelKey = navSlugs.currentSlug.split("-", 1);
@@ -51,8 +52,11 @@ const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback }: Props) => {
           {currentFeedback === Feedback.Correct && <Correct />}
           {currentFeedback === Feedback.Incorrect && <Incorrect />}
           <Link href={navSlugs.nextSlug}>
-            <a className={getFeedbackColorStyle()}>Continue</a>
+            <a className={getFeedbackColorStyle()}>Continue Old</a>
           </Link>
+          <button className={getFeedbackColorStyle()} onClick={() => notifyContinue()}>
+            Continue
+          </button>
         </div>
       )}
     </div>

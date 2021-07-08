@@ -214,6 +214,7 @@ export interface Level {
   levelNo: number;
   description: string;
   image: Image;
+  lessons: Lesson[];
   published_at: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -244,8 +245,8 @@ export interface RootObject {
 export interface User {
   confirmed: boolean;
   blocked: boolean;
-  lessonsCompleted: LessonsCompletedEntity[];
-  coursesCompleted: CoursesCompletedEntity[];
+  lessonsCompleted: string[];
+  coursesCompleted: Level[];
   _id: string;
   username: string;
   email: string;
@@ -266,34 +267,5 @@ export interface Role {
   description: string;
   type: string;
   __v: number;
-  id: string;
-}
-
-export interface CoursesCompletedEntity {
-  color: string;
-  _id: string;
-  levelNo: number;
-  description: string;
-  published_at: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  id: string;
-}
-
-export interface LessonsCompletedEntity {
-  color?: null;
-  _id: string;
-  published_at: string;
-  description: string;
-  lessonNo: number;
-  key: string;
-  levelNo: number;
-  pages?: (PagesEntity)[] | null;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  level: string;
-  image: Image;
   id: string;
 }
