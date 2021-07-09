@@ -27,8 +27,14 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
 
   const handleContinueNotification = () => {
 
+    // localProgress is necessary here because the setState hook does not make
+    // the state immediatly available for futher calculations.
+    let localProgress = progress
     if (canContinue()){
-      setProgress((page.pageInfo.pageNo * 100) / page.pageInfo.lessonTotalPageCount)
+
+      localProgress = (page.pageInfo.pageNo * 100) / page.pageInfo.lessonTotalPageCount
+      setProgress(localProgress)
+
     } else {
       handleCannotContinue;
       return;
@@ -36,7 +42,7 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
 
     //If the progress is 100 we need to
     // update the user to set the current lesson as 'completed'
-    if (progress === 100) {
+    if (localProgress === 100) {
       setCurrentLessonCompleted();
       console.log("progress === 100");
     }
