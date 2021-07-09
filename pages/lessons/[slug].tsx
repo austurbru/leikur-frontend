@@ -70,6 +70,8 @@ export async function getStaticProps(context: { params: any }) {
       page: page,
       navSlugs: navSlugs,
     },
+    // Next.js will attempt to re-generate the page every 15 minutes
+    revalidate: 15 * 60, 
   };
 }
 

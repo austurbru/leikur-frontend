@@ -1,16 +1,15 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Feedback } from "@models/enums";
-import AuthContext from "@context/AuthContext";
 
 import LessonPageLayout from "@components/LessonPageLayout";
 import LessonNavigation from "@components/LessonNavigation";
-//import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
+import AuthContext from "@context/AuthContext";
 
 import { PagesEntity } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
 import "../node_modules/video-react/dist/video-react.css";
-import styles from '@styles/BasicPageTemplate.module.css';
 
 interface Props {
   page: PagesEntity;
@@ -26,15 +25,37 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   const router = useRouter();
   const { setCurrentLessonCompleted } = useContext(AuthContext);
 
-  function handleContinueNotification() {
+  const handleContinueNotification = () => {
+
+    if (canContinue()){
+      setProgress((page.pageInfo.pageNo * 100) / page.pageInfo.lessonTotalPageCount)
+    } else {
+      handleCannotContinue;
+      return;
+    }
+
     //If the progress is 100 we need to
     // update the user to set the current lesson as 'completed'
-    if (progress === 100){
-  
-      setCurrentLessonCompleted()
+    if (progress === 100) {
+      setCurrentLessonCompleted();
+      console.log("progress === 100");
     }
+
+    setFeedback(Feedback.None);
+
     router.push(navSlugs.nextSlug);
   }
+
+  const canContinue = (): boolean  =>  {
+    // Implement custom validation here to determine
+    // if the user can go to the next page.
+    return true;
+  }
+
+  const handleCannotContinue = (): void  =>  {
+    //Implement custom handling here for this case:
+  }
+
 
   return (
     <div>
@@ -49,7 +70,11 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
           <p>{`Progress: ${progress}%`}</p>
           <p>{`Page: ${page.pageInfo.pageNo} of ${page.pageInfo.lessonTotalPageCount}`}</p>
           <h3>{page.title}</h3>
-          <div className= {styles.redBackground}></div>
+          <div>
+            <div>
+              <ReactMarkdown>{page.content}</ReactMarkdown>
+            </div>
+          </div>
         </div>
         <LessonNavigation navSlugs={navSlugs} feedback={feedback} notifyContinue={handleContinueNotification} />
       </LessonPageLayout>
@@ -58,10 +83,3 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
 };
 
 export default SuperSimplePage;
-
-
-/*
-            <div>
-              <ReactMarkdown>{page.content}</ReactMarkdown>
-            </div>
-*/
