@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { Label } from "semantic-ui-react";
 import { Lesson } from "@models/strapi-types";
 import styles from "@styles/LessonItem.module.css";
 import AuthContext from "@context/AuthContext";
@@ -36,10 +37,18 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
           width={170}
           height={100}
         />
+        {isCompleted && (
+          <Label
+          style = {{top: '-115px', left:'-12px'}}
+          ribbon
+          color="green"
+          content="Completed"
+          />
+        )} 
       </div>
       <div className={styles.info}>
         <p>{lesson.description}</p>
-        {isCompleted && <p>Completed</p>} 
+        
       </div>
       <div className={styles.link}>
         {lesson.pages && lesson.pages.length > 0 ? (

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Label } from "semantic-ui-react";
 import AuthContext from "@context/AuthContext";
 import { Level } from "@models/strapi-types";
 import styles from "@styles/CourseItem.module.css";
@@ -33,6 +34,9 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
           width={170}
           height={100}
         />
+        {progress === 100 && (
+          <Label style={{ top: "-115px", left: "-12px" }} ribbon color="green" content="Completed" />
+        )}
       </div>
       <div className={styles.info}>
         <p>{course.description}</p>
