@@ -78,7 +78,7 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
           <p>{`Progress: ${progress}%`}</p>
           <p>{`Page: ${page.pageInfo.pageNo} of ${page.pageInfo.lessonTotalPageCount}`}</p>
           <h3>{page.title}</h3>
-          <Button fluid size="large" color="teal" content="X" loading={isClosing} onClick={() => close()} />
+          <Button size="large" color="teal" content="Close" loading={isClosing} onClick={() => close()} />
 
           <div>
             <div>
