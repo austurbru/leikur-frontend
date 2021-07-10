@@ -9,7 +9,7 @@ import AuthContext from "@context/AuthContext";
 
 import { PagesEntity } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
-import "../node_modules/video-react/dist/video-react.css";
+import styles from "@styles/BasicPageTemplate.module.css";
 
 interface Props {
   page: PagesEntity;
@@ -23,7 +23,7 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   );
 
   const router = useRouter();
-  const { setCurrentLessonCompleted } = useContext(AuthContext);
+  const { setCurrentLessonCompleted, setCurrentPageSlug } = useContext(AuthContext);
 
   const handleContinueNotification = () => {
 
@@ -62,6 +62,12 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
     //Implement custom handling here for this case:
   }
 
+  const close = (): void  =>  {
+    setCurrentPageSlug(`lessons/${page.pageInfo.slug}`)
+    router.push("/courses");
+  }
+
+
 
   return (
     <div>
@@ -70,12 +76,12 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
           <button onClick={() => setFeedback(Feedback.Correct)}>Send Correct</button>
           <button onClick={() => setFeedback(Feedback.Incorrect)}>Send Wrong</button>
           <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button>
-          <button onClick={() => setProgress((page.pageInfo.pageNo * 100) / page.pageInfo.lessonTotalPageCount)}>
-            Complete Page
-          </button>
           <p>{`Progress: ${progress}%`}</p>
           <p>{`Page: ${page.pageInfo.pageNo} of ${page.pageInfo.lessonTotalPageCount}`}</p>
           <h3>{page.title}</h3>
+            <button className={styles.plainButton} onClick={() => close()}>
+            Close
+          </button>
           <div>
             <div>
               <ReactMarkdown>{page.content}</ReactMarkdown>

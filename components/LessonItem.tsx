@@ -7,7 +7,19 @@ import AuthContext from "@context/AuthContext";
 
 const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
   const router = useRouter();
-  const { setCurrentLesson } = useContext(AuthContext);
+  const { user, setCurrentLesson } = useContext(AuthContext);
+
+  let isCompleted = false;
+  const levelKey = lesson.key.charAt(0) 
+  const lessonNumber = lesson.key.charAt(2) 
+
+  if (user) {
+    const filterResult = user!.lessonsCompleted.filter((item) => {
+      return item.charAt(0) === levelKey && item.charAt(2) === lessonNumber;
+    });
+
+    isCompleted = filterResult.length > 0;
+  }
 
   //handleStartLesson will navigate to the lesson and set the lesson
   //as the current lesson for the user
@@ -25,9 +37,9 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
           height={100}
         />
       </div>
-
       <div className={styles.info}>
         <p>{lesson.description}</p>
+        {isCompleted && <p>Completed</p>} 
       </div>
       <div className={styles.link}>
         {lesson.pages && lesson.pages.length > 0 ? (

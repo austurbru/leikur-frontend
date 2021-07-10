@@ -13,6 +13,7 @@ type UserContextObj = {
   logout: () => void;
   setCurrentLesson: (currentLesson: Lesson) => void;
   setCurrentLessonCompleted: () => void;
+  setCurrentPageSlug: (currentPageSlug: string) => void;
 };
 
 export interface UserCredentials {
@@ -29,6 +30,7 @@ export const AuthContext = createContext<UserContextObj>({
   logout: () => {},
   setCurrentLesson: () => {},
   setCurrentLessonCompleted: () => {},
+  setCurrentPageSlug: () => {},
 });
 
 export const AuthProvider: React.FC = (props) => {
@@ -113,15 +115,14 @@ export const AuthProvider: React.FC = (props) => {
 
   const updateUser = async () => {
     if (user) {
-
       //typescript complains if we try to use the user object because it is possible that it can be null
-      //therefore we have to create a variable that contains the user and we are promising here 
-      //that the user is NEVER null. That is guaranteed by the if statement above (  --- if (user) ---  ) 
+      //therefore we have to create a variable that contains the user and we are promising here
+      //that the user is NEVER null. That is guaranteed by the if statement above (  --- if (user) ---  )
       let userForUpdate: User = user!;
 
       let currentLesson = userForUpdate.currentLesson;
-      let currentCourse = userForUpdate.currentCourse;
       let lessonsCompleted = userForUpdate.lessonsCompleted;
+      let currentPageSlug = userForUpdate.currentPageSlug;
 
       console.log("updateUser: lessonsCompleted");
       console.log(lessonsCompleted);
@@ -131,7 +132,7 @@ export const AuthProvider: React.FC = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ currentCourse, currentLesson, lessonsCompleted }),
+        body: JSON.stringify({ currentLesson, lessonsCompleted, currentPageSlug }),
       });
 
       const data = await res.json();
@@ -146,30 +147,36 @@ export const AuthProvider: React.FC = (props) => {
 
   const setCurrentLesson = async (currentLesson: Lesson) => {
     if (user) {
-
-      
       let userForUpdate: User = user!;
 
       //update the user IF the currentLesson is actually changing
       if (currentLesson.key !== userForUpdate.currentLesson.key) {
         userForUpdate.currentLesson = currentLesson;
-        userForUpdate.currentCourse = currentLesson.level;
         await updateUser();
       }
+    }
+  };
+
+  const setCurrentPageSlug = async (currentPageSlug: string) => {
+    if (user) {
+      let userForUpdate: User = user!;
+
+      userForUpdate.currentPageSlug = currentPageSlug;
+      await updateUser();
     }
   };
 
   const setCurrentLessonCompleted = async () => {
     if (user) {
       let userForUpdate: User = user!;
-
+      userForUpdate.currentPageSlug = "";
       //if the current lesson does not exist already
       //in the array of completedLessons -> currentLesson.key is added to the array
       //then -> the user is updated
       if (userForUpdate.lessonsCompleted.indexOf(userForUpdate.currentLesson.key) === -1) {
         userForUpdate.lessonsCompleted.push(userForUpdate.currentLesson.key);
-        await updateUser();
       }
+      await updateUser();
     }
   };
 
@@ -183,6 +190,7 @@ export const AuthProvider: React.FC = (props) => {
         logout,
         setCurrentLesson,
         setCurrentLessonCompleted,
+        setCurrentPageSlug,
       }}
     >
       {props.children}

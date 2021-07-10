@@ -107,13 +107,8 @@ export interface Image {
 }
 
 export interface Category {
-  _id: string;
-  Title: string;
-  published_at: Date;
-  createdAt: Date;
-  updatedAt: Date;
-  __v: number;
   id: string;
+  Title: string;
 }
 
 export interface DisplayTemplate {
@@ -129,28 +124,21 @@ export interface DisplayTemplate {
 
 //lesson
 export interface Lesson {
-  _id: string;
-  published_at: string;
+  id: string;
   description: string;
   lessonNo: number;
   key: string;
   levelNo: number;
   pages: PagesEntity[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
   level: Level;
   image?: Image | null;
-  id: string;
 }
 
 //pages
 export interface PagesEntity {
   __component: string;
-  _id: string;
   title: string;
   pageInfo: PageInfo;
-  __v: number;
   audio: AudioOrVideo;
   category: Category;
   image?: Image | null;
@@ -159,12 +147,10 @@ export interface PagesEntity {
   video: AudioOrVideo;
 }
 export interface PageInfo {
-  _id: string;
+  id: string;
   pageNo: number;
   slug: string;
   lessonTotalPageCount: number;
-  __v: number;
-  id: string;
 }
 export interface AudioOrVideo {
   _id: string;
@@ -181,7 +167,7 @@ export interface AudioOrVideo {
   provider: string;
   width?: null;
   height?: null;
-  related?: (null)[] | null;
+  related?: null[] | null;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -210,16 +196,11 @@ export interface Subtitles {
 }
 
 export interface Level {
-  _id: string;
+  id: string;
   levelNo: number;
   description: string;
   image: Image;
   lessons: Lesson[];
-  published_at: Date;
-  createdAt: Date;
-  updatedAt: Date;
-  __v: number;
-  id: string;
 }
 
 export interface RootObject {
@@ -243,20 +224,12 @@ export interface RootObject {
 }
 
 export interface User {
-  confirmed: boolean;
-  blocked: boolean;
-  lessonsCompleted: string[];
-  _id: string;
+  id: string;
   username: string;
   email: string;
-  provider: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  role: Role;
-  currentCourse: Level;
   currentLesson: Lesson;
-  id: string;
+  lessonsCompleted: string[];
+  currentPageSlug: string;
 }
 
 export interface Role {

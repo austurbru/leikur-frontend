@@ -26,7 +26,7 @@ export default async (req, res) => {
       res.status(403).json({ message: "User forbidden" });
     }
   } else if (req.method === "PUT") {
-    // If the method is PUT -> Update of the user:    
+    // If the method is PUT -> Update of the user:
 
     if (!req.headers.cookie) {
       res.status(403).json({ message: "Not Authorized" });
@@ -48,8 +48,8 @@ export default async (req, res) => {
     if (strapiRes.ok) {
       // Update User:
 
-      const { currentCourse, currentLesson, lessonsCompleted } = req.body;
-      
+      const { currentLesson, lessonsCompleted, currentPageSlug } = req.body;
+
       const strapiRes = await fetch(`${API_URL}/users/${user.id}`, {
         method: "PUT",
         headers: {
@@ -57,7 +57,9 @@ export default async (req, res) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          currentCourse, currentLesson, lessonsCompleted
+          currentLesson,
+          lessonsCompleted,
+          currentPageSlug,
         }),
       });
 
