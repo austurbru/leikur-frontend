@@ -21,7 +21,7 @@ const Header: React.FC = () => {
             // If logged in
             <>
               <li>
-                <Link href="/courses">Courses</Link>
+                <Link href="/courses">X</Link>
               </li>
               <li>
                 <button onClick={() => logout()} className="btn-secondary btn-icon">
