@@ -1,0 +1,8 @@
+.info {
+    margin-bottom: 1rem;
+  }
+  
+  .container {
+    background-color: var(--basicBlue);
+    height: 100vh;
+  }

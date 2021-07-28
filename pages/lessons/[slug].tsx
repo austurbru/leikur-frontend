@@ -4,7 +4,7 @@ import NavSlugs from "@models/nav-slugs";
 // import TextWithImageAndAudio from "@components/TextWithImageAndAudio";
 // import TextWithImageAndVideo from "@components/TextWithImageAndVideo";
 import { API_URL } from "@config/index";
-import SuperSimplePageBackup from '../../components/SuperSimplePageBackup';
+//import SuperSimplePageBackup from '../../components/SuperSimplePageBackupOld';
 import SuperSimplePage from '../../components/SuperSimplePage';
 
 interface Props {

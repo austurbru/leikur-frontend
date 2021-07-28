@@ -121,9 +121,16 @@ export const AuthProvider: React.FC = (props) => {
       let userForUpdate: User = user!;
 
       let currentLesson = userForUpdate.currentLesson;
-      let lessonsCompleted = userForUpdate.lessonsCompleted;
       let currentPageSlug = userForUpdate.currentPageSlug;
 
+      //For some reason we seem to be getting an undefined element into the array occationally.
+      //This filtering is to prevent problems that this causes.
+      const filteredLessons = userForUpdate.lessonsCompleted.filter(function (element) {
+        return typeof element === "string";
+      });
+
+      let lessonsCompleted = filteredLessons;
+  
       const res = await fetch(`${NEXT_URL}/api/user`, {
         method: "PUT",
         headers: {
@@ -134,7 +141,6 @@ export const AuthProvider: React.FC = (props) => {
 
       const data = await res.json();
 
-     
       if (!res.ok) {
         setError(data.message);
         setError(null);
@@ -167,13 +173,25 @@ export const AuthProvider: React.FC = (props) => {
     if (user) {
       let userForUpdate: User = user!;
       userForUpdate.currentPageSlug = "";
-      
+
       //if the current lesson does not exist already
       //in the array of completedLessons -> currentLesson.key is added to the array
       //then -> the user is updated
       if (userForUpdate.lessonsCompleted.indexOf(userForUpdate.currentLesson.key) === -1) {
-        userForUpdate.lessonsCompleted.push(userForUpdate.currentLesson.key);
+        if (userForUpdate.currentLesson.key === null) {
+          console.log("currentLesson.key was null");
+          console.log(userForUpdate.currentLesson);
+        } else {
+          userForUpdate.lessonsCompleted.push(userForUpdate.currentLesson.key);
+        }
       }
+
+      if (userForUpdate.currentLesson.key === null) {
+        console.log("currentLesson.key was null - 2");
+        console.log(userForUpdate);
+        console.log(userForUpdate.currentLesson);
+      }
+
       await updateUser();
     }
   };

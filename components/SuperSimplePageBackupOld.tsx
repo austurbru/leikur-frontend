@@ -1,31 +1,25 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Feedback } from "@models/enums";
-import { PagesEntity } from "@models/strapi-types";
-import NavSlugs from "@models/nav-slugs";
-import AuthContext from "@context/AuthContext";
+
 import LessonPageLayout from "@components/LessonPageLayout";
 import LessonPageHeader from "@components/LessonPageHeader";
 import LessonNavigation from "@components/LessonNavigation";
-import styles from "@styles/LessonPageWrapper.module.css";
+
+import ReactMarkdown from "react-markdown";
+import AuthContext from "@context/AuthContext";
+
+import { PagesEntity } from "@models/strapi-types";
+import NavSlugs from "@models/nav-slugs";
+import styles from "@styles/BasicPageTemplate.module.css";
 
 interface Props {
   page: PagesEntity;
   navSlugs: NavSlugs;
-  canContinue: boolean;
-  feedback: Feedback;
-  notifyCannotContinue: () => void;
-  children: React.ReactNode;
 }
 
-const LessonPageWrapper: React.FC<Props> = ({
-  page,
-  navSlugs,
-  canContinue,
-  feedback,
-  notifyCannotContinue,
-  children,
-}: Props) => {
+const SuperSimplePageBackupOld: React.FC<Props> = ({ page, navSlugs }: Props) => {
+  const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
   //Set the progress:
   const [progress, setProgress] = useState<number>(
     ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
@@ -39,11 +33,11 @@ const LessonPageWrapper: React.FC<Props> = ({
     // localProgress is necessary here because the setState hook does not make
     // the state immediatly available for futher calculations.
     let localProgress = progress;
-    if (canContinue) {
+    if (canContinue()) {
       localProgress = (page.pageInfo.pageNo * 100) / page.pageInfo.lessonTotalPageCount;
       setProgress(localProgress);
     } else {
-      notifyCannotContinue;
+      handleCannotContinue;
       return;
     }
 
@@ -53,7 +47,20 @@ const LessonPageWrapper: React.FC<Props> = ({
       setCurrentLessonCompleted();
     }
 
+    //Feedback.None : buttons on LessonNavigation set to normal color
+    setFeedback(Feedback.None);
+
     router.push(navSlugs.nextSlug);
+  };
+
+  const canContinue = (): boolean => {
+    // Implement custom validation here to determine
+    // if the user can go to the next page.
+    return true;
+  };
+
+  const handleCannotContinue = (): void => {
+    //Implement custom handling here for this case:
   };
 
   return (
@@ -62,8 +69,15 @@ const LessonPageWrapper: React.FC<Props> = ({
       <LessonPageLayout>
         <div className={styles.info}></div>
         <div>
+          <button onClick={() => setFeedback(Feedback.Correct)}>Send Correct</button>
+          <button onClick={() => setFeedback(Feedback.Incorrect)}>Send Wrong</button>
+          <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button>
           <h3>{page.title}</h3>
-          {children}
+          <div>
+            <div>
+              <ReactMarkdown>{page.content}</ReactMarkdown>
+            </div>
+          </div>
         </div>
         <LessonNavigation navSlugs={navSlugs} feedback={feedback} notifyContinue={handleContinueNotification} />
       </LessonPageLayout>
@@ -71,4 +85,4 @@ const LessonPageWrapper: React.FC<Props> = ({
   );
 };
 
-export default LessonPageWrapper;
+export default SuperSimplePageBackupOld;
