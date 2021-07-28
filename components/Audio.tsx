@@ -2,6 +2,8 @@ import Link from "next/link";
 import Layout from "@components/Layout";
 import { Page } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
+import { Lesson } from "@models/strapi-types";
+
 import styles from "@styles/BasicPageTemplate.module.css";
 import AudioPlayer from "react-h5-audio-player";
 

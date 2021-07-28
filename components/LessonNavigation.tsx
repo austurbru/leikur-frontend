@@ -43,7 +43,7 @@ const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue 
         <div className={styles.feedbackBar} onClick={() => {}}>
           {navSlugs.previousSlug ? (
             <Link href={navSlugs.previousSlug}>
-              <a className={styles.plainButton}>Back</a>
+              <a className={styles.backButton}>Back</a>
             </Link>
           ) : (
             // If there is no previous page, we put an empty placeholder here.
@@ -51,9 +51,9 @@ const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue 
           )}
           {currentFeedback === Feedback.Correct && <Correct />}
           {currentFeedback === Feedback.Incorrect && <Incorrect />}
-          <Link href={navSlugs.nextSlug}>
+          {/* <Link href={navSlugs.nextSlug}>
             <a className={getFeedbackColorStyle()}>Continue Old</a>
-          </Link>
+          </Link> */}
           <button className={getFeedbackColorStyle()} onClick={() => notifyContinue()}>
             Continue
           </button>

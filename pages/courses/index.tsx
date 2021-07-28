@@ -10,7 +10,7 @@ const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
       {courses.length === 0 && <h3>No courses to show</h3>}
 
       {courses.map((course) => (
-        <CourseItem key={course._id} course={course} />
+        <CourseItem key={course.id} course={course} />
       ))}
     </Layout>
   );

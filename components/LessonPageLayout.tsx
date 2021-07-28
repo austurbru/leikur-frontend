@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import styles from "@styles/Layout.module.css";
+import styles from "@styles/LessonPageLayout.module.css";
 
 import Showcase from "./Showcase";
 

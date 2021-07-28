@@ -124,9 +124,6 @@ export const AuthProvider: React.FC = (props) => {
       let lessonsCompleted = userForUpdate.lessonsCompleted;
       let currentPageSlug = userForUpdate.currentPageSlug;
 
-      console.log("updateUser: lessonsCompleted");
-      console.log(lessonsCompleted);
-
       const res = await fetch(`${NEXT_URL}/api/user`, {
         method: "PUT",
         headers: {
@@ -137,7 +134,7 @@ export const AuthProvider: React.FC = (props) => {
 
       const data = await res.json();
 
-      console.log(data);
+     
       if (!res.ok) {
         setError(data.message);
         setError(null);
@@ -170,6 +167,7 @@ export const AuthProvider: React.FC = (props) => {
     if (user) {
       let userForUpdate: User = user!;
       userForUpdate.currentPageSlug = "";
+      
       //if the current lesson does not exist already
       //in the array of completedLessons -> currentLesson.key is added to the array
       //then -> the user is updated

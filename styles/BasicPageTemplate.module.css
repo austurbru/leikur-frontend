@@ -43,3 +43,21 @@
   display: block;
   margin-top: 40px;
 }
+
+.info {
+  margin-bottom: 1rem;
+}
+
+.container {
+  background-color: var(--basicBlue);
+  height: 100vh;
+}
+
+p .help-links{
+ margin-left: 100px;
+}
+
+.audioImageContainer {
+  margin: auto;
+  max-width: 700px;
+}

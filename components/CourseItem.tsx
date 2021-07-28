@@ -17,6 +17,11 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
   if (user) {
     const lessonCount = course.lessons.length;
     const lessonsCompleted = user!.lessonsCompleted.filter((item) => {
+      console.log(item)
+      if (!item){
+        console.log("item is null here!")
+        console.log(lessonsCompleted)
+      }
       return item.charAt(0) === course.levelNo.toString();
     });
 
