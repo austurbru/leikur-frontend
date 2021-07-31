@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
-import { Grid, Button, Progress } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import Backdrop from "@components/Backdrop";
 import SideDrawer from "@components/SideDrawer";
 import HelpLinks from "@components/HelpLinks";
 import AuthContext from "@context/AuthContext";
+import ProgressBar from "@components/ProgressBar";
 
 import styles from "@styles/LessonPageHeader.module.css";
 
@@ -45,6 +46,9 @@ const LessonPageHeader: React.FC<Props> = ({ progress, slug }: Props) => {
         <div className={styles.topContainer}>
           <div className={styles.infoButton}>
             <Button circular color="blue" size="large" icon="info" onClick={openDrawer} />
+          </div>
+          <div>
+            <ProgressBar bgcolor="blue" height="10" completed={progress} />
           </div>
           <div className={styles.closeButton}>
             <Button circular color="red" size="large" icon="close" loading={isClosing} onClick={() => closePage()} />
