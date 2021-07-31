@@ -1,7 +1,9 @@
 .image {
   margin-bottom: 20px;
 }
-
+.mainContent{
+  margin-top: 2rem;
+}
 .controls {
   position: absolute;
   right: 30px;
