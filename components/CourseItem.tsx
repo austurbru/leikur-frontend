@@ -74,7 +74,7 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
           </Grid.Column>
           <Grid.Column width={8}>
             <Grid.Row>
-              <h3>{course.title}</h3>
+              <div className={styles.courseTitle}>{course.title}</div>
             </Grid.Row>
             <Grid.Row>
               <p>{course.description}</p>
