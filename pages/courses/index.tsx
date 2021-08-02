@@ -16,6 +16,7 @@ const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
   );
 };
 
+
 export default CoursesPage;
 
 export async function getServerSideProps() {

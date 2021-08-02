@@ -125,6 +125,7 @@ export interface DisplayTemplate {
 //lesson
 export interface Lesson {
   id: string;
+  title: string;
   description: string;
   lessonNo: number;
   key: string;
@@ -132,6 +133,7 @@ export interface Lesson {
   pages: PagesEntity[];
   level: Level;
   image?: Image | null;
+  color: string;
 }
 
 //pages
@@ -198,7 +200,9 @@ export interface Subtitles {
 export interface Level {
   id: string;
   levelNo: number;
+  title: string;
   description: string;
+  color: string;
   image: Image;
   lessons: Lesson[];
 }

@@ -1,11 +1,26 @@
 .lesson {
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
   padding: 13px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+
 }
+
+.ProgressBarContainer{
+width:25%;
+padding: 1rem;
+justify-items: center;
+}
+
+
+
+.backgroundYellow, .ui.red.button, .ui.red.buttons .button {
+  background-color: yellow;
+}
+
 
 .img {
   flex: 1;
@@ -13,7 +28,8 @@
 }
 
 .info {
-  flex: 2;
+margin: 2rem;
+width: 35%;
 }
 
 @media (max-width: 600px) {
@@ -24,5 +40,6 @@
 
   .info {
     margin-bottom: 20px;
+
   }
 }
