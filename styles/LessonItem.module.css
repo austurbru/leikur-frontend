@@ -9,17 +9,34 @@
 
 }
 
-.ProgressBarContainer{
-width:25%;
-padding: 1rem;
-justify-items: center;
+.lessonTitle{
+  padding-top: 6px;
+  color: var(--primary-app-color);
+  font-weight: bold;
 }
 
-
-
-.backgroundYellow, .ui.red.button, .ui.red.buttons .button {
-  background-color: yellow;
+.progressContainer{
+  display: flex;
+  align-items: center;
 }
+
+.progressBarContainer{
+  width: 100%;
+  padding-top: 2rem;
+  justify-items: center;
+  margin-right: 1rem;
+}
+
+.buttonContainer{
+  padding-top: 2rem;
+  text-align: right;
+}
+
+.progressText{
+  color: var(--primary-app-color);
+  padding-top: 2rem;
+}
+
 
 
 .img {

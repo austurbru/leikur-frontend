@@ -41,13 +41,12 @@
 }
 
 .progressBar {
-  --bar-bg: #b8b8b8;
   --seek-before-width: 0;
   --seek-before-color: white;
   --knobby: white;
 
   appearance: none;
-  background: var(--bar-bg);
+  background: var(--progressBar-bg);
   border-radius: 25px;
   position: relative;
   width: 100%;
@@ -57,7 +56,7 @@
 
 /* progress bar - safari */
 .progressBar::-webkit-slider-runnable-track {
-  background: var(--bar-bg);
+  background: var(--progressBar-bg);
   border-radius: 10px;
   position: relative;
   width: 100%;
@@ -67,7 +66,7 @@
 
 /* progress bar - firefox */
 .progressBar::-moz-range-track {
-  background: var(--bar-bg);
+  background: var(--progressBar-bg);
   border-radius: 10px;
   position: relative;
   width: 100%;

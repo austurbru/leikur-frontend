@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Label, Button, Grid } from "semantic-ui-react";
+import { Button, Grid } from "semantic-ui-react";
 import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
 import AuthContext from "@context/AuthContext";
 import { Level } from "@models/strapi-types";
@@ -70,6 +70,9 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
                 width={170}
                 height={100}
               />
+{/*               {progress == 100 && (
+                <Label style={{ top: "-115px", left: "-12px" }} ribbon color="green" content="Completed" />
+              )} */}
             </div>
           </Grid.Column>
           <Grid.Column width={8}>
@@ -83,20 +86,19 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
           <Grid.Column width={4}>
             <Grid.Row>
               <div className={styles.progressContainer}>
-              <div className={styles.progressBarContainer}>
-                <ProgressBar bgcolor={"blue"} height={10} completed={progress}></ProgressBar>
-              </div>
-              <div className={styles.progressText}>
-                <p>{Math.round(progress)}%</p>
-              </div>
+                <div className={styles.progressBarContainer}>
+                  <ProgressBar bgcolor={"blue"} height={10} completed={progress}></ProgressBar>
+                </div>
+                <div className={styles.progressText}>
+                  <p>{Math.round(progress)}%</p>
+                </div>
               </div>
             </Grid.Row>
-            <Grid.Row> </Grid.Row>
             <Grid.Row>
               <div className={styles.buttonContainer}>
-              <Button color={courseColor} loading={isLoading} onClick={handleBeginCourse}>
-                Begin Course
-              </Button>
+                <Button color={courseColor} loading={isLoading} onClick={handleBeginCourse}>
+                  Begin Course
+                </Button>
               </div>
             </Grid.Row>
           </Grid.Column>

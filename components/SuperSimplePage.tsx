@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PagesEntity } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
-import AudioImage from "@components/AudioImage";
+import AudioImage from "@components/LessonPageContent/AudioImage";
 import LessonPageWrapper from "@components/LessonPageWrapper";
 import styles from "@styles/BasicPageTemplate.module.css";
 
@@ -40,7 +40,7 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
       <button onClick={() => setFeedback(Feedback.Incorrect)}>Send Wrong</button>
       <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button> */}
       <div className={styles.audioImageContainer}>
-        <AudioImage imageUrl={imageUrl} audioUrl={audioUrl}></AudioImage>
+        <AudioImage imageSrcUrl={imageUrl} audioSrcUrl={audioUrl} altText="Some alt text"></AudioImage>
       </div>
       <div className={styles.mainContent}>
         <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>

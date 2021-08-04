@@ -5,7 +5,7 @@ import Backdrop from "@components/Backdrop";
 import SideDrawer from "@components/SideDrawer";
 import HelpLinks from "@components/HelpLinks";
 import AuthContext from "@context/AuthContext";
-import ProgressBar from "@components/ProgressBar";
+import ProgressBar from "@components/LessonPageContent/ProgressBar";
 
 import styles from "@styles/LessonPageHeader.module.css";
 
@@ -44,13 +44,13 @@ const LessonPageHeader: React.FC<Props> = ({ progress, slug }: Props) => {
       </SideDrawer>
       <div className={styles.headerCenter}>
         <div className={styles.topContainer}>
-          <div className={styles.infoButton}>
+          <div className={styles.buttonContainer}>
             <Button circular color="blue" size="large" icon="info" onClick={openDrawer} />
           </div>
-          <div>
-            <ProgressBar bgcolor="blue" height="10" completed={progress} />
+          <div className={styles.progressBarContainer}>
+            <ProgressBar bgcolor={"blue"} height={10} completed={progress}></ProgressBar>
           </div>
-          <div className={styles.closeButton}>
+          <div className={styles.buttonContainer}>
             <Button circular color="red" size="large" icon="close" loading={isClosing} onClick={() => closePage()} />
           </div>
         </div>

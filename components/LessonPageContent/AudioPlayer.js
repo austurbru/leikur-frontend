@@ -76,8 +76,7 @@ const AudioPlayer = ({
 
       return styling;
     }
-    console.log(styling);
-    return styling;
+
   };
 
   let playerStyling = `${styles.audioPlayer}`;

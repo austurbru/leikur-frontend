@@ -76,8 +76,8 @@
 
 
 :root {
-  --primary-app-color: orange;
-  --blue: #6495ed;
+  --primary-app-color: #094074;
+  --blue: #094074;
   --basicBlue: #DEE2FF;
   --white: #faf0e6;
   --yellow:#FEC600;
@@ -86,7 +86,16 @@
   --green: #00C853;
   --light-gray: #6D6D6D;
 
+
+  --mainBackgroundColor: #F3F3F3;
+  --progressBar-bg: #b8b8b8;
+
+/*   --mainBackgroundColor: rgba(197, 168, 114, 0.103);
+ */
+  /*
+  blueish color
   --mainBackgroundColor: #DEE2FF;
+  */
 }
 
 
@@ -94,7 +103,8 @@ html,
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.8;
-  background-color: var(--mainBackgroundColor)  ;
+  background-color: var(--mainBackgroundColor);
+
 }
 
 
@@ -109,6 +119,10 @@ p {
 
 h1 {
   margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-app-color);
 }
 
 

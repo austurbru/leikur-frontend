@@ -1,15 +1,12 @@
-.headerCenter {}
-
 .container {
     padding: 20px;
-
 }
 
-.progressContainer {
-    margin-left: 20px;
-    margin-right: 20px;
-    padding-top: 10px;
-}
+
+.progressBarContainer{
+    width: 80%;
+    align-items: center;
+  }
 
 .topContainer {
     /* overflow: hidden; */
@@ -18,15 +15,18 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: var(--basicBlue);
+    background-color: var(--mainBackgroundColor);
     height: 5em;
     display: flex;
     justify-content: space-around;
     align-items: center;
-
 }
 
-
+.buttonContainer {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+/*
 @media only screen and (min-width: 768px) {
     .infoButton {
         margin-right: 5rem;
@@ -36,4 +36,4 @@
     .closeButton {
         margin-left: 5rem;
     }
-}
+}*/
