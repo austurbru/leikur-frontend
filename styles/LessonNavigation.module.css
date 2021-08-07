@@ -14,7 +14,8 @@
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.plainButton {
+
+/* .plainButton {
   margin-right: 10px;
   display: inline-block;
   background: var(--yellow);
@@ -54,4 +55,4 @@
   cursor: pointer;
   border: 0;
   border-radius: 15px;
-}
+} */

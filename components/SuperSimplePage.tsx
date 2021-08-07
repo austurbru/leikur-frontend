@@ -12,9 +12,9 @@ interface Props {
 }
 
 const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
-  const [feedback] = useState<Feedback>(Feedback.None);
+  //const [feedback] = useState<Feedback>(Feedback.None);
   //setFeedback removed as it is not used in this demo template and that causes a TypeScript error.
-  //const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
+  const [feedback, setFeedback] = useState<Feedback>(Feedback.None);
 
   //This "canContinue" state is only used if we need some conditions to allow the user to continue
   //const [canContinue, setCanContinue] = useState(true);
@@ -34,11 +34,11 @@ const SuperSimplePage: React.FC<Props> = ({ page, navSlugs }: Props) => {
       feedback={feedback}
       notifyCannotContinue={() => {}}
     >
-      {/*   Demonstrating how feedback can be set in the footer:
+      {/*   Demonstrating how feedback can be set in the footer: */}
 
       <button onClick={() => setFeedback(Feedback.Correct)}>Send Correct</button>
       <button onClick={() => setFeedback(Feedback.Incorrect)}>Send Wrong</button>
-      <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button> */}
+      <button onClick={() => setFeedback(Feedback.Hide)}>Hide</button>
       <div className={styles.audioImageContainer}>
         <AudioImage imageSrcUrl={imageUrl} audioSrcUrl={audioUrl} altText="Some alt text"></AudioImage>
       </div>

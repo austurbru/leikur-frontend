@@ -31,9 +31,16 @@ const LessonPageWrapper: React.FC<Props> = ({
     ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
   );
 
+  
   const { setCurrentLessonCompleted } = useContext(AuthContext);
 
   const router = useRouter();
+
+  const [currentFeedback, setCurrentFeedback] = useState<Feedback>(Feedback.None);
+
+  if (currentFeedback !== feedback) {
+    setCurrentFeedback(feedback);
+  }
 
   const handleContinueNotification = () => {
     // localProgress is necessary here because the setState hook does not make
@@ -62,10 +69,10 @@ const LessonPageWrapper: React.FC<Props> = ({
       <LessonPageLayout>
         <div className={styles.info}></div>
         <div>
-          <h3>{page.title}</h3>
+          <h2>{page.title}</h2>
           {children}
         </div>
-        <LessonNavigation navSlugs={navSlugs} feedback={feedback} notifyContinue={handleContinueNotification} />
+        <LessonNavigation navSlugs={navSlugs} feedback={currentFeedback} notifyContinue={handleContinueNotification} />
       </LessonPageLayout>
     </div>
   );
