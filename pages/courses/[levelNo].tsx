@@ -10,7 +10,7 @@ const LessonsOfCourse: React.FC<{ lessons: Lesson[] }> = (props) => {
       {props.lessons.length === 0 && <h3>No lessons to show</h3>}
 
       {props.lessons.map((lesson) => (
-        <LessonItem key={lesson._id} lesson={lesson} />
+        <LessonItem key={lesson.id} lesson={lesson} />
       ))}
     </Layout>
   );

@@ -1,11 +1,43 @@
 .lesson {
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
   padding: 13px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+
 }
+
+.lessonTitle{
+  padding-top: 6px;
+  color: var(--primary-app-color);
+  font-weight: bold;
+}
+
+.progressContainer{
+  display: flex;
+  align-items: center;
+}
+
+.progressBarContainer{
+  width: 100%;
+  padding-top: 2rem;
+  justify-items: center;
+  margin-right: 1rem;
+}
+
+.buttonContainer{
+  padding-top: 2rem;
+  text-align: right;
+}
+
+.progressText{
+  color: var(--primary-app-color);
+  padding-top: 2rem;
+}
+
+
 
 .img {
   flex: 1;
@@ -13,7 +45,8 @@
 }
 
 .info {
-  flex: 2;
+margin: 2rem;
+width: 35%;
 }
 
 @media (max-width: 600px) {
@@ -24,5 +57,6 @@
 
   .info {
     margin-bottom: 20px;
+
   }
 }

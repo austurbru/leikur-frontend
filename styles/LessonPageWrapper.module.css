@@ -1,0 +1,11 @@
+.info {
+    margin-bottom: 1rem;
+  }
+  
+  .container {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    padding-bottom: 5rem;
+   /* background-color: var(--basicBlue);*/
+
+  }

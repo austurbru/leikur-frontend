@@ -3,8 +3,9 @@
   bottom: 0;
   left: 0;
   height: 5rem;
+
   width: 100%;
-  background-color: gray;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,21 +14,31 @@
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.plainButton {
+
+/* .plainButton {
   margin-right: 10px;
   display: inline-block;
-  background: rgb(0, 140, 255);
+  background: var(--yellow);
+  color: var(--light-gray);
+  padding: 10px 40px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 15px;
+}
+.backButton{
+  margin-right: 10px;
+  display: inline-block;
+  background: rgb(163, 163, 163);
   color: #fff;
   padding: 10px 40px;
   cursor: pointer;
   border: 0;
   border-radius: 15px;
 }
-
 .correctButton {
   margin-right: 10px;
   display: inline-block;
-  background: #10be58;
+  background: var(--green);
   color: #fff;
   padding: 10px 40px;
   cursor: pointer;
@@ -44,4 +55,4 @@
   cursor: pointer;
   border: 0;
   border-radius: 15px;
-}
+} */

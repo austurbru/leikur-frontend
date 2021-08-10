@@ -60,6 +60,7 @@ export default async (req, res) => {
           currentLesson,
           lessonsCompleted,
           currentPageSlug,
+          
         }),
       });
 

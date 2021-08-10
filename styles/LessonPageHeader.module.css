@@ -1,0 +1,39 @@
+.container {
+    padding: 20px;
+}
+
+
+.progressBarContainer{
+    width: 80%;
+    align-items: center;
+  }
+
+.topContainer {
+    /* overflow: hidden; */
+
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--mainBackgroundColor);
+    height: 5em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttonContainer {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+/*
+@media only screen and (min-width: 768px) {
+    .infoButton {
+        margin-right: 5rem;
+
+    }
+
+    .closeButton {
+        margin-left: 5rem;
+    }
+}*/
