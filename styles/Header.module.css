@@ -25,13 +25,13 @@
 }
 
 .logo {
-  color: red;
+  color: var(--primary-app-color);
   font-size: 20px;
   text-transform: uppercase;
 }
 
 .logo a {
-  color: red;
+  color: var(--primary-app-color);
 }
 
 @media (max-width: 768px) {

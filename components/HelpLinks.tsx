@@ -8,19 +8,19 @@ const HelpLinks: React.FC = () => {
           </a>
 
           <a href="http://tungumalatorg.is/okkarmal/" target="_blank" rel="noopener noreferrer">
-            Okkar Mál
+            Okkar mál
           </a>
 
           <a href="http://tungumalatorg.is/ifa/" target="_blank" rel="noopener noreferrer">
-            Ísleska fyrir alla
+            Íslenska fyrir alla
           </a>
 
-          <a href="https://islenskordabok.arnastofnun.is//" target="_blank" rel="noopener noreferrer">
-            Arnastofnum
+          <a href="https://islenskordabok.arnastofnun.is/" target="_blank" rel="noopener noreferrer">
+            Árnastofnun
           </a>
 
           <a href="https://www.modurmal.com/" target="_blank" rel="noopener noreferrer">
-           Moðurmál
+           Móðurmál
           </a>
         </li>
       </ul>

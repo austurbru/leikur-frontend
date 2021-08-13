@@ -4,3 +4,10 @@ export enum Feedback {
     Incorrect,
     Hide
 }
+
+export enum RoundedCorners {
+    None,
+    All,
+    Bottom,
+    Top
+}

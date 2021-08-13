@@ -26,9 +26,3 @@ export async function getServerSideProps() {
     props: { courses },
   };
 }
-/**
- * 
- * <SideDrawer>
-        <HelpLinks />
-      </SideDrawer>
- */

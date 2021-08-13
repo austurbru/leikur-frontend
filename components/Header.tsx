@@ -2,6 +2,7 @@
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { useContext } from "react";
 import Link from "next/link";
+//import LanguageSelection from "@components/LanguageSelection";
 import AuthContext from "@context/AuthContext";
 import styles from "@styles/Header.module.css";
 
@@ -23,6 +24,9 @@ const Header: React.FC = () => {
               <li>
                 <Link href="/courses">Courses</Link>
               </li>
+{/*               <li>
+                <LanguageSelection />
+              </li> */}
               <li>
                 <button onClick={() => logout()} className="btn-secondary btn-icon">
                   <FaSignOutAlt />

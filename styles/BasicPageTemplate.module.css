@@ -3,6 +3,7 @@
 }
 .mainContent{
   margin-top: 2rem;
+  /* margin-left: 25%; */
 }
 .controls {
   position: absolute;
@@ -41,6 +42,16 @@
   border-radius: 5px;
 }
 
+.trueAndFalse{
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.markdownText {
+  font-size: large;
+}
+
 .back {
   display: block;
   margin-top: 40px;
@@ -62,4 +73,27 @@ p .help-links{
 .audioImageContainer {
   margin: auto;
   max-width: 700px;
+}
+
+.mediaContainer {
+  margin: auto;
+  max-width: 700px;
+}
+
+.correctButton{
+  background-color:aqua
+  
+}
+
+.displayFlex{
+ width: 65rem ;
+ background-color: aqua;
+  display:flex;
+align-items: center;
+margin-top: 5rem;
+font-size: 30px;
+}
+
+h3 .h3inposition{
+  /* margin-top: 0; */
 }

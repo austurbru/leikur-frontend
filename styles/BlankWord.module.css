@@ -1,0 +1,47 @@
+.showingWordCorrect{
+    background-color: green;
+    color: white;
+    border-style: solid;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: medium;
+    width: 150px;
+    font-size: large;
+    border-radius: 5px;
+    height: 40px;
+    padding: 3px;
+  
+
+  }
+
+  .showingWordIncorrect{
+    background-color: red;
+    color: white;
+    border-style: solid;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: medium;
+    width: 150px;
+    font-size: large;
+    border-radius: 5px;
+    height: 40px;
+    padding: 3px;
+   
+  }
+  
+  .hidingWord{
+    background-color: white;
+    border-style: dashed;
+    border-color: rgb(160, 160, 160);
+    border-width: 2px;    ;
+    width: 150px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+
+  }
+
+ /* h3 {
+     position: absolute;
+ } */

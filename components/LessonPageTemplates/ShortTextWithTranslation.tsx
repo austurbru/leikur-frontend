@@ -1,10 +1,11 @@
 import { PagesEntity } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
-import AudioImage from "@components/LessonPageContent/AudioImage";
-import LessonPageWrapper from "../LessonPageWrapper";
+import MediaContainer from "@components/LessonPageContent/MediaContainer";
+import LessonPageWrapper from "@components/LessonPageWrapper";
 
-import styles from "@styles/BasicPageTemplate.module.css";
+import styles from "@styles/LessonPageTemplates/ShortTextWithTranslation.module.css";
+import TextAndTranslation from '../LessonPageContent/TextAndTranslation';
 
 interface Props {
   page: PagesEntity;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const ShortTextWithTranslation: React.FC<Props> = ({ page, navSlugs }: Props) => {
-
+  console.log(page.audio?.url);
   return (
     <LessonPageWrapper
       page={page}
@@ -21,13 +22,9 @@ const ShortTextWithTranslation: React.FC<Props> = ({ page, navSlugs }: Props) =>
       feedback={Feedback.None}
       notifyCannotContinue={() => {}}
     >
-      
       <div className={styles.mainContent}>
-            <div className={styles.audioImageContainer}>
-        <AudioImage imageSrcUrl={page.image?.url} audioSrcUrl={page.audio.url} altText="Some alt text"></AudioImage>
-      </div>
-      <h2>Góðan daginn</h2>
-      <i>Good morning/good day</i>
+        <MediaContainer page={page} />
+        <TextAndTranslation shortText={"Góðan daginn"} translation={"Good morning/good day"}/>
       </div>
     </LessonPageWrapper>
   );

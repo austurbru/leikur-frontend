@@ -21,7 +21,7 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
 
   if (user) {
     const lessonCount = course.lessons.length;
-    const lessonsCompleted = user!.lessonsCompleted.filter((item) => {
+    const lessonsCompleted = user!.lessonsCompleted?.filter((item) => {
       console.log(item);
       if (!item) {
         console.log("item is null here!");
@@ -30,7 +30,12 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
       return item.charAt(0) === course.levelNo.toString();
     });
 
-    progress = Math.floor((lessonsCompleted.length / lessonCount) * 100);
+    if(lessonsCompleted && lessonCount > 0) {
+      progress = Math.floor((lessonsCompleted.length / lessonCount) * 100);
+    } else {
+      progress = 0
+    }
+    
   }
 
   const handleBeginCourse = () => {
@@ -62,7 +67,7 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
   return (
     <div className={styles.course}>
       <Grid stackable columns={3}>
-        <Grid.Row>
+        <Grid.Row with={16}>
           <Grid.Column width={4}>
             <div className={styles.img}>
               <Image

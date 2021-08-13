@@ -48,7 +48,7 @@ export default async (req, res) => {
     if (strapiRes.ok) {
       // Update User:
 
-      const { currentLesson, lessonsCompleted, currentPageSlug } = req.body;
+      const { currentLesson, lessonsCompleted, currentPageSlug, preferredLocale } = req.body;
 
       const strapiRes = await fetch(`${API_URL}/users/${user.id}`, {
         method: "PUT",
@@ -60,7 +60,7 @@ export default async (req, res) => {
           currentLesson,
           lessonsCompleted,
           currentPageSlug,
-          
+          preferredLocale,
         }),
       });
 

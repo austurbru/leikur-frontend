@@ -1,4 +1,4 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://leikur-backend.herokuapp.com";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
 
 export default API_URL;
 

@@ -14,22 +14,23 @@
 
 
 .sidedrawer a {
-  background-color: burlywood;
+  background-color: var(--primary-app-color);
   text-align: center;
-  width: 15rem;
+  width: 100%;
   top: 10px;
-  height: 3rem;
-  margin: 4rem;
-  padding-top: 5rem;
+  height: 0.2rem;  
+  margin: 0.2rem;
+  padding-top: 2rem;
   padding-bottom: 5rem;
-  color: var(blue);
+  color: white;
   display: inline-block;
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-size: 18px;
+font-size: 24px;
 }
 
 .sidedrawer p {
   margin: 5rem;
+
 }
 
 /* @media (max-width: 800px) {
@@ -38,7 +39,7 @@ font-size: 18px;
   }
 } */
 
-div.help-links {
+/* div.help-links {
   background-color: #4CAF50;
   border: none;
 
@@ -48,4 +49,4 @@ div.help-links {
 
  
 
-}
+} */

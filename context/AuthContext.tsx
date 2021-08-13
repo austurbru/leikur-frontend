@@ -14,6 +14,7 @@ type UserContextObj = {
   setCurrentLesson: (currentLesson: Lesson) => void;
   setCurrentLessonCompleted: () => void;
   setCurrentPageSlug: (currentPageSlug: string) => void;
+  setPreferredLocale: (preferredLocale: string) => void;
 };
 
 export interface UserCredentials {
@@ -31,6 +32,7 @@ export const AuthContext = createContext<UserContextObj>({
   setCurrentLesson: () => {},
   setCurrentLessonCompleted: () => {},
   setCurrentPageSlug: () => {},
+  setPreferredLocale: () => {},
 });
 
 export const AuthProvider: React.FC = (props) => {
@@ -56,7 +58,21 @@ export const AuthProvider: React.FC = (props) => {
     const data = await res.json();
 
     if (res.ok) {
+
+      let loggedInUser: User = data.user;
       setUser(data.user);
+
+      if (loggedInUser?.currentPageSlug.trim().length > 0){
+        router.push(`/${loggedInUser.currentPageSlug}`);
+        return;
+      }
+
+      if (loggedInUser?.currentLesson){
+        let slug = "/courses/" + loggedInUser.currentLesson.key.charAt(0);
+        router.push(slug);
+        return;
+      }
+
       router.push("/courses");
     } else {
       setError(data.message);
@@ -122,21 +138,22 @@ export const AuthProvider: React.FC = (props) => {
 
       let currentLesson = userForUpdate.currentLesson;
       let currentPageSlug = userForUpdate.currentPageSlug;
+      let preferredLocale = userForUpdate.preferredLocale;
 
       //For some reason we seem to be getting an undefined element into the array occationally.
       //This filtering is to prevent problems that this causes.
-      const filteredLessons = userForUpdate.lessonsCompleted.filter(function (element) {
+      const filteredLessons = userForUpdate.lessonsCompleted?.filter(function (element) {
         return typeof element === "string";
       });
 
       let lessonsCompleted = filteredLessons;
-  
+
       const res = await fetch(`${NEXT_URL}/api/user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ currentLesson, lessonsCompleted, currentPageSlug }),
+        body: JSON.stringify({ currentLesson, lessonsCompleted, currentPageSlug, preferredLocale }),
       });
 
       const data = await res.json();
@@ -153,7 +170,7 @@ export const AuthProvider: React.FC = (props) => {
       let userForUpdate: User = user!;
 
       //update the user IF the currentLesson is actually changing
-      if (currentLesson.key !== userForUpdate.currentLesson.key) {
+      if (currentLesson.key !== userForUpdate.currentLesson?.key) {
         userForUpdate.currentLesson = currentLesson;
         await updateUser();
       }
@@ -165,6 +182,15 @@ export const AuthProvider: React.FC = (props) => {
       let userForUpdate: User = user!;
 
       userForUpdate.currentPageSlug = currentPageSlug;
+      await updateUser();
+    }
+  };
+
+  const setPreferredLocale = async (preferredLocale: string) => {
+    if (user) {
+      let userForUpdate: User = user!;
+
+      userForUpdate.preferredLocale = preferredLocale;
       await updateUser();
     }
   };
@@ -207,6 +233,7 @@ export const AuthProvider: React.FC = (props) => {
         setCurrentLesson,
         setCurrentLessonCompleted,
         setCurrentPageSlug,
+        setPreferredLocale,
       }}
     >
       {props.children}

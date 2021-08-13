@@ -1,7 +1,8 @@
 import { PagesEntity } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
-import  TextCard  from "@components/LessonPageContent/TextCard"
+import ReactMarkdown from "react-markdown";
+//import TextCard from "@components/LessonPageContent/TextCard";
 import LessonPageWrapper from "../LessonPageWrapper";
 
 import styles from "@styles/BasicPageTemplate.module.css";
@@ -12,7 +13,6 @@ interface Props {
 }
 
 const InstructionsAndText: React.FC<Props> = ({ page, navSlugs }: Props) => {
-
   return (
     <LessonPageWrapper
       page={page}
@@ -21,9 +21,10 @@ const InstructionsAndText: React.FC<Props> = ({ page, navSlugs }: Props) => {
       feedback={Feedback.None}
       notifyCannotContinue={() => {}}
     >
-      
       <div className={styles.mainContent}>
-      <TextCard content={page.content} />
+        <div className={styles.markdownText} >
+          <ReactMarkdown>{page.content}</ReactMarkdown>
+        </div>
       </div>
     </LessonPageWrapper>
   );

@@ -1,0 +1,14 @@
+.mainContent {
+    margin-top: 2rem;
+}
+
+.displayFlex {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    font-size: large;
+}
+
+.wordButtons{
+    margin-top: 2em;
+}

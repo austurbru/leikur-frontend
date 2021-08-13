@@ -5,7 +5,9 @@ import NavSlugs from "@models/nav-slugs";
 // import TextWithImageAndVideo from "@components/TextWithImageAndVideo";
 import { API_URL } from "@config/index";
 //import SuperSimplePageBackup from '../../components/SuperSimplePageBackupOld';
-import SuperSimplePage from '@components/SuperSimplePage';
+import InstructionsAndText from "@components/LessonPageTemplates/InstructionsAndText"
+import ShortTextWithTranslation from "@components/LessonPageTemplates/ShortTextWithTranslation"
+import ListenAndSelectWord from '@components/LessonPageTemplates/ListenAndSelectWord';
 
 interface Props {
   page: PagesEntity;
@@ -14,14 +16,14 @@ interface Props {
 
 const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
   switch (page.__component) {
-    case "page-content.image-with-audioXXX":
-      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
-    case "page-content.video-textXXX":
-      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
+    case "page-content.instructions-and-text":
+      return <InstructionsAndText page={page} navSlugs={navSlugs} />;
+    case "page-content.short-text-with-translation":
+      return <ShortTextWithTranslation page={page} navSlugs={navSlugs} />;
     case "page-content.super-simple-page":
-      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
+      return <ListenAndSelectWord page={page} navSlugs={navSlugs} />;
     default:
-      return <SuperSimplePage page={page} navSlugs={navSlugs} />;
+      return <ListenAndSelectWord page={page} navSlugs={navSlugs} />;
   }
 };
 

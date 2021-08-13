@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { AudioPlayer } from "./AudioPlayer";
 import styles from "@styles/LessonPageContent/AudioImage.module.css";
+import { RoundedCorners } from "@models/enums";
 
 const AudioImage = ({ imageSrcUrl, audioSrcUrl, altText }) => {
   return (
@@ -15,8 +16,7 @@ const AudioImage = ({ imageSrcUrl, audioSrcUrl, altText }) => {
       />
       <AudioPlayer
         audioSrcUrl={audioSrcUrl}
-        useRoundedAllCorners={false}
-        UseRoundedCornersBottom={true}
+        roundedCorners={RoundedCorners.Bottom}
       />
     </div>
   );

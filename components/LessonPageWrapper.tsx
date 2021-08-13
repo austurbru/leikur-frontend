@@ -69,7 +69,7 @@ const LessonPageWrapper: React.FC<Props> = ({
       <LessonPageLayout>
         <div className={styles.info}></div>
         <div>
-          <h2>{page.title}</h2>
+          <h2>{page.instructions}</h2>
           {children}
         </div>
         <LessonNavigation navSlugs={navSlugs} feedback={currentFeedback} notifyContinue={handleContinueNotification} />

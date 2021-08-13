@@ -2,12 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "@styles/LessonPageContent/AudioPlayer.module.css";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
+import { RoundedCorners } from "@models/enums";
 
-const AudioPlayer = ({
-  audioSrcUrl,
-  useRoundedAllCorners,
-  UseRoundedCornersBottom,
-}) => {
+
+// interface Props {
+//   audioSrcUrl: string;
+//   roundedCorners: RoundedCorners;
+// }
+const AudioPlayer = ({ audioSrcUrl, roundedCorners}) => {
+//const AudioPlayer = ({ audioSrcUrl, roundedCorners}: Props) => {
+
   // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -16,12 +20,15 @@ const AudioPlayer = ({
   const audioPlayer = useRef(); // reference our audio component
   const progressBar = useRef(); // reference our progress bar
   const animationRef = useRef(); // reference the animation
+  // const audioPlayer = useRef<HTMLAudioElement>(null); // reference our audio component
+  // const progressBar = useRef<HTMLInputElement>(null); // reference our progress bar
+  // const animationRef = useRef(); // reference the animation
 
   useEffect(() => {
-    const seconds = audioPlayer.current.duration;
+    const seconds = audioPlayer?.current?.duration;
     setDuration(seconds);
     progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+  }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState]);
 
   const togglePlayPause = () => {
     const prevValue = isPlaying;
@@ -61,7 +68,7 @@ const AudioPlayer = ({
     );
   };
 
-  const getPlayerStyling = () => {
+/*   const getPlayerStyling = () => {
     let styling = `${styles.audioPlayer} `;
     if (false) {
       let styling = styling + `${styles.audioPlayerBorderRadius}`;
@@ -70,22 +77,18 @@ const AudioPlayer = ({
     }
     if (true) {
       let styling = styling + `${styles.audioPlayerBorderRadiusBottom}`;
-      console.log(styling);
-      console.log(useRoundedAllCorners);
-      console.log(UseRoundedCornersBottom);
-
       return styling;
     }
 
-  };
+  }; */
 
   let playerStyling = `${styles.audioPlayer}`;
 
-  if (UseRoundedCornersBottom) {
+  if (roundedCorners === RoundedCorners.Bottom) {
     playerStyling = `${styles.audioPlayer} ${styles.audioPlayerBorderRadiusBottom}`;
   }
 
-  if (useRoundedAllCorners) {
+  if (roundedCorners === RoundedCorners.All) {
     playerStyling = `${styles.audioPlayer} ${styles.audioPlayerBorderRadius}`;
   }
 

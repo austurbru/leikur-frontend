@@ -14,16 +14,15 @@
     "cookie": "^0.4.1",
     "cross-env": "^7.0.3",
     "next": "^10.2.3",
+    "next-translate": "^1.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-h5-audio-player": "^3.7.1",
     "react-icons": "^4.2.0",
     "react-markdown": "^6.0.2",
     "react-toastify": "^7.0.4",
     "react-transition-group": "^4.4.2",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3",
-    "video-react": "^0.14.1"
+    "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.30.0",

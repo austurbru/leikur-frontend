@@ -139,14 +139,18 @@ export interface Lesson {
 //pages
 export interface PagesEntity {
   __component: string;
-  title: string;
+  instructions: string;
   pageInfo: PageInfo;
   audio: AudioOrVideo;
   category: Category;
-  image?: Image | null;
+  image: Image;
   id: string;
   content: string;
   video: AudioOrVideo;
+  text: string;
+  translation: string;
+  audioExample?: AudioExample | null;
+  
 }
 export interface PageInfo {
   id: string;
@@ -154,8 +158,14 @@ export interface PageInfo {
   slug: string;
   lessonTotalPageCount: number;
 }
+
+export interface AudioExample {
+  id: number;
+  text: string;
+  translation: string;
+  audio: AudioOrVideo;
+}
 export interface AudioOrVideo {
-  _id: string;
   name: string;
   alternativeText: string;
   caption: string;
@@ -165,14 +175,13 @@ export interface AudioOrVideo {
   size: number;
   previewUrl: string;
   url: string;
-  provider_metadata: ProviderMetadata;
+  provider_metadata?: ProviderMetadata;
   provider: string;
   width?: null;
   height?: null;
   related?: null[] | null;
   createdAt: string;
   updatedAt: string;
-  __v: number;
   id: string;
 }
 export interface Subtitles {
@@ -234,6 +243,7 @@ export interface User {
   currentLesson: Lesson;
   lessonsCompleted: string[];
   currentPageSlug: string;
+  preferredLocale: string;
 }
 
 export interface Role {
@@ -243,4 +253,8 @@ export interface Role {
   type: string;
   __v: number;
   id: string;
+}
+export interface WordCorrect {
+  word: string;
+  isCorrect: boolean;
 }

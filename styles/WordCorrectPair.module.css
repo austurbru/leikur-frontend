@@ -1,0 +1,43 @@
+.trueOrFalseButtons {
+    margin-top: 3rem;
+    width: 50%;
+    display: inline-block;
+    justify-content: space-between;
+}
+
+
+
+
+.wordButton {
+/*     margin-top: 3rem;
+    width: 10em;
+    height: 3em;
+    font-size: medium;
+    color: var(--blue);
+
+    border-radius: 5px;
+    border: solid var(--basicOrange);
+    text-align: center;
+    padding-top: 0.4em;
+ */
+
+ font-size: large;
+ cursor: pointer;
+ border: solid var(--basicOrange);
+ height: 2em;
+ text-align: center;
+
+
+}
+
+button .false {
+    background: rgb(42, 165, 83);
+
+}
+
+
+h3 .level {
+
+    margin: bottom 10px;
+
+}
