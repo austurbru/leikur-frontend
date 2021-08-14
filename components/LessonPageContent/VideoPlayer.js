@@ -40,6 +40,10 @@ const VideoPlayer = ({ videoSrcUrl }) => {
   };
 
   const whilePlaying = () => {
+
+    if(videoPlayer?.current === null){
+      return;
+    }
     progressBar.current.value = videoPlayer.current.currentTime;
     changePlayerCurrentTime();
     animationRef.current = requestAnimationFrame(whilePlaying);

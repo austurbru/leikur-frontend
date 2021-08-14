@@ -2,10 +2,10 @@ import { PagesEntity } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
 import ReactMarkdown from "react-markdown";
-//import TextCard from "@components/LessonPageContent/TextCard";
+import MediaContainer from "@components/LessonPageContent/MediaContainer";
 import LessonPageWrapper from "../LessonPageWrapper";
 
-import styles from "@styles/BasicPageTemplate.module.css";
+import styles from "@styles/LessonPageTemplates/InstructionsAndText.module.css";
 
 interface Props {
   page: PagesEntity;
@@ -22,6 +22,7 @@ const InstructionsAndText: React.FC<Props> = ({ page, navSlugs }: Props) => {
       notifyCannotContinue={() => {}}
     >
       <div className={styles.mainContent}>
+      <MediaContainer page={page} />
         <div className={styles.markdownText} >
           <ReactMarkdown>{page.content}</ReactMarkdown>
         </div>

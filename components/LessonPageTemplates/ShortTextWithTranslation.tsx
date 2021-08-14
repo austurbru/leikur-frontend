@@ -3,9 +3,10 @@ import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
 import MediaContainer from "@components/LessonPageContent/MediaContainer";
 import LessonPageWrapper from "@components/LessonPageWrapper";
+import TextAndTranslation from '@components/LessonPageContent/TextAndTranslation';
+import AudioExample from "@components/LessonPageContent/AudioExample";
 
 import styles from "@styles/LessonPageTemplates/ShortTextWithTranslation.module.css";
-import TextAndTranslation from '../LessonPageContent/TextAndTranslation';
 
 interface Props {
   page: PagesEntity;
@@ -13,7 +14,6 @@ interface Props {
 }
 
 const ShortTextWithTranslation: React.FC<Props> = ({ page, navSlugs }: Props) => {
-  console.log(page.audio?.url);
   return (
     <LessonPageWrapper
       page={page}
@@ -24,7 +24,10 @@ const ShortTextWithTranslation: React.FC<Props> = ({ page, navSlugs }: Props) =>
     >
       <div className={styles.mainContent}>
         <MediaContainer page={page} />
-        <TextAndTranslation shortText={"Góðan daginn"} translation={"Good morning/good day"}/>
+        <TextAndTranslation shortText={page.textAndTranslation!.text} translation={page.textAndTranslation!.translation}/>
+        {page.audioExample !== undefined && page.audioExample !== null &&
+          <AudioExample audioUrl={page.audioExample!.audio.url} shortText={page.audioExample!.text} translation={page.audioExample.translation} />
+        }
       </div>
     </LessonPageWrapper>
   );

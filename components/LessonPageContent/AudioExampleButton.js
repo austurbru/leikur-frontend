@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
-import styles from "@styles/LessonPageContent/AudioExample.module.css";
+import styles from "@styles/LessonPageContent/AudioExampleButton.module.css";
 
-const AudioExample = ({ audioSrcUrl }) => {
+const AudioExampleButton = ({ audioSrcUrl }) => {
   const [audio] = useState(
     typeof Audio !== "undefined" && new Audio(audioSrcUrl)
   );
@@ -54,4 +54,4 @@ const AudioExample = ({ audioSrcUrl }) => {
   );
 };
 
-export default AudioExample;
+export default AudioExampleButton;

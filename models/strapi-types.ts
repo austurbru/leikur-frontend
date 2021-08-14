@@ -141,17 +141,37 @@ export interface PagesEntity {
   __component: string;
   instructions: string;
   pageInfo: PageInfo;
-  audio: AudioOrVideo;
+  media?: Media
+  //audio: AudioOrVideo;
   category: Category;
-  image: Image;
+  //image: Image;
   id: string;
   content: string;
-  video: AudioOrVideo;
-  text: string;
-  translation: string;
+  //video: AudioOrVideo;
+  words?: Word[]
+  statement?: string;
+  sentence?: string;
+  explanation?: string
+  isTrue?: boolean
+  textAndTranslation?: TextAndTranslation
+  // text: string;
+  // translation: string;
   audioExample?: AudioExample | null;
   
 }
+
+export interface TextAndTranslation {
+  id: number
+  text: string
+  translation: string
+}
+
+export interface Word {
+  id: number
+  word: string
+  isCorrect: boolean
+}
+
 export interface PageInfo {
   id: string;
   pageNo: number;
@@ -164,6 +184,13 @@ export interface AudioExample {
   text: string;
   translation: string;
   audio: AudioOrVideo;
+}
+
+export interface Media {
+  id: number
+  image?: Image
+  audio?: AudioOrVideo
+  video?: AudioOrVideo
 }
 export interface AudioOrVideo {
   name: string;
@@ -182,27 +209,6 @@ export interface AudioOrVideo {
   related?: null[] | null;
   createdAt: string;
   updatedAt: string;
-  id: string;
-}
-export interface Subtitles {
-  _id: string;
-  name: string;
-  alternativeText: string;
-  caption: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  provider_metadata: ProviderMetadata;
-  provider: string;
-  width?: any;
-  height?: any;
-  related: string[];
-  createdAt: Date;
-  updatedAt: Date;
-  __v: number;
-  formats: Formats;
   id: string;
 }
 

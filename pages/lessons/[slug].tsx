@@ -1,13 +1,11 @@
+import { API_URL } from "@config/index";
 import { PagesEntity, Lesson } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
-//import TemplateMissing from "@components/TemplateMissing";
-// import TextWithImageAndAudio from "@components/TextWithImageAndAudio";
-// import TextWithImageAndVideo from "@components/TextWithImageAndVideo";
-import { API_URL } from "@config/index";
-//import SuperSimplePageBackup from '../../components/SuperSimplePageBackupOld';
+import TemplateMissing from "@components/LessonPageTemplates/TemplateMissing";
 import InstructionsAndText from "@components/LessonPageTemplates/InstructionsAndText"
 import ShortTextWithTranslation from "@components/LessonPageTemplates/ShortTextWithTranslation"
 import ListenAndSelectWord from '@components/LessonPageTemplates/ListenAndSelectWord';
+import TrueOrFalse from '@components/LessonPageTemplates/TrueOrFalse';
 
 interface Props {
   page: PagesEntity;
@@ -20,13 +18,15 @@ const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
       return <InstructionsAndText page={page} navSlugs={navSlugs} />;
     case "page-content.short-text-with-translation":
       return <ShortTextWithTranslation page={page} navSlugs={navSlugs} />;
-    case "page-content.super-simple-page":
+    case "page-content.select-word":
       return <ListenAndSelectWord page={page} navSlugs={navSlugs} />;
+    case "page-content.true-or-false":
+        return <TrueOrFalse page={page} navSlugs={navSlugs} />;
     default:
-      return <ListenAndSelectWord page={page} navSlugs={navSlugs} />;
+      return <TemplateMissing />;
   }
 };
-
+//page-content.true-or-false
 export default LessonPage;
 
 //Function that creates individual Pages------------------------------------

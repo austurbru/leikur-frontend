@@ -51,6 +51,9 @@ const AudioPlayer = ({ audioSrcUrl, roundedCorners}) => {
   };
 
   const whilePlaying = () => {
+    if(audioPlayer?.current === null){
+      return;
+    }
     progressBar.current.value = audioPlayer.current.currentTime;
     changePlayerCurrentTime();
     animationRef.current = requestAnimationFrame(whilePlaying);
