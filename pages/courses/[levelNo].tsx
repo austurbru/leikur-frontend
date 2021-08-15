@@ -1,12 +1,14 @@
+import useTranslation from "next-translate/useTranslation";
 import { Lesson } from "@models/strapi-types";
 import Layout from "@components/Layout";
 import LessonItem from "@components/LessonItem";
 import { API_URL } from "@config/index";
 
 const LessonsOfCourse: React.FC<{ lessons: Lesson[] }> = (props) => {
+  let { t } = useTranslation();
   return (
     <Layout>
-      <h1>Lessons</h1>
+      <h1>{t("common:lessons")}</h1>
       {props.lessons.length === 0 && <h3>No lessons to show</h3>}
 
       {props.lessons.map((lesson) => (
@@ -17,23 +19,8 @@ const LessonsOfCourse: React.FC<{ lessons: Lesson[] }> = (props) => {
 };
 
 export default LessonsOfCourse;
-
-/*
-interface Context {
-  locale: string;
-}
-
-export async function getServerSideProps({ locale }: Context) {
-  const res = await fetch(`${API_URL}/levels?_sort=levelNo:ASC&_locale=${locale}`);
-  const courses = await res.json();
-  return {
-    props: { courses },
-  };
-}
-*/
-  
-/*
- export async function getServerSideProps({ context }: any) {
+ 
+ export async function getServerSideProps (context: { params?: any; locale?: any; }) {
    const { levelNo } = context.params;
    const { locale } = context;
 
@@ -50,31 +37,3 @@ export async function getServerSideProps({ locale }: Context) {
     },
   };
 }
-*/
-
-export async function getServerSideProps(context: { params: any }) {
-  const { params } = context;
-
-  const res = await fetch(`${API_URL}/lessons?levelNo=${params.levelNo}&_sort=lessonNo:ASC`);
-  const lessons = await res.json();
-
-  return {
-    props: {
-      lessons: lessons,
-    },
-  };
-}
-
-// export async function getStaticPaths() {
-//   const res = await fetch(`${API_URL}/levels`);
-//   const levels: Level[] = await res.json();
-
-//   const paths = levels.map((level) => ({
-//     params: { levelNo: `${level.levelNo}` },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }

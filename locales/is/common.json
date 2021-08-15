@@ -1,3 +1,14 @@
 {
-  "greeting": "Halló heimur"
+  "continue": "Áfram",
+  "back": "Til baka",
+  "courses": "Námskeið",
+  "lessons": "Kaflar",
+  "noLessonsFound": "Engir kaflar finnast",
+  "beginCourse": "Byrja",
+  "beginLesson": "Byrja",
+  "correct": "Rétt",
+  "inCorrect": "Rangt",
+  "login": "Innskráning",
+  "logout": "Útskráning",
+  "aboutFooter": "Um síðuna"
 }

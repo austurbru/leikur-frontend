@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import { Button, Grid } from "semantic-ui-react";
 import { Lesson } from "@models/strapi-types";
 import styles from "@styles/LessonItem.module.css";
@@ -9,6 +10,7 @@ import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
 import ProgressBar from "./LessonPageContent/ProgressBar";
 
 const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
+  let { t } = useTranslation();
   const router = useRouter();
   const { user, setCurrentLesson } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -107,7 +109,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
                 {lesson.pages && lesson.pages.length > 0 ? (
                   <div className={styles.buttonContainer}>
                     <Button color={lessonColor} loading={isLoading} onClick={handleStartLesson}>
-                      Start lesson
+                    {t("common:beginLesson")}
                     </Button>
                   </div>
                 ) : (

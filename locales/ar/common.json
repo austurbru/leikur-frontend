@@ -1,3 +1,12 @@
 {
-  "greeting": "Halló heimur"
+  "continue": "Continue",
+  "back": "Back",
+  "courses": "Courses",
+  "lessons": "Lessons",
+  "noLessonsFound": "No lessons to show",
+  "beginCourse": "Begin Level",
+  "beginLesson": "Start lesson",
+  "login": "Log In",
+  "logout": "Log Out",
+  "aboutFooter": "عن هذا التطبيق"
 }

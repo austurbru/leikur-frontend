@@ -1,3 +1,14 @@
 {
-  "greeting": "Hola mundo!"
+  "continue": "Continúe",
+  "back": "Atrás",
+  "courses": "Nivel",
+  "lessons": "Lecciones",
+  "noLessonsFound": "No lessons to show",
+  "beginCourse": "Emepezar nivel",
+  "beginLesson": "Empezar Lección",
+  "correct": "Correcto",
+  "inCorrect": "Incorrecto",
+  "login": "Entrar",
+  "logout": "Salir",
+  "aboutFooter": "Acerca de esta aplicación"
 }

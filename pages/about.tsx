@@ -1,7 +1,7 @@
 import Layout from "@components/Layout";
 import useTranslation from "next-translate/useTranslation";
 import styles from "@styles/LessonPageTemplates/AboutPage.module.css";
-import Image from "next/image";
+//import Image from "next/image";
 
 export default function AboutPage() {
   let { t } = useTranslation();

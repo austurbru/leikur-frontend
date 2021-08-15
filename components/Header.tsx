@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import useTranslation from "next-translate/useTranslation";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { useContext } from "react";
 import Link from "next/link";
-//import LanguageSelection from "@components/LanguageSelection";
+import LanguageSelection from "@components/LanguageSelection";
 import AuthContext from "@context/AuthContext";
 import styles from "@styles/Header.module.css";
 
 const Header: React.FC = () => {
+  let { t } = useTranslation();
   const { user, logout } = useContext(AuthContext);
 
   return (
@@ -22,15 +24,15 @@ const Header: React.FC = () => {
             // If logged in
             <>
               <li>
-                <Link href="/courses">Courses</Link>
+                <Link href="/courses">{t("common:lessons")}</Link>
               </li>
-{/*               <li>
+              <li>
                 <LanguageSelection />
-              </li> */}
+              </li>
               <li>
                 <button onClick={() => logout()} className="btn-secondary btn-icon">
                   <FaSignOutAlt />
-                  Logout
+                  {t("common:logout")}
                 </button>
               </li>
             </>
@@ -41,7 +43,7 @@ const Header: React.FC = () => {
                 <Link href="/account/login">
                   <a className="btn-secondary btn-icon">
                     <FaSignInAlt />
-                    Login
+                    {t("common:login")}
                   </a>
                 </Link>
               </li>

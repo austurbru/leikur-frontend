@@ -1,3 +1,14 @@
 {
-  "greeting": "Hello world"
+  "continue": "Continue",
+  "back": "Back",
+  "courses": "Courses",
+  "lessons": "Lessons",
+  "noLessonsFound": "No lessons to show",
+  "beginCourse": "Begin Level",
+  "beginLesson": "Start lesson",
+  "correct": "Correct",
+  "inCorrect": "Incorrect",
+  "login": "Log In",
+  "logout": "Log Out",
+  "aboutFooter": "About this app"
 }

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import NavSlugs from "@models/nav-slugs";
+import useTranslation from "next-translate/useTranslation";
 import { Button } from "semantic-ui-react";
 import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
 import { Feedback } from "@models/enums";
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue }: Props) => {
+  let { t } = useTranslation();
   const router = useRouter();
   const [currentFeedback, setCurrentFeedback] = useState<Feedback>(Feedback.None);
   const [backButtonIsLoading, setBackButtonIsLoading] = useState(false);
@@ -62,7 +64,7 @@ const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue 
           {navSlugs.previousSlug ? (
             /*             loading={backButtonIsLoading} */
             <Button basic color="blue" size="small" loading={backButtonIsLoading} onClick={() => handleBackClick()}>
-              Back
+              {t("common:back")}
             </Button>
           ) : (
             // If there is no previous page, we put an empty placeholder here.
@@ -77,7 +79,7 @@ const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue 
             loading={continueButtonIsLoading}
             onClick={() => handleContinueClick()}
           >
-            Continue
+            {t("common:continue")}
           </Button>
         </div>
       )}

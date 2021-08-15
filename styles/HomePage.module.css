@@ -1,0 +1,21 @@
+.mainContainer {
+    display: flex;
+}
+
+.coursesContainer{
+ 
+    justify-content: center;
+    background-color: red;
+text-align: center;
+    height: 300px;
+    width: 300px;
+}
+
+.gamesContainer{
+   
+    justify-content: center;
+    background-color: blue;
+
+    height: 300px;
+    width: 300px;
+}
