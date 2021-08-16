@@ -24,7 +24,7 @@ const Header: React.FC = () => {
             // If logged in
             <>
               <li>
-                <Link href="/courses">{t("common:lessons")}</Link>
+                <Link href="/courses">{t("common:courses")}</Link>
               </li>
               <li>
                 <LanguageSelection />

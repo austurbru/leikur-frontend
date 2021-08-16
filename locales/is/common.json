@@ -1,8 +1,9 @@
 {
   "continue": "Áfram",
   "back": "Til baka",
-  "courses": "Námskeið",
+  "courses": "Stig",
   "lessons": "Kaflar",
+  "noCoursesFound": "Ekkert stig finnst",
   "noLessonsFound": "Engir kaflar finnast",
   "beginCourse": "Byrja",
   "beginLesson": "Byrja",

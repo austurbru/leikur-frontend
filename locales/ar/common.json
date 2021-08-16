@@ -3,6 +3,7 @@
   "back": "Back",
   "courses": "Courses",
   "lessons": "Lessons",
+  "noCoursesFound": "No levels to show",
   "noLessonsFound": "No lessons to show",
   "beginCourse": "Begin Level",
   "beginLesson": "Start lesson",
