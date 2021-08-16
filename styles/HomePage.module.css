@@ -1,21 +1,48 @@
 .mainContainer {
     display: flex;
+    justify-content: space-around;
+
 }
 
-.coursesContainer{
- 
+.coursesContainer {
+cursor: pointer;
     justify-content: center;
-    background-color: red;
-text-align: center;
-    height: 300px;
-    width: 300px;
+    background-color: whitesmoke;
+    text-align: center;
+    width: 170px;
+    height: 42px;
+    border-radius: 5px;
+    padding-top: 0.5em;
+    border: 1px rgb(5, 5, 5);
+    border: 1px solid var(--basicOrange);
+    font-weight: 600;
+    font-size: 16px;
+
+
+    color: var(--blue);
+    
 }
 
-.gamesContainer{
-   
-    justify-content: center;
-    background-color: blue;
+.coursesContainer :hover{
+    background-color: aqua;
 
-    height: 300px;
-    width: 300px;
+}
+
+
+.gamesContainer {
+cursor: pointer;
+    justify-content: center;
+    background-color: whitesmoke;
+    text-align: center;
+    width: 170px;
+    height: 42px;
+    border-radius: 5px;
+    padding-top: 0.5em;
+    border: 1px rgb(5, 5, 5);
+    border: 1px solid var(--basicOrange);
+    font-weight: 600;
+    font-size: 16px;
+
+
+    color: var(--blue);
 }
