@@ -145,7 +145,7 @@ export async function getStaticPaths(locales: LocaleObject) {
 
     paths: [
       { params: {slug: '1-1-1'}, locale: 'en' },
-      { params: {slug: '1-1-2'}, locale: 'en' },
+/*       { params: {slug: '1-1-2'}, locale: 'en' },
       { params: {slug: '1-1-3'}, locale: 'en' },
       { params: {slug: '1-1-4'}, locale: 'en' },
       { params: {slug: '1-1-5'}, locale: 'en' },
@@ -223,7 +223,7 @@ export async function getStaticPaths(locales: LocaleObject) {
       { params: {slug: '1-1-7'}, locale: 'ar' },
       { params: {slug: '1-1-8'}, locale: 'ar' },
       { params: {slug: '1-1-9'}, locale: 'ar' },
-      { params: {slug: '1-1-10'}, locale: 'ar' },
+      { params: {slug: '1-1-10'}, locale: 'ar' }, */
         ],
     
     

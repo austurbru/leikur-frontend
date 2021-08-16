@@ -1,7 +1,7 @@
 import { Level } from "@models/strapi-types";
 import Layout from "@components/Layout";
 import { API_URL } from "@config/index";
-import styles from "@styles/homepage.module.css";
+import styles from "@styles/HomePage.module.css";
 
 export default function HomePage() {
   return (
