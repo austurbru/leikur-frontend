@@ -45,7 +45,7 @@ const TrueOrFalse: React.FC<Props> = ({ page, navSlugs }: Props) => {
             notifyIncorrect={handleIncorrect}
           />
           <FalseButton
-            isCorrect={page.isTrue!}
+            isCorrect={!page.isTrue!}
             canClick={feedback === Feedback.Hide}
             notifyCorrect={handleCorrect}
             notifyIncorrect={handleIncorrect}
