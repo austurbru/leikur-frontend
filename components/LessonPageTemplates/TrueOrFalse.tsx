@@ -39,13 +39,13 @@ const TrueOrFalse: React.FC<Props> = ({ page, navSlugs }: Props) => {
         <TextAndTranslation shortText={page.statement!} translation={page.explanation!}/>
         <div className={styles.trueAndFalse}>
           <TrueButton
-            isCorrect={true}
+            isCorrect={page.isTrue!}
             canClick={feedback === Feedback.Hide}
             notifyCorrect={handleCorrect}
             notifyIncorrect={handleIncorrect}
           />
           <FalseButton
-            isCorrect={false}
+            isCorrect={page.isTrue!}
             canClick={feedback === Feedback.Hide}
             notifyCorrect={handleCorrect}
             notifyIncorrect={handleIncorrect}
