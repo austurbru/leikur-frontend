@@ -86,16 +86,16 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
       page: page,
       navSlugs: navSlugs,
     },
-    // Next.js will attempt to re-generate the page every 15 minutes
-    revalidate: 15 * 60,
+    // Next.js will attempt to re-generate the page every 2 minutes
+    revalidate: 2 * 60,
   };
 }
-interface LocaleObject {
+/* interface LocaleObject {
   locales: string[];
   defaultLocale: string;
-}
+} */
 //check the possible pages that exists in Strapi
-export async function getStaticPaths(locales: LocaleObject) {
+/* export async function getStaticPaths(locales: LocaleObject) {
   const pages: PagesEntity[] = [];
   
   const localizedPaths: any[] = [];
@@ -154,81 +154,43 @@ export async function getStaticPaths(locales: LocaleObject) {
       { params: {slug: '1-1-8'}, locale: 'en' },
       { params: {slug: '1-1-9'}, locale: 'en' },
       { params: {slug: '1-1-10'}, locale: 'en' },
-     /* { params: {slug: '1-1-1'}, locale: 'is' },
-      { params: {slug: '1-1-2'}, locale: 'is' },
-      { params: {slug: '1-1-3'}, locale: 'is' },
-      { params: {slug: '1-1-4'}, locale: 'is' },
-      { params: {slug: '1-1-5'}, locale: 'is' },
-      { params: {slug: '1-1-6'}, locale: 'is' },
-      { params: {slug: '1-1-7'}, locale: 'is' },
-      { params: {slug: '1-1-8'}, locale: 'is' },
-      { params: {slug: '1-1-9'}, locale: 'is' },
-      { params: {slug: '1-1-10'}, locale: 'is' },
-      { params: {slug: '1-1-1'}, locale: 'is' },
-      { params: {slug: '1-1-2'}, locale: 'is' },
-      { params: {slug: '1-1-3'}, locale: 'is' },
-      { params: {slug: '1-1-4'}, locale: 'is' },
-      { params: {slug: '1-1-5'}, locale: 'is' },
-      { params: {slug: '1-1-6'}, locale: 'is' },
-      { params: {slug: '1-1-7'}, locale: 'is' },
-      { params: {slug: '1-1-8'}, locale: 'is' },
-      { params: {slug: '1-1-9'}, locale: 'is' },
-      { params: {slug: '1-1-10'}, locale: 'is' },
-      { params: {slug: '1-1-1'}, locale: 'es' },
-      { params: {slug: '1-1-2'}, locale: 'es' },
-      { params: {slug: '1-1-3'}, locale: 'es' },
-      { params: {slug: '1-1-4'}, locale: 'es' },
-      { params: {slug: '1-1-5'}, locale: 'es' },
-      { params: {slug: '1-1-6'}, locale: 'es' },
-      { params: {slug: '1-1-7'}, locale: 'es' },
-      { params: {slug: '1-1-8'}, locale: 'es' },
-      { params: {slug: '1-1-9'}, locale: 'es' },
-      { params: {slug: '1-1-10'}, locale: 'es' },
-      { params: {slug: '1-1-1'}, locale: 'es' },
-      { params: {slug: '1-1-2'}, locale: 'es' },
-      { params: {slug: '1-1-3'}, locale: 'es' },
-      { params: {slug: '1-1-4'}, locale: 'es' },
-      { params: {slug: '1-1-5'}, locale: 'es' },
-      { params: {slug: '1-1-6'}, locale: 'es' },
-      { params: {slug: '1-1-7'}, locale: 'es' },
-      { params: {slug: '1-1-8'}, locale: 'es' },
-      { params: {slug: '1-1-9'}, locale: 'es' },
-      { params: {slug: '1-1-10'}, locale: 'es' },
-      { params: {slug: '1-1-1'}, locale: 'es' },
-      { params: {slug: '1-1-2'}, locale: 'es' },
-      { params: {slug: '1-1-3'}, locale: 'es' },
-      { params: {slug: '1-1-4'}, locale: 'es' },
-      { params: {slug: '1-1-5'}, locale: 'es' },
-      { params: {slug: '1-1-6'}, locale: 'es' },
-      { params: {slug: '1-1-7'}, locale: 'es' },
-      { params: {slug: '1-1-8'}, locale: 'es' },
-      { params: {slug: '1-1-9'}, locale: 'es' },
-      { params: {slug: '1-1-10'}, locale: 'es' },
-      { params: {slug: '1-1-1'}, locale: 'pl' },
-      { params: {slug: '1-1-2'}, locale: 'pl' },
-      { params: {slug: '1-1-3'}, locale: 'pl' },
-      { params: {slug: '1-1-4'}, locale: 'pl' },
-      { params: {slug: '1-1-5'}, locale: 'pl' },
-      { params: {slug: '1-1-6'}, locale: 'pl' },
-      { params: {slug: '1-1-7'}, locale: 'pl' },
-      { params: {slug: '1-1-8'}, locale: 'pl' },
-      { params: {slug: '1-1-9'}, locale: 'pl' },
-      { params: {slug: '1-1-10'}, locale: 'pl' },
-      { params: {slug: '1-1-1'}, locale: 'ar' },
-      { params: {slug: '1-1-2'}, locale: 'ar' },
-      { params: {slug: '1-1-3'}, locale: 'ar' },
-      { params: {slug: '1-1-4'}, locale: 'ar' },
-      { params: {slug: '1-1-5'}, locale: 'ar' },
-      { params: {slug: '1-1-6'}, locale: 'ar' },
-      { params: {slug: '1-1-7'}, locale: 'ar' },
-      { params: {slug: '1-1-8'}, locale: 'ar' },
-      { params: {slug: '1-1-9'}, locale: 'ar' },
-      { params: {slug: '1-1-10'}, locale: 'ar' }, */
         ],
     
     
    // localizedPaths,
 
+    fallback: false,
+  };
+}
+ */
+
+
+export async function getStaticPaths() {
+  //Get all lessons
+  const res = await fetch(`${API_URL}/lessons`);
+  const lessons: Lesson[] = await res.json();
+
+  const pages: PagesEntity[] = [];
+
+  //double loop
+  //1 loop goes thought all the lessons
+  lessons.forEach((lesson) => {
+    if (lesson.pages) {
+      //2nd loop : if the current lesson has pages, we push it into the the "pages" array
+      lesson.pages.forEach((page) => {
+        pages.push(page);
+      });
+    }
+  });
+
+  //create a new array called "paths"
+  const paths = pages.map((page) => ({
+    params: { slug: page.pageInfo.slug },
+  }));
+
+  //Returns the pages that found in Strapi
+  return {
+    paths,
     fallback: false,
   };
 }

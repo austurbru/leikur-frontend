@@ -6,6 +6,9 @@ import Link from "next/link";
 import LanguageSelection from "@components/LanguageSelection";
 import AuthContext from "@context/AuthContext";
 import styles from "@styles/Header.module.css";
+//import { Image } from '../models/strapi-types';
+// import Image from 'next/image'
+// import logo from '../public/images/logo.png '
 
 const Header: React.FC = () => {
   let { t } = useTranslation();
@@ -13,8 +16,13 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
+      <div className= {styles.logoImage}>
+     
+      </div>
       <div className={styles.logo}>
+      
         <Link href="/">
+      {/* <Image src={logo.png} /> */}
           <a>Það er leikur að læra</a>
         </Link>
       </div>
