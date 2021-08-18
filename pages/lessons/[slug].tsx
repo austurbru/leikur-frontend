@@ -87,7 +87,7 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
       navSlugs: navSlugs,
     },
     // Next.js will attempt to re-generate the page every 2 minutes
-    revalidate: 2 * 60,
+    revalidate: 1 * 30,
   };
 }
 /* interface LocaleObject {
