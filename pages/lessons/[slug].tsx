@@ -86,8 +86,6 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
       page: page,
       navSlugs: navSlugs,
     },
-    // Next.js will attempt to re-generate the page every 2 minutes
-    revalidate: 1 * 30,
   };
 }
  interface LocaleObject {
@@ -147,23 +145,7 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
 
   //Returns the pages that found in Strapi
   return {
-
-    paths: [
-      { params: {slug: '1-1-1'}, locale: 'en' },
-      { params: {slug: '1-1-2'}, locale: 'en' },
-      { params: {slug: '1-1-3'}, locale: 'en' },
-      { params: {slug: '1-1-4'}, locale: 'en' },
-      { params: {slug: '1-1-5'}, locale: 'en' },
-      { params: {slug: '1-1-6'}, locale: 'en' },
-      { params: {slug: '1-1-7'}, locale: 'en' },
-      { params: {slug: '1-1-8'}, locale: 'en' },
-      { params: {slug: '1-1-9'}, locale: 'en' },
-      { params: {slug: '1-1-10'}, locale: 'en' },
-        ],
-    
-    
-   // localizedPaths,
-
+    localizedPaths,
     fallback: false,
   };
 }
