@@ -90,12 +90,12 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
     revalidate: 1 * 30,
   };
 }
-/* interface LocaleObject {
+ interface LocaleObject {
   locales: string[];
   defaultLocale: string;
-} */
+} 
 //check the possible pages that exists in Strapi
-/* export async function getStaticPaths(locales: LocaleObject) {
+ export async function getStaticPaths(locales: LocaleObject) {
   const pages: PagesEntity[] = [];
   
   const localizedPaths: any[] = [];
@@ -123,15 +123,20 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
     });
 
     //create a new array called "paths"
-    const paths = pages.map((page) => ({
+/*     const paths = pages.map((page) => ({
       params: { slug: page.pageInfo.slug, locale: `${currentLocale}`},
+    })); */
+
+    const paths = pages.map((page) => ({
+      params: { slug: page.pageInfo.slug },
+      locale: `${currentLocale}`,
     }));
 
     //console.log(currentLocale)
     localizedPaths.push(...paths);
 
-    //console.log("Logging localizedPaths inside loop:")
-    //console.log(localizedPaths)
+    console.log("Logging localizedPaths inside loop:")
+    console.log(localizedPaths)
 
  // });
 
@@ -145,7 +150,7 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
 
     paths: [
       { params: {slug: '1-1-1'}, locale: 'en' },
-       { params: {slug: '1-1-2'}, locale: 'en' },
+      { params: {slug: '1-1-2'}, locale: 'en' },
       { params: {slug: '1-1-3'}, locale: 'en' },
       { params: {slug: '1-1-4'}, locale: 'en' },
       { params: {slug: '1-1-5'}, locale: 'en' },
@@ -162,10 +167,10 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
     fallback: false,
   };
 }
- */
 
 
-export async function getStaticPaths() {
+
+/* export async function getStaticPaths() {
   //Get all lessons
   const res = await fetch(`${API_URL}/lessons`);
   const lessons: Lesson[] = await res.json();
@@ -193,4 +198,4 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+} */
