@@ -7,7 +7,6 @@ import ShortTextWithTranslation from "@components/LessonPageTemplates/ShortTextW
 import ListenAndSelectWord from "@components/LessonPageTemplates/ListenAndSelectWord";
 import TrueOrFalse from "@components/LessonPageTemplates/TrueOrFalse";
 
-
 interface Props {
   page: PagesEntity;
   navSlugs: NavSlugs;
@@ -31,21 +30,21 @@ const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
 export default LessonPage;
 
 //Function that creates individual Pages------------------------------------
-export async function getStaticProps(context: { params: any; locale:any; }) {
+export async function getStaticProps(context: { params: any; locale: any }) {
   const { params } = context;
-  const  locale  = context.locale;
+  const locale = context.locale;
 
-  console.log("Current locale in getStaticProps:")
-  console.log(locale)
+  console.log("Current locale in getStaticProps:");
+  console.log(locale);
 
-  let lessons: Lesson[] = []
+  let lessons: Lesson[] = [];
   const resLocalized = await fetch(`${API_URL}/lessons?_locale=${locale}`);
-  
+
   lessons = await resLocalized.json();
   if (lessons.length === 0) {
     const resDefault = await fetch(`${API_URL}/lessons`);
     lessons = await resDefault.json();
-    console.log("Ekkert fannst localized")
+    console.log("Ekkert fannst localized");
   }
 
   let page: any = null;
@@ -88,26 +87,23 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
     },
   };
 }
- interface LocaleObject {
+interface LocaleObject {
   locales: string[];
   defaultLocale: string;
-} 
+}
 //check the possible pages that exists in Strapi
- export async function getStaticPaths(locales: LocaleObject) {
+export async function getStaticPaths(locales: LocaleObject) {
   const pages: PagesEntity[] = [];
-  
+
   const localizedPaths: any[] = [];
 
   for (let index = 0; index < locales.locales.length; index++) {
     const currentLocale = locales.locales[index];
-    
 
-
- // locales.locales.forEach(async (locale) => {
+    // locales.locales.forEach(async (locale) => {
     //Get all lessons
     const res = await fetch(`${API_URL}/lessons`);
     const lessons: Lesson[] = await res.json();
-
 
     //double loop
     //1 loop goes thought all the lessons
@@ -121,36 +117,30 @@ export async function getStaticProps(context: { params: any; locale:any; }) {
     });
 
     //create a new array called "paths"
-/*     const paths = pages.map((page) => ({
+    /*     const paths = pages.map((page) => ({
       params: { slug: page.pageInfo.slug, locale: `${currentLocale}`},
     })); */
 
-    const paths = pages.map((page) => ({
-      params: { slug: page.pageInfo.slug },
-      locale: `${currentLocale}`,
-    }));
+    const paths = pages.map((page) => ({ params: { slug: page.pageInfo.slug }, locale: `${currentLocale}` }));
 
     //console.log(currentLocale)
     localizedPaths.push(...paths);
 
-    console.log("Logging localizedPaths inside loop:")
-    console.log(localizedPaths)
+    //console.log("Logging localizedPaths inside loop:")
+    //console.log(localizedPaths)
 
- // });
+    // });
+  }
 
-}
-
- // console.log("Logging localizedPaths outside of loop")
-  //console.log(localizedPaths)
+  console.log("Logging localizedPaths outside of loop");
+  console.log(localizedPaths);
 
   //Returns the pages that found in Strapi
   return {
-    localizedPaths,
+    paths: localizedPaths,
     fallback: false,
   };
 }
-
-
 
 /* export async function getStaticPaths() {
   //Get all lessons
