@@ -16,7 +16,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <Link href="/">
         <a>
-          <Image src={"/images/logo.png"} alt="logo" width="50px" height="50px" />
+          <Image src={"/images/leikur-logo.png"} alt="logo" width="50px" height="50px" />
         </a>
       </Link>
 
