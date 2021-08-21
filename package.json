@@ -11,6 +11,10 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity": "^3.27.0",
+    "@aws-sdk/client-polly": "^3.27.0",
+    "@aws-sdk/credential-provider-cognito-identity": "^3.27.0",
+    "@aws-sdk/polly-request-presigner": "^3.27.0",
     "cookie": "^0.4.1",
     "cross-env": "^7.0.3",
     "next": "^10.2.3",

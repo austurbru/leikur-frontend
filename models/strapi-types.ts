@@ -191,6 +191,8 @@ export interface Media {
   image?: Image
   audio?: AudioOrVideo
   video?: AudioOrVideo
+  pollyText?: string
+  pollyVoice?: string 
 }
 export interface AudioOrVideo {
   name: string;

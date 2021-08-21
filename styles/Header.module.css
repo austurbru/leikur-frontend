@@ -18,9 +18,10 @@
 
 
 .logoImage{
-  width: 100px;
+  width: 25%;
   height: 50px;
   background: url('/images/logo.png') no-repeat left ;
+  height: 50px;
 }
 
 .header a {
@@ -61,6 +62,7 @@
   .header {
     flex-direction: column;
     height: auto;
+    padding: 30px;
   }
 
   .header ul {
@@ -78,3 +80,4 @@
   }
 }
 
+animation: myAnim 2s ease 0s 1 normal forwards;

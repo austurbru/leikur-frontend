@@ -100,7 +100,6 @@ export async function getStaticPaths(locales: LocaleObject) {
   for (let index = 0; index < locales.locales.length; index++) {
     const currentLocale = locales.locales[index];
 
-    // locales.locales.forEach(async (locale) => {
     //Get all lessons
     const res = await fetch(`${API_URL}/lessons`);
     const lessons: Lesson[] = await res.json();
@@ -116,24 +115,9 @@ export async function getStaticPaths(locales: LocaleObject) {
       }
     });
 
-    //create a new array called "paths"
-    /*     const paths = pages.map((page) => ({
-      params: { slug: page.pageInfo.slug, locale: `${currentLocale}`},
-    })); */
-
     const paths = pages.map((page) => ({ params: { slug: page.pageInfo.slug }, locale: `${currentLocale}` }));
-
-    //console.log(currentLocale)
     localizedPaths.push(...paths);
-
-    //console.log("Logging localizedPaths inside loop:")
-    //console.log(localizedPaths)
-
-    // });
   }
-
-  console.log("Logging localizedPaths outside of loop");
-  console.log(localizedPaths);
 
   //Returns the pages that found in Strapi
   return {
@@ -141,33 +125,3 @@ export async function getStaticPaths(locales: LocaleObject) {
     fallback: false,
   };
 }
-
-/* export async function getStaticPaths() {
-  //Get all lessons
-  const res = await fetch(`${API_URL}/lessons`);
-  const lessons: Lesson[] = await res.json();
-
-  const pages: PagesEntity[] = [];
-
-  //double loop
-  //1 loop goes thought all the lessons
-  lessons.forEach((lesson) => {
-    if (lesson.pages) {
-      //2nd loop : if the current lesson has pages, we push it into the the "pages" array
-      lesson.pages.forEach((page) => {
-        pages.push(page);
-      });
-    }
-  });
-
-  //create a new array called "paths"
-  const paths = pages.map((page) => ({
-    params: { slug: page.pageInfo.slug },
-  }));
-
-  //Returns the pages that found in Strapi
-  return {
-    paths,
-    fallback: false,
-  };
-} */

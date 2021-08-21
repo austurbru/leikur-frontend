@@ -95,10 +95,10 @@
   --basicOrange: #FE9000;
   --basicBlue: #DEE2FF;
   --white: #faf0e6;
-  --yellow: #FEC600;
-  --red: #D53C3C;
+  --yellow: #FED01C;
+  --red: #EF4723;
   --light-red: rgb(255, 68, 68);
-  --green: #00C853;
+  --green: #28B34B;
   --light-gray: #6D6D6D;
 
 
@@ -120,7 +120,7 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.8;
   background-color: var(--mainBackgroundColor);
-
+  height: 80%;
 }
 
 

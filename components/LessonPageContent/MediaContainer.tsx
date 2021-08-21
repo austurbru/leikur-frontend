@@ -1,6 +1,8 @@
 import { PagesEntity } from "@models/strapi-types";
 import { VideoPlayer } from "@components/LessonPageContent/VideoPlayer";
 import { AudioPlayer } from "@components/LessonPageContent/AudioPlayer";
+import { PollyAudioPlayer } from "@components/LessonPageContent/PollyAudioPlayer";
+import PollyAudioImage from "@components/LessonPageContent/PollyAudioImage";
 import AudioImage from "@components/LessonPageContent/AudioImage";
 import { RoundedCorners } from "@models/enums";
 import PageImage from "@components/LessonPageContent/PageImage";
@@ -15,7 +17,9 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
     None,
     Image,
     Audio,
+    PollyAudio,
     ImageAndAudio,
+    PollyImageAndAudio,
     Video,
   }
 
@@ -24,6 +28,8 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
   let audioUrl = "";
   let videoUrl = "";
   let altText = "";
+  let pollyText = "";
+  let isFemaleVoice = false;
 
   if (page.media === undefined || page.media === null) {
     mediaType = MediaType.None;
@@ -43,7 +49,19 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
   } else if (
     page.media.image !== undefined &&
     page.media.image !== null &&
-    (page.media.audio === undefined || page.media.audio === null)
+    (page.media.audio === undefined || page.media.audio === null) &&
+    page.media.pollyText !== null
+  ) {
+    mediaType = MediaType.PollyImageAndAudio;
+    imageUrl = page.media.image.url;
+    pollyText = page.media.pollyText!;
+    isFemaleVoice = page.media?.pollyVoice === "Female";
+    altText = page.media.image.alternativeText;
+  } else if (
+    page.media.image !== undefined &&
+    page.media.image !== null &&
+    (page.media.audio === undefined || page.media.audio === null) &&
+    page.media.pollyVoice === null
   ) {
     mediaType = MediaType.Image;
     imageUrl = page.media.image.url;
@@ -55,6 +73,15 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
   ) {
     mediaType = MediaType.Audio;
     audioUrl = page.media.audio.url;
+  } else if (
+    page.media.audio === undefined &&
+    page.media.audio === null &&
+    page.media.pollyVoice !== null &&
+    (page.media.image === undefined || page.media.image === null)
+  ) {
+    mediaType = MediaType.PollyAudio;
+    pollyText = page.media.pollyText!;
+    isFemaleVoice = page.media?.pollyVoice === "Female";
   }
 
   return (
@@ -62,11 +89,32 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
       <div>{mediaType === MediaType.Video && <VideoPlayer videoSrcUrl={videoUrl} />}</div>
       <div>
         {mediaType === MediaType.ImageAndAudio && (
-          <AudioImage imageSrcUrl={imageUrl} audioSrcUrl={audioUrl} altText={altText} />
+          <AudioImage
+            imageSrcUrl={page.media?.image?.url}
+            audioSrcUrl={audioUrl}
+            altText={page.media?.image?.alternativeText}
+          />
         )}
       </div>
       <div>
         {mediaType === MediaType.Audio && <AudioPlayer audioSrcUrl={audioUrl} roundedCorners={RoundedCorners.All} />}
+      </div>
+      <div>
+        {mediaType === MediaType.PollyImageAndAudio && (
+          <PollyAudioImage
+            imageSrcUrl={page.media?.image?.url}
+            pollyText={pollyText}
+            isFemaleVoice={isFemaleVoice}
+            altText={page.media?.image?.alternativeText}
+          />
+        )}
+      </div>
+      <div>
+        {mediaType === MediaType.PollyAudio && (
+          <div>
+            <PollyAudioPlayer textForSpeech={pollyText} roundedCorners={RoundedCorners.All} isFemaleVoice={true} />
+          </div>
+        )}
       </div>
       <div>{mediaType === MediaType.Image && <PageImage imageSrcUrl={imageUrl} altText={altText} />}</div>
     </div>
