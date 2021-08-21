@@ -11,12 +11,6 @@ import { getSynthesizeSpeechUrl } from "@aws-sdk/polly-request-presigner";
 
 const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
 
-  if(isFemaleVoice){
-    console.log("Female")
-  } else {
-    console.log("Male")
-  }
-
   // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -50,7 +44,7 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
       region: "eu-west-2",
       credentials: fromCognitoIdentityPool({
         client: new CognitoIdentityClient({ region: "eu-west-2" }),
-        identityPoolId: "eu-west-2:a656aa0a-7269-4433-a3e2-b9dd9c347c1c", // IDENTITY_POOL_ID
+        identityPoolId: process.env.NEXT_PUBLIC_POLLY_KEY, // IDENTITY_POOL_ID
       }),
     });
 
