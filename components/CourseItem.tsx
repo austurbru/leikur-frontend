@@ -77,7 +77,7 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
           <Grid.Column width={4}>
             <div className={styles.img}>
               <Image
-                src={course.image ? course.image.formats.thumbnail.url : "/images/event-default.png"}
+                src={course.image ? course.image.formats.thumbnail.url : "/images/default.png"}
                 width={170}
                 height={100}
               />

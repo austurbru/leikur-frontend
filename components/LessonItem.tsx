@@ -20,14 +20,20 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
 
   let progress = 0
   if (user) {
-    const filterResult = user!.lessonsCompleted.filter((item) => {
-      return item.charAt(0) === levelKey && item.charAt(2) === lessonNumber;
-    });
+    try {
+      const filterResult = user!.lessonsCompleted.filter((item) => {
+        return item.charAt(0) === levelKey && item.charAt(2) === lessonNumber;
+      });
+  
+      if (filterResult.length > 0) {
+        progress = 100
+      }
 
-    if (filterResult.length > 0) {
-      progress = 100
+    } catch (error) {
+      console.error(error);
+      // expected output: ReferenceError: nonExistentFunction is not defined
+      // Note - error messages will vary depending on browser
     }
-
   }
 
   //handleStartLesson will navigate to the lesson and set the lesson
@@ -68,7 +74,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
           <Grid.Column width={4}>
             <div className={styles.img}>
               <Image
-                src={lesson.image ? lesson.image.formats.thumbnail.url : "/images/event-default.png"}
+                src={lesson.image ? lesson.image.formats.thumbnail.url : "/images/default.png"}
                 width={170}
                 height={100}
               />

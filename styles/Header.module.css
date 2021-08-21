@@ -16,12 +16,12 @@
 
 }
 
-
 .logoImage{
   width: 25%;
   height: 50px;
   background: url('/images/logo.png') no-repeat left ;
   height: 50px;
+  cursor: pointer;
 }
 
 .header a {
