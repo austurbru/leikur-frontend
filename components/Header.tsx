@@ -35,9 +35,6 @@ const Header: React.FC = () => {
                 <Link href="/courses">{t("common:courses")}</Link>
               </li>
               <li>
-                <LanguageSelection />
-              </li>
-              <li>
                 <button onClick={() => logout()} className="btn-secondary btn-icon">
                   <FaSignOutAlt />
                   {t("common:logout")}
@@ -57,6 +54,9 @@ const Header: React.FC = () => {
               </li>
             </>
           )}
+          <li>
+            <LanguageSelection />
+          </li>
         </ul>
       </nav>
     </header>

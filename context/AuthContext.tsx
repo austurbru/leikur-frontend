@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { NEXT_URL } from "@config/index";
@@ -5,7 +6,7 @@ import { User } from "@models/strapi-types";
 import { Lesson } from "../models/strapi-types";
 
 type UserContextObj = {
-  //user is null when NOT logged in
+  // user is null when NOT logged in
   user?: User | null;
   error: any;
   register: (userCredentials: UserCredentials) => void;
@@ -13,8 +14,9 @@ type UserContextObj = {
   logout: () => void;
   setCurrentLesson: (currentLesson: Lesson) => void;
   setCurrentLessonCompleted: () => void;
-  setCurrentPageSlug: (currentPageSlug: string) => void;
-  setPreferredLocale: (preferredLocale: string) => void;
+  setCurrentLessonState: (currentPageSlug: string, progress: number) => void;
+  // setCurrentPageSlug: (currentPageSlug: string) => void;
+  // setCurrentLessonProgress: (progress: number) => void;
 };
 
 export interface UserCredentials {
@@ -31,8 +33,8 @@ export const AuthContext = createContext<UserContextObj>({
   logout: () => {},
   setCurrentLesson: () => {},
   setCurrentLessonCompleted: () => {},
-  setCurrentPageSlug: () => {},
-  setPreferredLocale: () => {},
+  setCurrentLessonState: () => {},
+  //setCurrentLessonProgress: () => {},
 });
 
 export const AuthProvider: React.FC = (props) => {
@@ -45,7 +47,7 @@ export const AuthProvider: React.FC = (props) => {
     checkUserLoggedIn();
   }, []);
 
-  //Register user
+  // Register user
   const register = async (loginInfo: UserCredentials) => {
     const res = await fetch(`${NEXT_URL}/api/register`, {
       method: "POST",
@@ -58,21 +60,20 @@ export const AuthProvider: React.FC = (props) => {
     const data = await res.json();
 
     if (res.ok) {
-
-      let loggedInUser: User = data.user;
+      //const loggedInUser: User = data.user;
       setUser(data.user);
 
-      if (loggedInUser?.currentPageSlug.trim().length > 0){
+      /*       if (loggedInUser?.currentPageSlug.trim().length > 0) {
         router.push(`/${loggedInUser.currentPageSlug}`);
         return;
       }
 
-      if (loggedInUser?.currentLesson){
-        let slug = "/courses/" + loggedInUser.currentLesson.key.charAt(0);
+      if (loggedInUser?.currentLesson) {
+        const slug = `/courses/${loggedInUser.currentLesson.key.charAt(0)}`;
         router.push(slug);
         return;
       }
-
+ */
       router.push("/courses");
     } else {
       setError(data.message);
@@ -80,10 +81,10 @@ export const AuthProvider: React.FC = (props) => {
     }
   };
 
-  //Login user
+  // Login user
   const login = async (userCredentials: UserCredentials) => {
-    let identifier = userCredentials.email;
-    let password = userCredentials.password;
+    const identifier = userCredentials.email;
+    const { password } = userCredentials;
 
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: "POST",
@@ -97,6 +98,20 @@ export const AuthProvider: React.FC = (props) => {
 
     if (res.ok) {
       setUser(data.user);
+
+      const loggedInUser: User = data.user;
+
+      if (loggedInUser?.currentPageSlug.trim().length > 0) {
+        router.push(`/${loggedInUser.currentPageSlug}`);
+        return;
+      }
+
+      if (loggedInUser?.currentLesson) {
+        const slug = `/courses/${loggedInUser.currentLesson.key.charAt(0)}`;
+        router.push(slug);
+        return;
+      }
+
       router.push("/courses");
     } else {
       setError(data.message);
@@ -104,7 +119,7 @@ export const AuthProvider: React.FC = (props) => {
     }
   };
 
-  //Logout user
+  // Logout user
   const logout = async () => {
     const res = await fetch(`${NEXT_URL}/api/logout`, {
       method: "POST",
@@ -116,7 +131,7 @@ export const AuthProvider: React.FC = (props) => {
     }
   };
 
-  //Check if user is logged in
+  // Check if user is logged in
   const checkUserLoggedIn = async () => {
     const res = await fetch(`${NEXT_URL}/api/user`);
     const data = await res.json();
@@ -131,29 +146,29 @@ export const AuthProvider: React.FC = (props) => {
 
   const updateUser = async () => {
     if (user) {
-      //typescript complains if we try to use the user object because it is possible that it can be null
-      //therefore we have to create a variable that contains the user and we are promising here
-      //that the user is NEVER null. That is guaranteed by the if statement above (  --- if (user) ---  )
-      let userForUpdate: User = user!;
+      // Typescript complains if we try to use the user object because it is possible that it can be null
+      // therefore we have to create a variable that contains the user and we are promising here
+      // that the user is NEVER null. That is guaranteed by the if statement above (  --- if (user) ---  )
+      const userForUpdate: User = user!;
 
-      let currentLesson = userForUpdate.currentLesson;
-      let currentPageSlug = userForUpdate.currentPageSlug;
-      let preferredLocale = userForUpdate.preferredLocale;
+      const { currentLesson } = userForUpdate;
+      const { currentPageSlug } = userForUpdate;
+      const { currentLessonProgress } = userForUpdate;
 
-      //For some reason we seem to be getting an undefined element into the array occationally.
-      //This filtering is to prevent problems that this causes.
-      const filteredLessons = userForUpdate.lessonsCompleted?.filter(function (element) {
+      // For some reason we seem to be getting an undefined element into the array occationally.
+      // This filtering is to prevent problems that this causes.
+      const filteredLessons = userForUpdate.lessonsCompleted?.filter((element) => {
         return typeof element === "string";
       });
 
-      let lessonsCompleted = filteredLessons;
+      const lessonsCompleted = filteredLessons;
 
       const res = await fetch(`${NEXT_URL}/api/user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ currentLesson, lessonsCompleted, currentPageSlug, preferredLocale }),
+        body: JSON.stringify({ currentLesson, lessonsCompleted, currentPageSlug, currentLessonProgress }),
       });
 
       const data = await res.json();
@@ -167,9 +182,9 @@ export const AuthProvider: React.FC = (props) => {
 
   const setCurrentLesson = async (currentLesson: Lesson) => {
     if (user) {
-      let userForUpdate: User = user!;
+      const userForUpdate: User = user!;
 
-      //update the user IF the currentLesson is actually changing
+      // update the user IF the currentLesson is actually changing
       if (currentLesson.key !== userForUpdate.currentLesson?.key) {
         userForUpdate.currentLesson = currentLesson;
         await updateUser();
@@ -177,46 +192,49 @@ export const AuthProvider: React.FC = (props) => {
     }
   };
 
-  const setCurrentPageSlug = async (currentPageSlug: string) => {
+  const setCurrentLessonState = async (currentPageSlug: string, progress: number) => {
     if (user) {
-      let userForUpdate: User = user!;
-
+      const userForUpdate: User = user!;
       userForUpdate.currentPageSlug = currentPageSlug;
+      userForUpdate.currentLessonProgress = progress;
       await updateUser();
     }
   };
 
-  const setPreferredLocale = async (preferredLocale: string) => {
+  /*   const setCurrentPageSlug = async (currentPageSlug: string) => {
     if (user) {
-      let userForUpdate: User = user!;
-
-      userForUpdate.preferredLocale = preferredLocale;
-      await updateUser();
+      const userForUpdate: User = user!;
+      userForUpdate.currentPageSlug = currentPageSlug;
     }
   };
+
+  const setCurrentLessonProgress = async (progress: number) => {
+    if (user) {
+      const userForUpdate: User = user!;
+
+      userForUpdate.currentLessonProgress = progress;
+      await updateUser();
+    }
+  }; */
 
   const setCurrentLessonCompleted = async () => {
     if (user) {
-      let userForUpdate: User = user!;
+      const userForUpdate: User = user!;
       userForUpdate.currentPageSlug = "";
 
-      //if the current lesson does not exist already
-      //in the array of completedLessons -> currentLesson.key is added to the array
-      //then -> the user is updated
+      // if the current lesson does not exist already
+      // in the array of completedLessons -> currentLesson.key is added to the array
+      // then -> the user is updated
       if (userForUpdate.lessonsCompleted.indexOf(userForUpdate.currentLesson.key) === -1) {
-        if (userForUpdate.currentLesson.key === null) {
-          console.log("currentLesson.key was null");
-          console.log(userForUpdate.currentLesson);
-        } else {
+        if (userForUpdate.currentLesson.key !== null) {
           userForUpdate.lessonsCompleted.push(userForUpdate.currentLesson.key);
         }
       }
 
-      if (userForUpdate.currentLesson.key === null) {
-        console.log("currentLesson.key was null - 2");
-        console.log(userForUpdate);
-        console.log(userForUpdate.currentLesson);
-      }
+      // Making sure that no garbage gets into the array.
+      userForUpdate.lessonsCompleted = userForUpdate.lessonsCompleted.filter((x) => {
+        return x !== undefined && x !== null;
+      });
 
       await updateUser();
     }
@@ -232,8 +250,7 @@ export const AuthProvider: React.FC = (props) => {
         logout,
         setCurrentLesson,
         setCurrentLessonCompleted,
-        setCurrentPageSlug,
-        setPreferredLocale,
+        setCurrentLessonState,
       }}
     >
       {props.children}

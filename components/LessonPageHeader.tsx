@@ -17,7 +17,7 @@ interface Props {
 const LessonPageHeader: React.FC<Props> = ({ progress, slug }: Props) => {
   const [drawerIsOpen, setdrawerIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
-  const { setCurrentPageSlug } = useContext(AuthContext);
+  const { setCurrentLessonState } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -32,8 +32,9 @@ const LessonPageHeader: React.FC<Props> = ({ progress, slug }: Props) => {
   //when close the lesson without completing it then save the page slug
   const closePage = (): void => {
     setIsClosing(true);
-    setCurrentPageSlug(`lessons/${slug}`);
-    router.push("/courses");
+    const courseKey = slug.split("-")[0];
+    setCurrentLessonState(`lessons/${slug}`, progress);
+    router.push(`/courses/${courseKey}`);
   };
 
   return (

@@ -10,16 +10,19 @@ import WordCorrectPair from "@components/WordCorrectPair";
 
 import styles from "@styles/LessonPageTemplates/ListenAndSelectWord.module.css";
 
-
 interface Props {
   page: PagesEntity;
   navSlugs: NavSlugs;
+  key: string;
 }
 
-const ListenAndSelectWord: React.FC<Props> = ({ page, navSlugs }: Props) => {
-  const [feedback, setFeedback] = useState<Feedback>(Feedback.Hide);
+const ListenAndSelectWord: React.FC<Props> = ({ page, navSlugs, key }: Props) => {
+  if (key !== page.pageInfo.slug && key !== undefined) {
+    console.error("The pageKey is not the page slug");
+  }
 
-  const words = page.words
+  const [feedback, setFeedback] = useState<Feedback>(Feedback.Hide);
+  const words = page.words;
   const wordPairOne = words![0];
   const wordPairTwo = words![1];
 
@@ -29,7 +32,6 @@ const ListenAndSelectWord: React.FC<Props> = ({ page, navSlugs }: Props) => {
   const [blankWord, setBlankWord] = useState("");
 
   const handleCorrect = () => {
-
     //We have 2 words, one correct and the other incorrect.
 
     let correctWord = "";
@@ -45,7 +47,6 @@ const ListenAndSelectWord: React.FC<Props> = ({ page, navSlugs }: Props) => {
   };
 
   const handleIncorrect = () => {
-
     let inCorrectWord = "";
     if (wordPairOne.isCorrect === false) {
       inCorrectWord = wordPairOne.word;
@@ -78,26 +79,26 @@ const ListenAndSelectWord: React.FC<Props> = ({ page, navSlugs }: Props) => {
           <div>{sentencePartTwo}</div>
         </div>
         <div className={styles.wordButtons}>
-        <Grid columns={3} stackable >
-          <Grid.Row>
-            <Grid.Column>
-              <WordCorrectPair
-                wordCorrect={wordPairOne}
-                canClick={feedback === Feedback.Hide}
-                notifyCorrect={handleCorrect}
-                notifyIncorrect={handleIncorrect}
-              ></WordCorrectPair>
-            </Grid.Column>
-            <Grid.Column>
-              <WordCorrectPair
-                wordCorrect={wordPairTwo}
-                canClick={feedback === Feedback.Hide}
-                notifyCorrect={handleCorrect}
-                notifyIncorrect={handleIncorrect}
-              ></WordCorrectPair>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          <Grid columns={3} stackable>
+            <Grid.Row>
+              <Grid.Column>
+                <WordCorrectPair
+                  wordCorrect={wordPairOne}
+                  canClick={feedback === Feedback.Hide}
+                  notifyCorrect={handleCorrect}
+                  notifyIncorrect={handleIncorrect}
+                ></WordCorrectPair>
+              </Grid.Column>
+              <Grid.Column>
+                <WordCorrectPair
+                  wordCorrect={wordPairTwo}
+                  canClick={feedback === Feedback.Hide}
+                  notifyCorrect={handleCorrect}
+                  notifyIncorrect={handleIncorrect}
+                ></WordCorrectPair>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </div>
       </div>
     </LessonPageWrapper>

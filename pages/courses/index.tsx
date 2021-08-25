@@ -26,8 +26,23 @@ interface Context {
 }
 
 export async function getServerSideProps({ locale }: Context) {
-  const res = await fetch(`${API_URL}/levels?_sort=levelNo:ASC&_locale=${locale}`);
-  const courses = await res.json();
+  const defaultRes = await fetch(`${API_URL}/levels?_sort=levelNo:ASC`);
+  const defaultCourses = await defaultRes.json();
+  const localizedRes = await fetch(`${API_URL}/levels?_sort=levelNo:ASC&_locale=${locale}`);
+  const localizedCourses = await localizedRes.json();
+  const tempCourses = [...localizedCourses];
+
+  for (let index = 0; index < defaultCourses.length; index++) {
+    const course = defaultCourses[index];
+    const itemIndex = localizedCourses.findIndex((item: { levelNo: Number }) => item.levelNo === course.levelNo);
+    if (itemIndex < 0) {
+      tempCourses.push(course);
+    }
+  }
+  const courses = tempCourses.sort(function (a, b) {
+    return a.levelNo - b.levelNo;
+  });
+
   return {
     props: { courses },
   };

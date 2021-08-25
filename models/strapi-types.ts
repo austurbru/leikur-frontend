@@ -141,35 +141,34 @@ export interface PagesEntity {
   __component: string;
   instructions: string;
   pageInfo: PageInfo;
-  media?: Media
+  media?: Media;
   //audio: AudioOrVideo;
   category: Category;
   //image: Image;
   id: string;
   content: string;
   //video: AudioOrVideo;
-  words?: Word[]
+  words?: Word[];
   statement?: string;
   sentence?: string;
-  explanation?: string
-  isTrue?: boolean
-  textAndTranslation?: TextAndTranslation
+  explanation?: string;
+  isTrue?: boolean;
+  textAndTranslation?: TextAndTranslation;
   // text: string;
   // translation: string;
   audioExample?: AudioExample | null;
-  
 }
 
 export interface TextAndTranslation {
-  id: number
-  text: string
-  translation: string
+  id: number;
+  text: string;
+  translation: string;
 }
 
 export interface Word {
-  id: number
-  word: string
-  isCorrect: boolean
+  id: number;
+  word: string;
+  isCorrect: boolean;
 }
 
 export interface PageInfo {
@@ -187,12 +186,12 @@ export interface AudioExample {
 }
 
 export interface Media {
-  id: number
-  image?: Image
-  audio?: AudioOrVideo
-  video?: AudioOrVideo
-  pollyText?: string
-  pollyVoice?: string 
+  id: number;
+  image?: Image;
+  audio?: AudioOrVideo;
+  video?: AudioOrVideo;
+  pollyText?: string;
+  pollyVoice?: string;
 }
 export interface AudioOrVideo {
   name: string;
@@ -251,7 +250,7 @@ export interface User {
   currentLesson: Lesson;
   lessonsCompleted: string[];
   currentPageSlug: string;
-  preferredLocale: string;
+  currentLessonProgress: number;
 }
 
 export interface Role {

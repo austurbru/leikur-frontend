@@ -13,20 +13,22 @@ interface Props {
 }
 
 const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
+  const pageKey = page.pageInfo.slug;
+
   switch (page.__component) {
     case "page-content.instructions-and-text":
-      return <InstructionsAndText page={page} navSlugs={navSlugs} />;
+      return <InstructionsAndText page={page} navSlugs={navSlugs} key={pageKey} />;
     case "page-content.short-text-with-translation":
-      return <ShortTextWithTranslation page={page} navSlugs={navSlugs} />;
+      return <ShortTextWithTranslation page={page} navSlugs={navSlugs} key={pageKey} />;
     case "page-content.select-word":
-      return <ListenAndSelectWord page={page} navSlugs={navSlugs} />;
+      return <ListenAndSelectWord page={page} navSlugs={navSlugs} key={pageKey} />;
     case "page-content.true-or-false":
-      return <TrueOrFalse page={page} navSlugs={navSlugs} />;
+      return <TrueOrFalse page={page} navSlugs={navSlugs} key={pageKey} />;
     default:
       return <TemplateMissing />;
   }
 };
-//page-content.true-or-false
+
 export default LessonPage;
 
 //Function that creates individual Pages------------------------------------
@@ -44,7 +46,6 @@ export async function getStaticProps(context: { params: any; locale: any }) {
   if (lessons.length === 0) {
     const resDefault = await fetch(`${API_URL}/lessons`);
     lessons = await resDefault.json();
-    console.log("Ekkert fannst localized");
   }
 
   let page: any = null;

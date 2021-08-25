@@ -1,8 +1,11 @@
 {
   "locales": ["en", "is", "es", "pl", "ar"],
   "defaultLocale": "en",
+  "localeDetection": false,
   "pages": {
     "*": ["common"],
-    "/about": ["about"]
+    "/about": ["about"],
+    "/account/login": ["login"],
+    "/account/register": ["register"]
   }
 }

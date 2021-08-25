@@ -10,9 +10,14 @@ import styles from "@styles/LessonPageTemplates/InstructionsAndText.module.css";
 interface Props {
   page: PagesEntity;
   navSlugs: NavSlugs;
+  key: string;
 }
 
-const InstructionsAndText: React.FC<Props> = ({ page, navSlugs }: Props) => {
+const InstructionsAndText: React.FC<Props> = ({ page, navSlugs, key }: Props) => {
+  if (key !== page.pageInfo.slug && key !== undefined) {
+    console.error("The pageKey is not the page slug");
+  }
+
   return (
     <LessonPageWrapper
       page={page}
@@ -22,8 +27,8 @@ const InstructionsAndText: React.FC<Props> = ({ page, navSlugs }: Props) => {
       notifyCannotContinue={() => {}}
     >
       <div className={styles.mainContent}>
-      <MediaContainer page={page} />
-        <div className={styles.markdownText} >
+        <MediaContainer page={page} />
+        <div className={styles.markdownText}>
           <ReactMarkdown>{page.content}</ReactMarkdown>
         </div>
       </div>

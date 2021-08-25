@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
@@ -14,34 +15,54 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
   const router = useRouter();
   const { user, setCurrentLesson } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  
-  const levelKey = lesson.key.charAt(0);
-  const lessonNumber = lesson.key.charAt(2);
+  const [slug, setSlug] = useState(`/lessons/${lesson?.pages[0]?.pageInfo.slug}`);
+  const [progress, setProgress] = useState(0);
 
-  let progress = 0
-  if (user) {
-    try {
-      const filterResult = user!.lessonsCompleted.filter((item) => {
-        return item.charAt(0) === levelKey && item.charAt(2) === lessonNumber;
-      });
-  
-      if (filterResult.length > 0) {
-        progress = 100
+  useEffect(() => {
+    const levelKey = lesson.key.charAt(0);
+    const lessonNumber = lesson.key.charAt(2);
+
+    //let progress = 0;
+    if (user) {
+      try {
+        console.log("user!.lessonsCompleted:");
+        console.log(user!.lessonsCompleted);
+        const filterResult = user!.lessonsCompleted
+          .filter(function (x) {
+            return x !== undefined && x !== null;
+          })
+          .filter((item) => {
+            return item.charAt(0) === levelKey && item.charAt(2) === lessonNumber;
+          });
+
+        if (filterResult.length > 0) {
+          setProgress(100);
+        }
+
+        if (user!.currentPageSlug !== null && user!.currentPageSlug.length > 0) {
+          const slugArray = user.currentPageSlug.split("-");
+          const currentPageLessonKey = slugArray[0] + "-" + slugArray[1];
+
+          console.log(currentPageLessonKey);
+          console.log(`The user!.currentPageSlug is: ${user!.currentPageSlug}`);
+          console.log(`The user!.currentLessonProgress is: ${user!.currentLessonProgress}`);
+          if (currentPageLessonKey === `lessons/${lesson.key}`) {
+            setProgress(user!.currentLessonProgress);
+            setSlug(`/${user!.currentPageSlug}`);
+          }
+        }
+      } catch (error) {
+        console.error(error);
       }
-
-    } catch (error) {
-      console.error(error);
-      // expected output: ReferenceError: nonExistentFunction is not defined
-      // Note - error messages will vary depending on browser
     }
-  }
+  }, [slug]);
 
   //handleStartLesson will navigate to the lesson and set the lesson
   //as the current lesson for the user
   const handleStartLesson = () => {
     setIsLoading(true);
     setCurrentLesson(lesson);
-    router.push(`/lessons/${lesson?.pages[0]?.pageInfo.slug}`);
+    router.push(slug);
   };
 
   let lessonColor: SemanticCOLORS;
@@ -62,6 +83,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
       lessonColor = "yellow";
   }
 
+  console.log(`The slug is: ${slug}`);
   return (
     <div className={styles.lesson}>
       {/* Grid system */}
@@ -115,7 +137,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
                 {lesson.pages && lesson.pages.length > 0 ? (
                   <div className={styles.buttonContainer}>
                     <Button color={lessonColor} loading={isLoading} onClick={handleStartLesson}>
-                    {t("common:beginLesson")}
+                      {t("common:beginLesson")}
                     </Button>
                   </div>
                 ) : (
