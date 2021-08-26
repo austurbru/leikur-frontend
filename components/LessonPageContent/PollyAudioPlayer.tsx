@@ -3,14 +3,19 @@ import styles from "@styles/LessonPageContent/AudioPlayer.module.css";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
-import { RoundedCorners } from "@models/enums";
+import { RoundedCorners } from "../../models/enums";
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 import { Polly } from "@aws-sdk/client-polly";
 import { getSynthesizeSpeechUrl } from "@aws-sdk/polly-request-presigner";
 
-const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
+interface Props {
+  textForSpeech: string;
+  roundedCorners: RoundedCorners;
+  isFemaleVoice: boolean;
+}
 
+const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }: Props) => {
   // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -18,9 +23,9 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
   const [audioIsLoaded, setaudioIsLoaded] = useState(false);
 
   // references
-  const audioPlayer = useRef(); // reference our audio component
-  const progressBar = useRef(); // reference our progress bar
-  const animationRef = useRef(); // reference the animation
+  const audioPlayer = useRef<HTMLAudioElement>(null); // reference our audio component
+  const progressBar = useRef<HTMLInputElement>(null); // reference our progress bar
+  const animationRef = useRef(0); // reference the animation
 
   useEffect(() => {
     if (audioIsLoaded) {
@@ -30,9 +35,15 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
       await LoadAudio();
     }
     fetchData();
-    const seconds = audioPlayer.current.duration;
-    setDuration(seconds);
-    progressBar.current.max = seconds;
+
+    const seconds = audioPlayer?.current?.duration;
+    if (seconds !== undefined) {
+      setDuration(seconds);
+    }
+
+    if (progressBar?.current?.max !== undefined && seconds !== undefined) {
+      progressBar.current.max = seconds.toString();
+    }
   }, [audioIsLoaded]);
 
   const LoadAudio = useCallback(async () => {
@@ -44,7 +55,7 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
       region: "eu-west-2",
       credentials: fromCognitoIdentityPool({
         client: new CognitoIdentityClient({ region: "eu-west-2" }),
-        identityPoolId: process.env.NEXT_PUBLIC_POLLY_KEY, // IDENTITY_POOL_ID
+        identityPoolId: process.env.NEXT_PUBLIC_POLLY_KEY ? process.env.NEXT_PUBLIC_POLLY_KEY : "", // IDENTITY_POOL_ID
       }),
     });
 
@@ -52,7 +63,7 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
     var speechParams = {
       OutputFormat: "mp3",
       SampleRate: "16000",
-      Text: { textForSpeech },
+      Text: "",
       TextType: "text",
       VoiceId: voice,
     };
@@ -64,15 +75,21 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
         client,
         params: speechParams,
       });
-      setAudioUrl(url);
 
-      console.log(url);
+      setAudioUrl(url.toString());
+      console.log(url.toString());
 
-      audioPlayer.current.LoadAudio;
-      const seconds = audioPlayer.current.duration;
-      setDuration(seconds);
-      progressBar.current.max = seconds;
-      setaudioIsLoaded(true);
+      audioPlayer.current?.load;
+
+      const seconds = audioPlayer?.current?.duration;
+      if (seconds !== undefined) {
+        setDuration(seconds);
+      }
+
+      if (progressBar?.current?.max !== undefined && seconds !== undefined) {
+        progressBar.current.max = seconds.toString();
+        setaudioIsLoaded(true);
+      }
     } catch (err) {
       console.log("Error", err);
     }
@@ -81,39 +98,50 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
   const togglePlayPause = () => {
     const prevValue = isPlaying;
     setIsPlaying(!prevValue);
-    if (!prevValue) {
-      audioPlayer.current.onended = handleEndOfPlaying;
-      audioPlayer.current.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
-    } else {
-      audioPlayer.current.pause();
-      cancelAnimationFrame(animationRef.current);
+    if (audioPlayer.current != undefined && animationRef !== undefined) {
+      if (!prevValue) {
+        audioPlayer.current.onended = handleEndOfPlaying;
+        audioPlayer.current.play();
+        animationRef.current = requestAnimationFrame(whilePlaying);
+      } else {
+        audioPlayer.current.pause();
+        cancelAnimationFrame(animationRef.current);
+      }
     }
   };
 
   const handleEndOfPlaying = () => {
     setIsPlaying(false);
-    progressBar.current.value = 0;
-    changeRange();
-    cancelAnimationFrame(animationRef.current);
+    if (audioPlayer.current != null && animationRef !== null) {
+      progressBar.current!.value = "0";
+      changeRange();
+      cancelAnimationFrame(animationRef.current!);
+    }
   };
 
   const whilePlaying = () => {
     if (audioPlayer?.current === null) {
       return;
     }
-    progressBar.current.value = audioPlayer.current.currentTime;
+    progressBar.current!.value = audioPlayer.current.currentTime.toString();
     changePlayerCurrentTime();
     animationRef.current = requestAnimationFrame(whilePlaying);
   };
 
   const changeRange = () => {
-    audioPlayer.current.currentTime = progressBar.current.value;
-    changePlayerCurrentTime();
+    if (audioPlayer.current != undefined && progressBar.current !== undefined) {
+      audioPlayer.current.currentTime = progressBar.current?.valueAsNumber!;
+      changePlayerCurrentTime();
+    }
   };
 
   const changePlayerCurrentTime = () => {
-    progressBar.current.style.setProperty("--seek-before-width", `${(progressBar.current.value / duration) * 100}%`);
+    if (audioPlayer.current != undefined && progressBar.current !== undefined) {
+      progressBar.current!.style.setProperty(
+        "--seek-before-width",
+        `${(progressBar.current!.valueAsNumber / duration) * 100}%`
+      );
+    }
   };
 
   let playerStyling = `${styles.audioPlayer}`;
@@ -127,11 +155,19 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }) => {
   }
 
   const handlePlayerReady = () => {
-    console.log("PlayerReady");
-    const seconds = audioPlayer.current.duration;
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-    audioPlayer.current.onended = handleEndOfPlaying;
+    const seconds = audioPlayer?.current?.duration;
+    if (seconds !== undefined) {
+      setDuration(seconds);
+    }
+
+    if (
+      progressBar?.current?.max !== undefined &&
+      audioPlayer.current?.onended !== undefined &&
+      seconds !== undefined
+    ) {
+      progressBar.current.max = seconds.toString();
+      audioPlayer.current.onended = handleEndOfPlaying;
+    }
   };
 
   return (

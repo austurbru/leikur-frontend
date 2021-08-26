@@ -49,7 +49,7 @@ const LessonPageHeader: React.FC<Props> = ({ progress, slug }: Props) => {
             <Button circular color="blue" size="large" icon="info" onClick={openDrawer} />
           </div>
           <div className={styles.progressBarContainer}>
-            <ProgressBar bgcolor={"blue"} height={10} completed={progress}></ProgressBar>
+            <ProgressBar height={10} completed={progress}></ProgressBar>
           </div>
           <div className={styles.buttonContainer}>
             <Button circular color="red" size="large" icon="close" loading={isClosing} onClick={() => closePage()} />

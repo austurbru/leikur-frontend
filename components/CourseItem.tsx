@@ -32,16 +32,15 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
       return item.charAt(0) === course.levelNo.toString();
     });
 
-    if(lessonsCompleted && lessonCount > 0) {
+    if (lessonsCompleted && lessonCount > 0) {
       progress = Math.floor((lessonsCompleted.length / lessonCount) * 100);
     } else {
-      progress = 0
+      progress = 0;
     }
 
     if (progress > 100) {
       progress = 100;
     }
-    
   }
 
   const handleBeginCourse = () => {
@@ -95,7 +94,7 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
             <Grid.Row>
               <div className={styles.progressContainer}>
                 <div className={styles.progressBarContainer}>
-                  <ProgressBar bgcolor={"blue"} height={10} completed={progress}></ProgressBar>
+                  <ProgressBar height={10} completed={progress}></ProgressBar>
                 </div>
                 <div className={styles.progressText}>
                   <p>{Math.round(progress)}%</p>
@@ -105,7 +104,7 @@ const CourseItem: React.FC<Props> = ({ course }: Props) => {
             <Grid.Row>
               <div className={styles.buttonContainer}>
                 <Button color={courseColor} loading={isLoading} onClick={handleBeginCourse}>
-                {t("common:beginCourse")}
+                  {t("common:beginCourse")}
                 </Button>
               </div>
             </Grid.Row>

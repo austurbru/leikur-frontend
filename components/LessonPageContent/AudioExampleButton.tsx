@@ -2,25 +2,31 @@ import { useState, useEffect } from "react";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
 import styles from "@styles/LessonPageContent/AudioExampleButton.module.css";
 
-const AudioExampleButton = ({ audioSrcUrl }) => {
-  const [audio] = useState(
-    typeof Audio !== "undefined" && new Audio(audioSrcUrl)
-  );
+const AudioExampleButton = (props: { audioSrcUrl: string }) => {
+  const { audioSrcUrl } = props;
+
+  const [audio] = useState(typeof Audio !== "undefined" ? new Audio(audioSrcUrl) : null);
 
   useEffect(() => {
-    audio.onended = () => {
-      setIsPlaying(false);
-    };
+    if (audio) {
+      audio.onended = () => {
+        setIsPlaying(false);
+      };
+    }
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
 
   const play = () => {
-    audio.play();
+    if (audio) {
+      audio.play();
+    }
   };
 
   const pause = () => {
-    audio.pause();
+    if (audio) {
+      audio.pause();
+    }
   };
 
   const audioIconStyle = {
@@ -45,11 +51,7 @@ const AudioExampleButton = ({ audioSrcUrl }) => {
   return (
     <div className={styles.container} onClick={togglePlayPause}>
       Example
-      {isPlaying ? (
-        <GiSpeaker style={audioIconStyle} />
-      ) : (
-        <GiSpeakerOff style={audioIconStyle} />
-      )}
+      {isPlaying ? <GiSpeaker style={audioIconStyle} /> : <GiSpeakerOff style={audioIconStyle} />}
     </div>
   );
 };

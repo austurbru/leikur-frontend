@@ -1,17 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import AuthContext from "@context/AuthContext";
-import { Dropdown, Grid, Segment } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 
 const LanguageSelection = () => {
-  const { user, setPreferredLocale } = useContext(AuthContext);
-
-  const [isInitialized, setIsInitialized] = useState(false);
+  const { user } = useContext(AuthContext);
   const router = useRouter();
   let defaultLocale = "en";
 
   if (user) {
-    defaultLocale = user.preferredLocale;
     var preferredLocale = typeof window !== "undefined" ? localStorage.getItem(user.username) : null;
     if (preferredLocale) {
       defaultLocale = preferredLocale;
@@ -32,7 +29,7 @@ const LanguageSelection = () => {
   ];
 
   useEffect(() => {
-    if (router.locale !== defaultLocale && router.locales.indexOf(defaultLocale) > -1) {
+    if (router.locale !== defaultLocale && router.locales && router.locales.indexOf(defaultLocale) > -1) {
       router.push(router.asPath, router.asPath, {
         locale: `${defaultLocale}`,
       });
@@ -41,7 +38,7 @@ const LanguageSelection = () => {
 
   const [selectedLanguage, setSelectedLanguage] = useState(defaultLocale);
 
-  const handleChange = (e, { value }) => {
+  const handleChange = (_event: React.SyntheticEvent<HTMLElement>, { value }: { value?: any }) => {
     setSelectedLanguage(`${value}`);
     if (user) {
       localStorage.setItem(user.username, value);

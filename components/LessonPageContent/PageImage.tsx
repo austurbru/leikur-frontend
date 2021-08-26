@@ -1,12 +1,13 @@
 import Image from "next/image";
 import styles from "@styles/LessonPageContent/PageImage.module.css";
 
-const PageImage = ({ imageSrcUrl, altText }) => {
+const PageImage = (props: { imageSrcUrl: string; altText: string }) => {
+  const { imageSrcUrl, altText } = props;
   return (
     <div>
       <Image
         src={imageSrcUrl}
-        layout='responsive'
+        layout="responsive"
         width={500}
         height={281}
         alt={altText}

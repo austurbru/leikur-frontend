@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { PollyAudioPlayer } from "./PollyAudioPlayer";
+import { AudioPlayer } from "./AudioPlayer";
 import styles from "@styles/LessonPageContent/AudioImage.module.css";
 import { RoundedCorners } from "@models/enums";
 
-const PollyAudioImage = ({ imageSrcUrl, pollyText, isFemaleVoice, altText }) => {
+const AudioImage = (props: { imageSrcUrl: string; audioSrcUrl: string; altText: string }) => {
+  const { imageSrcUrl, audioSrcUrl, altText } = props;
   return (
     <div>
       <Image
@@ -14,12 +15,9 @@ const PollyAudioImage = ({ imageSrcUrl, pollyText, isFemaleVoice, altText }) => 
         alt={altText}
         className={styles.topCornersRounded}
       />
-      <PollyAudioPlayer
-        textForSpeech={pollyText}
-        roundedCorners={RoundedCorners.Bottom}
-        isFemaleVoice={isFemaleVoice}
-      />
+      <AudioPlayer audioSrcUrl={audioSrcUrl} roundedCorners={RoundedCorners.Bottom} />
     </div>
   );
 };
-export default PollyAudioImage;
+
+export default AudioImage;

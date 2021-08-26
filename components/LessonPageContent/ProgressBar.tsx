@@ -1,20 +1,19 @@
-const ProgressBar = (props) => {
-  const { bgcolor, height, completed } = props;
+import { CSSProperties } from "react";
+
+const ProgressBar = (props: { height: number; completed: number }) => {
+  const { height, completed } = props;
 
   const containerStyles = {
-    
     height: `${height}px`,
-
-    backgroundColor: "gray",
-    //backgroundColor: "white",
+    width: "100%",
+    backgroundColor: "var(--progressBar-bg)",
     borderRadius: 50,
   };
 
-  const fillerStyles = {
+  const fillerStyles: CSSProperties = {
     height: "100%",
-    //width: `${completed}%`,
-    width: "100px",
-    backgroundColor: "blue",
+    width: `${completed}%`,
+    backgroundColor: "var(--primary-app-color)",
     borderRadius: "inherit",
     textAlign: "right",
     transition: "width 1s ease-in-out",
@@ -30,9 +29,3 @@ const ProgressBar = (props) => {
 };
 
 export default ProgressBar;
-
-/*
-    <div style={containerStyles}>
-      <div style={fillerStyles}></div>
-    </div>
-*/

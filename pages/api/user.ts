@@ -1,7 +1,8 @@
 import cookie from "cookie";
+import { NextApiRequest, NextApiResponse } from "next";
 import { API_URL } from "@config/index";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     //check to see if the cookie exists
     if (!req.headers.cookie) {
@@ -63,8 +64,6 @@ export default async (req, res) => {
           currentLessonProgress,
         }),
       });
-
-      const data = await strapiRes.json();
 
       if (strapiRes.ok) {
         res.status(200).json({ message: "User has been updated" });

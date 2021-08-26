@@ -1,10 +1,10 @@
-import { userRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
-import styles from "../styles/SideDrawer.module.css";
+import styles from "@styles/SideDrawer.module.css";
 
-export default function SideDrawer({ children, selector, show }) {
+export default function SideDrawer({ children, selector, show }: { children: any; selector: any; show: any }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);

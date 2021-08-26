@@ -1,7 +1,8 @@
 import cookie from "cookie";
+import { NextApiRequest, NextApiResponse } from "next";
 import { API_URL } from "@config/index";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const { identifier, password } = req.body;
 

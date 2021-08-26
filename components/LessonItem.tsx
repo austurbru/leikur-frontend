@@ -124,7 +124,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
             <Grid.Row>
               <div className={styles.progressContainer}>
                 <div className={styles.progressBarContainer}>
-                  <ProgressBar bgcolor={"blue"} height={10} completed={progress}></ProgressBar>
+                  <ProgressBar height={10} completed={progress}></ProgressBar>
                 </div>
                 <div className={styles.progressText}>
                   <p>{Math.round(progress)}%</p>

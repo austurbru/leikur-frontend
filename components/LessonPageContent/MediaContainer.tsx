@@ -90,9 +90,9 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
       <div>
         {mediaType === MediaType.ImageAndAudio && (
           <AudioImage
-            imageSrcUrl={page.media?.image?.url}
+            imageSrcUrl={page.media?.image?.url!}
             audioSrcUrl={audioUrl}
-            altText={page.media?.image?.alternativeText}
+            altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText: ""}
           />
         )}
       </div>
@@ -102,10 +102,10 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
       <div>
         {mediaType === MediaType.PollyImageAndAudio && (
           <PollyAudioImage
-            imageSrcUrl={page.media?.image?.url}
+            imageSrcUrl={page.media?.image?.url!}
             pollyText={pollyText}
             isFemaleVoice={isFemaleVoice}
-            altText={page.media?.image?.alternativeText}
+            altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText: ""}
           />
         )}
       </div>

@@ -1,7 +1,7 @@
 import cookie from "cookie";
-import { API_URL } from "@config/index";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     //Destroy the cookie
     res.setHeader(
@@ -15,7 +15,7 @@ export default async (req, res) => {
       })
     );
 
-    res.status(200).json({ message: 'Success'})
+    res.status(200).json({ message: "Success" });
   } else {
     res.setHeader("Allow", ["POST"]);
     res.status(405).json({ message: `Method ${req.method} not allowed` });
