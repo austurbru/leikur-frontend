@@ -11,5 +11,10 @@
   "inCorrect": "Incorrect",
   "login": "Log In",
   "logout": "Log Out",
-  "aboutFooter": "O tej aplikacji"
+  "aboutFooter": "O tej aplikacji",
+  "example": "Example",
+  "true": "True",
+  "false": "False",
+  "nothingFound": "Sorry, there is nothing here",
+  "backHome": "Go Back Home"
 }

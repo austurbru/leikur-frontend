@@ -1,10 +1,15 @@
 import Image from "next/image";
-import { AudioPlayer } from "./AudioPlayer";
-import styles from "@styles/LessonPageContent/AudioImage.module.css";
+import AudioPlayer from "@components/LessonPageContent/AudioPlayer";
 import { RoundedCorners } from "@models/enums";
+import styles from "@styles/LessonPageContent/AudioImage.module.css";
 
-const AudioImage = (props: { imageSrcUrl: string; audioSrcUrl: string; altText: string }) => {
-  const { imageSrcUrl, audioSrcUrl, altText } = props;
+interface Props {
+  imageSrcUrl: string;
+  audioSrcUrl: string;
+  altText: string;
+}
+
+const AudioImage = ({ imageSrcUrl, audioSrcUrl, altText }: Props) => {
   return (
     <div>
       <Image

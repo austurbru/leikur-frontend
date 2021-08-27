@@ -1,8 +1,11 @@
 import { CSSProperties } from "react";
 
-const ProgressBar = (props: { height: number; completed: number }) => {
-  const { height, completed } = props;
+interface Props {
+  height: number;
+  completed: number;
+}
 
+const ProgressBar = ({ height, completed }: Props) => {
   const containerStyles = {
     height: `${height}px`,
     width: "100%",

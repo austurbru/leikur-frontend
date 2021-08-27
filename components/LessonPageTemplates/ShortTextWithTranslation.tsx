@@ -1,11 +1,10 @@
 import { PagesEntity } from "@models/strapi-types";
-import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
+import NavSlugs from "@models/nav-slugs";
 import MediaContainer from "@components/LessonPageContent/MediaContainer";
 import LessonPageWrapper from "@components/LessonPageWrapper";
 import TextAndTranslation from "@components/LessonPageContent/TextAndTranslation";
 import AudioExample from "@components/LessonPageContent/AudioExample";
-
 import styles from "@styles/LessonPageTemplates/ShortTextWithTranslation.module.css";
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
   key: string;
 }
 
-const ShortTextWithTranslation: React.FC<Props> = ({ page, navSlugs, key }: Props) => {
+const ShortTextWithTranslation = ({ page, navSlugs, key }: Props) => {
   if (key !== page.pageInfo.slug && key !== undefined) {
     console.error("The pageKey is not the page slug");
   }

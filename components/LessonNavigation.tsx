@@ -1,13 +1,12 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
-import NavSlugs from "@models/nav-slugs";
 import useTranslation from "next-translate/useTranslation";
 import { Button } from "semantic-ui-react";
 import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
 import { Feedback } from "@models/enums";
+import NavSlugs from "@models/nav-slugs";
 import Correct from "@components/Correct";
 import Incorrect from "@components/Incorrect";
-
-import React, { useState } from "react";
 import styles from "@styles/LessonNavigation.module.css";
 
 interface Props {
@@ -16,7 +15,7 @@ interface Props {
   notifyContinue: () => void;
 }
 
-const LessonNavigation: React.FC<Props> = ({ navSlugs, feedback, notifyContinue }: Props) => {
+const LessonNavigation = ({ navSlugs, feedback, notifyContinue }: Props) => {
   let { t } = useTranslation();
   const router = useRouter();
   const [currentFeedback, setCurrentFeedback] = useState<Feedback>(Feedback.None);

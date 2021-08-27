@@ -1,9 +1,11 @@
 import Layout from "@components/Layout";
 
-export default function TemplateMissing() {
+const TemplateMissing = () => {
   return (
     <Layout>
       <h1>Template missing</h1>
     </Layout>
   );
-}
+};
+
+export default TemplateMissing;

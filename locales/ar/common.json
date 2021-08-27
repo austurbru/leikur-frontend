@@ -9,5 +9,10 @@
   "beginLesson": "Start lesson",
   "login": "Log In",
   "logout": "Log Out",
-  "aboutFooter": "عن هذا التطبيق"
+  "aboutFooter": "عن هذا التطبيق",
+  "example": "Example",
+  "true": "True",
+  "false": "False",
+  "nothingFound": "Sorry, there is nothing here",
+  "backHome": "Go Back Home"
 }

@@ -1,10 +1,9 @@
-import { PagesEntity } from "@models/strapi-types";
-import NavSlugs from "@models/nav-slugs";
-import { Feedback } from "@models/enums";
 import ReactMarkdown from "react-markdown";
+import { PagesEntity } from "@models/strapi-types";
+import { Feedback } from "@models/enums";
+import NavSlugs from "@models/nav-slugs";
+import LessonPageWrapper from "@components/LessonPageWrapper";
 import MediaContainer from "@components/LessonPageContent/MediaContainer";
-import LessonPageWrapper from "../LessonPageWrapper";
-
 import styles from "@styles/LessonPageTemplates/InstructionsAndText.module.css";
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
   key: string;
 }
 
-const InstructionsAndText: React.FC<Props> = ({ page, navSlugs, key }: Props) => {
+const InstructionsAndText = ({ page, navSlugs, key }: Props) => {
   if (key !== page.pageInfo.slug && key !== undefined) {
     console.error("The pageKey is not the page slug");
   }

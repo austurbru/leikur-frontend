@@ -1,10 +1,10 @@
+import { RoundedCorners } from "@models/enums";
 import { PagesEntity } from "@models/strapi-types";
-import { VideoPlayer } from "@components/LessonPageContent/VideoPlayer";
-import { AudioPlayer } from "@components/LessonPageContent/AudioPlayer";
-import { PollyAudioPlayer } from "@components/LessonPageContent/PollyAudioPlayer";
+import VideoPlayer from "@components/LessonPageContent/VideoPlayer";
+import AudioPlayer from "@components/LessonPageContent/AudioPlayer";
+import PollyAudioPlayer from "@components/LessonPageContent/PollyAudioPlayer";
 import PollyAudioImage from "@components/LessonPageContent/PollyAudioImage";
 import AudioImage from "@components/LessonPageContent/AudioImage";
-import { RoundedCorners } from "@models/enums";
 import PageImage from "@components/LessonPageContent/PageImage";
 import styles from "@styles/LessonPageContent/MediaContainer.module.css";
 
@@ -12,7 +12,7 @@ interface Props {
   page: PagesEntity;
 }
 
-const MediaContainer: React.FC<Props> = ({ page }: Props) => {
+const MediaContainer = ({ page }: Props) => {
   enum MediaType {
     None,
     Image,
@@ -92,7 +92,7 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
           <AudioImage
             imageSrcUrl={page.media?.image?.url!}
             audioSrcUrl={audioUrl}
-            altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText: ""}
+            altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText : ""}
           />
         )}
       </div>
@@ -105,7 +105,7 @@ const MediaContainer: React.FC<Props> = ({ page }: Props) => {
             imageSrcUrl={page.media?.image?.url!}
             pollyText={pollyText}
             isFemaleVoice={isFemaleVoice}
-            altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText: ""}
+            altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText : ""}
           />
         )}
       </div>

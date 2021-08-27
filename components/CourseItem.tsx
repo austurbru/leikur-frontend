@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import useTranslation from "next-translate/useTranslation";
 import { Button, Grid } from "semantic-ui-react";
 import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
-import AuthContext from "@context/AuthContext";
+import useTranslation from "next-translate/useTranslation";
 import { Level } from "@models/strapi-types";
+import AuthContext from "@context/AuthContext";
 import ProgressBar from "@components/LessonPageContent/ProgressBar";
 import styles from "@styles/CourseItem.module.css";
 
@@ -13,7 +13,7 @@ interface Props {
   course: Level;
 }
 
-const CourseItem: React.FC<Props> = ({ course }: Props) => {
+const CourseItem = ({ course }: Props) => {
   let { t } = useTranslation();
   const router = useRouter();
   const { user } = useContext(AuthContext);

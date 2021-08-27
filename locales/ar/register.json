@@ -4,6 +4,7 @@
   "password": "Password",
   "confirmPassword": "Confirm Password",
   "accountExists": "Already have an account?",
+  "passwordsDoNotMatch": "Passwords do not match!",
   "login": "Login",
   "register": "Register"
 }

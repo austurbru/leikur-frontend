@@ -12,7 +12,7 @@ interface Props {
   navSlugs: NavSlugs;
 }
 
-const LessonPage: React.FC<Props> = ({ page, navSlugs }: Props) => {
+const LessonPage = ({ page, navSlugs }: Props) => {
   const pageKey = page.pageInfo.slug;
 
   switch (page.__component) {

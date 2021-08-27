@@ -1,4 +1,4 @@
-const HelpLinks: React.FC = () => {
+const HelpLinks = () => {
   return (
     <div className="help-links">
       <ul>
@@ -20,11 +20,10 @@ const HelpLinks: React.FC = () => {
           </a>
 
           <a href="https://www.modurmal.com/" target="_blank" rel="noopener noreferrer">
-           Móðurmál
+            Móðurmál
           </a>
         </li>
       </ul>
-    
     </div>
   );
 };

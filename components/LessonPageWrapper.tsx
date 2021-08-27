@@ -18,24 +18,14 @@ interface Props {
   children: React.ReactNode;
 }
 
-const LessonPageWrapper: React.FC<Props> = ({
-  page,
-  navSlugs,
-  canContinue,
-  feedback,
-  notifyCannotContinue,
-  children,
-}: Props) => {
+const LessonPageWrapper = ({ page, navSlugs, canContinue, feedback, notifyCannotContinue, children }: Props) => {
   //Set the progress:
   const [progress, setProgress] = useState<number>(
     ((page.pageInfo.pageNo - 1) * 100) / page.pageInfo.lessonTotalPageCount
   );
 
-  
-  const { setCurrentLessonCompleted } = useContext(AuthContext);
-
   const router = useRouter();
-
+  const { setCurrentLessonCompleted } = useContext(AuthContext);
   const [currentFeedback, setCurrentFeedback] = useState<Feedback>(Feedback.None);
 
   if (currentFeedback !== feedback) {

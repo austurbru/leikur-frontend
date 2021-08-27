@@ -1,26 +1,30 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Footer from "@components/Footer";
+import Header from "@components/Header";
+import Showcase from "@components/Showcase";
 import styles from "@styles/Layout.module.css";
-import Footer from "./Footer";
-import Header from "./Header";
-import Showcase from "./Showcase";
 
-const Layout: React.FC<{ title?: string; keywords?: string; description?: string }> = (props) => {
+interface Props {
+  title?: string;
+  keywords?: string;
+  description?: string;
+  children?: any;
+}
+
+const Layout = ({ title, keywords, description, children }: Props) => {
   const router = useRouter();
 
   return (
     <div>
       <Head>
-        <title>{props.title}</title>
-        <meta name="description" content={props.description} />
-        <meta name="keywords" content={props.keywords} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
       </Head>
-
       <Header />
-
       {router.pathname === "/" && <Showcase />}
-
-      <div className={styles.container}>{props.children}</div>
+      <div className={styles.container}>{children}</div>
       <Footer />
     </div>
   );

@@ -1,16 +1,20 @@
 import useTranslation from "next-translate/useTranslation";
-import CourseItem from "@components/CourseItem";
-import Layout from "@components/Layout";
-import { Level } from "@models/strapi-types";
 import { API_URL } from "@config/index";
+import { Level } from "@models/strapi-types";
+import Layout from "@components/Layout";
+import CourseItem from "@components/CourseItem";
 
-const CoursesPage: React.FC<{ courses: Level[] }> = ({ courses }) => {
+interface Props {
+  courses: Level[];
+}
+
+const CoursesPage = ({ courses }: Props) => {
   let { t } = useTranslation();
 
   return (
     <Layout>
       <h1>{t("common:courses")}</h1>
-      {courses.length === 0 && <h3>No courses to show</h3>}
+      {courses.length === 0 && <h3>{t("common:noCoursesFound")}</h3>}
 
       {courses.map((course) => (
         <CourseItem key={course.id} course={course} />

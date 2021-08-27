@@ -102,4 +102,4 @@ const VideoPlayer = ({ videoSrcUrl }: Props) => {
   );
 };
 
-export { VideoPlayer };
+export default VideoPlayer;

@@ -4,13 +4,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import { Button, Grid } from "semantic-ui-react";
-import { Lesson } from "@models/strapi-types";
-import styles from "@styles/LessonItem.module.css";
-import AuthContext from "@context/AuthContext";
 import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
-import ProgressBar from "./LessonPageContent/ProgressBar";
+import { Lesson } from "@models/strapi-types";
+import AuthContext from "@context/AuthContext";
+import ProgressBar from "@components/LessonPageContent/ProgressBar";
+import styles from "@styles/LessonItem.module.css";
 
-const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
+interface Props {
+  lesson: Lesson;
+}
+
+const LessonItem = ({ lesson }: Props) => {
   let { t } = useTranslation();
   const router = useRouter();
   const { user, setCurrentLesson } = useContext(AuthContext);
@@ -141,7 +145,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
                     </Button>
                   </div>
                 ) : (
-                  "Lesson is currently without content"
+                  t("common:noLessonContent")
                 )}
               </div>
             </Grid.Row>

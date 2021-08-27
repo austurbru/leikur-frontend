@@ -1,4 +1,5 @@
-import { Button } from 'semantic-ui-react'
+import useTranslation from "next-translate/useTranslation";
+import { Button } from "semantic-ui-react";
 
 interface Props {
   isCorrect: boolean;
@@ -7,7 +8,9 @@ interface Props {
   notifyIncorrect: () => void;
 }
 
-function TrueButton({ isCorrect, canClick, notifyCorrect, notifyIncorrect }: Props) {
+const TrueButton = ({ isCorrect, canClick, notifyCorrect, notifyIncorrect }: Props) => {
+  let { t } = useTranslation();
+
   const handleClick = () => {
     if (canClick === false) {
       return;
@@ -19,7 +22,11 @@ function TrueButton({ isCorrect, canClick, notifyCorrect, notifyIncorrect }: Pro
     }
   };
 
-  return <Button fluid onClick={() => handleClick()}>True</Button>;
-}
+  return (
+    <Button fluid onClick={() => handleClick()}>
+      {t("common:true")}
+    </Button>
+  );
+};
 
 export default TrueButton;

@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import useTranslation from "next-translate/useTranslation";
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { useContext } from "react";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
 import LanguageSelection from "@components/LanguageSelection";
 import AuthContext from "@context/AuthContext";
 import styles from "@styles/Header.module.css";
-import Image from "next/image";
 
-const Header: React.FC = () => {
+const Header = () => {
   let { t } = useTranslation();
   const { user, logout } = useContext(AuthContext);
 

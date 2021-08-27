@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import styles from "@styles/LessonPageContent/AudioPlayer.module.css";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { RoundedCorners } from "@models/enums";
+import styles from "@styles/LessonPageContent/AudioPlayer.module.css";
 
 interface Props {
   audioSrcUrl: string;
@@ -111,4 +111,4 @@ const AudioPlayer = ({ audioSrcUrl, roundedCorners }: Props) => {
   );
 };
 
-export { AudioPlayer };
+export default AudioPlayer;

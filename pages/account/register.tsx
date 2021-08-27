@@ -1,14 +1,14 @@
+import { useState, useEffect, useContext } from "react";
+import Link from "next/link";
 import { FaUser } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useEffect, useContext } from "react";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 import Layout from "@components/Layout";
 import AuthContext from "@context/AuthContext";
 import styles from "@styles/AuthForm.module.css";
 
-export default function RegisterPage() {
+const RegisterPage = () => {
   let { t } = useTranslation();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ export default function RegisterPage() {
     e.preventDefault();
 
     if (password !== passwordConfirm) {
-      toast.error("Passwords do not match!");
+      toast.error(t("register:passwordsDoNotMatch"));
       return;
     }
     register({ username, email, password });
@@ -71,4 +71,6 @@ export default function RegisterPage() {
       </div>
     </Layout>
   );
-}
+};
+
+export default RegisterPage;

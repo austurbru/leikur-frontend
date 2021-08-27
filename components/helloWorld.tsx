@@ -1,7 +1,4 @@
-// src/components/helloWorld.tsx
-import { FC } from "react";
-
-const HelloWorld: FC = () => {
+const HelloWorld = () => {
   return <p>Hello World</p>;
 };
 

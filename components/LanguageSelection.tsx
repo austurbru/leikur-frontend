@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import AuthContext from "@context/AuthContext";
 import { Dropdown } from "semantic-ui-react";
+import AuthContext from "@context/AuthContext";
 
 const LanguageSelection = () => {
   const { user } = useContext(AuthContext);

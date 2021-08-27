@@ -5,11 +5,17 @@
   "lessons": "Lessons",
   "noCoursesFound": "No levels to show",
   "noLessonsFound": "No lessons to show",
+  "noLessonContent": "Lesson is currently without content",
   "beginCourse": "Begin Level",
   "beginLesson": "Start lesson",
   "correct": "Correct",
   "inCorrect": "Incorrect",
   "login": "Log In",
   "logout": "Log Out",
-  "aboutFooter": "About this app"
+  "aboutFooter": "About this app",
+  "example": "Example",
+  "true": "True",
+  "false": "False",
+  "nothingFound": "Sorry, there is nothing here",
+  "backHome": "Go Back Home"
 }

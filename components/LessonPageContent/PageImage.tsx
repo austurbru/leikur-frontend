@@ -1,8 +1,12 @@
 import Image from "next/image";
 import styles from "@styles/LessonPageContent/PageImage.module.css";
 
-const PageImage = (props: { imageSrcUrl: string; altText: string }) => {
-  const { imageSrcUrl, altText } = props;
+interface Props {
+  imageSrcUrl: string;
+  altText: string;
+}
+
+const PageImage = ({ imageSrcUrl, altText }: Props) => {
   return (
     <div>
       <Image

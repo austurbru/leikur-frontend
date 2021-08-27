@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import styles from "@styles/LessonPageContent/AudioPlayer.module.css";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
@@ -8,6 +7,7 @@ import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 import { Polly } from "@aws-sdk/client-polly";
 import { getSynthesizeSpeechUrl } from "@aws-sdk/polly-request-presigner";
+import styles from "@styles/LessonPageContent/AudioPlayer.module.css";
 
 interface Props {
   textForSpeech: string;
@@ -201,4 +201,4 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }: Prop
   );
 };
 
-export { PollyAudioPlayer };
+export default PollyAudioPlayer;

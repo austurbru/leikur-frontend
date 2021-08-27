@@ -1,19 +1,23 @@
 import useTranslation from "next-translate/useTranslation";
+import { API_URL } from "@config/index";
 import { Lesson } from "@models/strapi-types";
 import Layout from "@components/Layout";
 import LessonItem from "@components/LessonItem";
-import { API_URL } from "@config/index";
 
-const LessonsOfCourse: React.FC<{ lessons: Lesson[] }> = (props) => {
+interface Props {
+  lessons: Lesson[];
+}
+
+const LessonsOfCourse = ({ lessons }: Props) => {
   let { t } = useTranslation();
   return (
     <Layout>
       <h1>{t("common:lessons")}</h1>
-      {props.lessons.length === 0 && <h3>No lessons to show</h3>}
-
-      {props.lessons.map((lesson) => (
-        <LessonItem key={lesson.id} lesson={lesson} />
-      ))}
+      {lessons.length !== 0 ? (
+        lessons.map((lesson) => <LessonItem key={lesson.id} lesson={lesson} />)
+      ) : (
+        <h3>{t("common:noLessonsFound")}</h3>
+      )}
     </Layout>
   );
 };
@@ -54,3 +58,8 @@ export async function getServerSideProps(context: { params?: any; locale?: any }
     },
   };
 }
+/*
+      {lessons.map((lesson) => (
+        <LessonItem key={lesson.id} lesson={lesson} />
+      ))}
+*/

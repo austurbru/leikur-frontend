@@ -1,16 +1,16 @@
 import Image from "next/image";
-import { PollyAudioPlayer } from "./PollyAudioPlayer";
-import styles from "@styles/LessonPageContent/AudioImage.module.css";
 import { RoundedCorners } from "@models/enums";
+import PollyAudioPlayer from "@components/LessonPageContent/PollyAudioPlayer";
+import styles from "@styles/LessonPageContent/AudioImage.module.css";
 
-const PollyAudioImage = (props: {
+interface Props {
   imageSrcUrl: string;
   pollyText: string;
   isFemaleVoice: boolean;
   altText: string;
-}) => {
-  const { imageSrcUrl, pollyText, isFemaleVoice, altText } = props;
+}
 
+const PollyAudioImage = ({ imageSrcUrl, pollyText, isFemaleVoice, altText }: Props) => {
   return (
     <div>
       <Image

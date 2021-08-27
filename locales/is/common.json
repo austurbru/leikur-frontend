@@ -11,5 +11,10 @@
   "inCorrect": "Rangt",
   "login": "Innskráning",
   "logout": "Útskráning",
-  "aboutFooter": "Um síðuna"
+  "aboutFooter": "Um síðuna",
+  "example": "Dæmi",
+  "true": "Satt",
+  "false": "Ósatt",
+  "nothingFound": "Því miður er ekkert hér að finna.",
+  "backHome": "Aftur á heimaslóð"
 }

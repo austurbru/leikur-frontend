@@ -4,6 +4,7 @@
   "password": "Lykilorð",
   "confirmPassword": "Staðfesta lykilorð",
   "accountExists": "Þegar skráður sem notandi?",
+  "passwordsDoNotMatch": "Lykilorðin eru ekki eins!",
   "login": "Innskráning",
   "register": "Nýskráning"
 }

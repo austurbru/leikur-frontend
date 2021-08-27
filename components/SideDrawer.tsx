@@ -4,7 +4,13 @@ import { CSSTransition } from "react-transition-group";
 
 import styles from "@styles/SideDrawer.module.css";
 
-export default function SideDrawer({ children, selector, show }: { children: any; selector: any; show: any }) {
+interface Props {
+  selector: any;
+  show: any;
+  children: JSX.Element[] | JSX.Element;
+}
+
+const SideDrawer = ({ selector, show, children }: Props) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -17,4 +23,6 @@ export default function SideDrawer({ children, selector, show }: { children: any
     </CSSTransition>
   );
   return mounted ? createPortal(content, document.querySelector(selector)) : null;
-}
+};
+
+export default SideDrawer;

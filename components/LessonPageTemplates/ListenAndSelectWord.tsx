@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Grid } from "semantic-ui-react";
 import { PagesEntity } from "@models/strapi-types";
-import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
+import NavSlugs from "@models/nav-slugs";
 import BlankWord from "@components/LessonPageContent/BlankWord";
 import MediaContainer from "@components/LessonPageContent/MediaContainer";
 import LessonPageWrapper from "@components/LessonPageWrapper";
 import WordCorrectPair from "@components/WordCorrectPair";
-
 import styles from "@styles/LessonPageTemplates/ListenAndSelectWord.module.css";
 
 interface Props {
@@ -16,7 +15,7 @@ interface Props {
   key: string;
 }
 
-const ListenAndSelectWord: React.FC<Props> = ({ page, navSlugs, key }: Props) => {
+const ListenAndSelectWord = ({ page, navSlugs, key }: Props) => {
   if (key !== page.pageInfo.slug && key !== undefined) {
     console.error("The pageKey is not the page slug");
   }

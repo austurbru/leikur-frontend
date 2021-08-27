@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { PagesEntity } from "@models/strapi-types";
-import NavSlugs from "@models/nav-slugs";
 import { Feedback } from "@models/enums";
+import NavSlugs from "@models/nav-slugs";
 import MediaContainer from "@components/LessonPageContent/MediaContainer";
 import TextAndTranslation from "@components/LessonPageContent/TextAndTranslation";
 import LessonPageWrapper from "@components/LessonPageWrapper";
 import TrueButton from "@components/LessonPageContent/TrueButton";
 import FalseButton from "@components/LessonPageContent/FalseButton";
-
 import styles from "@styles/LessonPageTemplates/TrueOrFalse.module.css";
 
 interface Props {
@@ -16,7 +15,7 @@ interface Props {
   key: string;
 }
 
-const TrueOrFalse: React.FC<Props> = ({ page, navSlugs, key }: Props) => {
+const TrueOrFalse = ({ page, navSlugs, key }: Props) => {
   if (key !== page.pageInfo.slug && key !== undefined) {
     console.error("The pageKey is not the page slug");
   }

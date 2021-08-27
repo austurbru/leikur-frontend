@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { GiSpeaker, GiSpeakerOff } from "react-icons/gi";
+import useTranslation from "next-translate/useTranslation";
 import styles from "@styles/LessonPageContent/AudioExampleButton.module.css";
 
-const AudioExampleButton = (props: { audioSrcUrl: string }) => {
-  const { audioSrcUrl } = props;
+interface Props {
+  audioSrcUrl: string;
+}
+
+const AudioExampleButton = ({ audioSrcUrl }: Props) => {
+  let { t } = useTranslation();
 
   const [audio] = useState(typeof Audio !== "undefined" ? new Audio(audioSrcUrl) : null);
 
@@ -50,7 +55,7 @@ const AudioExampleButton = (props: { audioSrcUrl: string }) => {
 
   return (
     <div className={styles.container} onClick={togglePlayPause}>
-      Example
+      {t("common:example")}
       {isPlaying ? <GiSpeaker style={audioIconStyle} /> : <GiSpeakerOff style={audioIconStyle} />}
     </div>
   );
