@@ -33,6 +33,9 @@
     /* padding: 20px;
     width: 80%;
      */
+     /* max-width: 900px; */
+     left: -1%;
+    
 }
 
 .buttonContainer {
@@ -50,3 +53,8 @@
         margin-left: 5rem;
     }
 }*/
+
+.headerCenter{
+    /* background-color: aqua; */
+    text-align: center;
+}
