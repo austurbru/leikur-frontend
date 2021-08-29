@@ -91,6 +91,7 @@ const MediaContainer = ({ page }: Props) => {
         {mediaType === MediaType.ImageAndAudio && (
           <AudioImage
             imageSrcUrl={page.media?.image?.url!}
+            blurredImage={page.blurredImage}
             audioSrcUrl={audioUrl}
             altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText : ""}
           />
@@ -103,6 +104,7 @@ const MediaContainer = ({ page }: Props) => {
         {mediaType === MediaType.PollyImageAndAudio && (
           <PollyAudioImage
             imageSrcUrl={page.media?.image?.url!}
+            blurredImage={page.blurredImage}
             pollyText={pollyText}
             isFemaleVoice={isFemaleVoice}
             altText={page.media?.image?.alternativeText ? page.media?.image?.alternativeText : ""}
@@ -116,7 +118,11 @@ const MediaContainer = ({ page }: Props) => {
           </div>
         )}
       </div>
-      <div>{mediaType === MediaType.Image && <PageImage imageSrcUrl={imageUrl} altText={altText} />}</div>
+      <div>
+        {mediaType === MediaType.Image && (
+          <PageImage imageSrcUrl={imageUrl} blurredImage={page.blurredImage} altText={altText} />
+        )}
+      </div>
     </div>
   );
 };

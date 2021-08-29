@@ -157,6 +157,7 @@ export interface PagesEntity {
   // text: string;
   // translation: string;
   audioExample?: AudioExample | null;
+  blurredImage: string;
 }
 
 export interface TextAndTranslation {

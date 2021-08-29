@@ -1,5 +1,6 @@
 .container {
     padding: 20px;
+    width: 80%;
 }
 
 
@@ -14,12 +15,17 @@
     z-index: 100;
     position: fixed;
     top: 0;
-    width: 100%;
+    /* width: 100%; */
     background-color: var(--mainBackgroundColor);
     height: 5em;
     display: flex;
-    justify-content: space-around;
+
+    justify-content: space-around; 
     align-items: center;
+    margin: auto;
+    width: 70%;
+    position: inherit;
+ 
 }
 
 .buttonContainer {

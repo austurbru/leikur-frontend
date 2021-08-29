@@ -5,12 +5,14 @@ import styles from "@styles/LessonPageContent/AudioImage.module.css";
 
 interface Props {
   imageSrcUrl: string;
+  blurredImage: string;
   pollyText: string;
   isFemaleVoice: boolean;
   altText: string;
 }
 
-const PollyAudioImage = ({ imageSrcUrl, pollyText, isFemaleVoice, altText }: Props) => {
+const PollyAudioImage = ({ imageSrcUrl, blurredImage, pollyText, isFemaleVoice, altText }: Props) => {
+
   return (
     <div>
       <Image
@@ -19,6 +21,8 @@ const PollyAudioImage = ({ imageSrcUrl, pollyText, isFemaleVoice, altText }: Pro
         width={500}
         height={281}
         alt={altText}
+        placeholder="blur"
+        blurDataURL={blurredImage}
         className={styles.topCornersRounded}
       />
       <PollyAudioPlayer

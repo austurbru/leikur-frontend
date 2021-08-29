@@ -3,10 +3,11 @@ import styles from "@styles/LessonPageContent/PageImage.module.css";
 
 interface Props {
   imageSrcUrl: string;
+  blurredImage: string;
   altText: string;
 }
 
-const PageImage = ({ imageSrcUrl, altText }: Props) => {
+const PageImage = ({ imageSrcUrl, blurredImage, altText }: Props) => {
   return (
     <div>
       <Image
@@ -15,6 +16,8 @@ const PageImage = ({ imageSrcUrl, altText }: Props) => {
         width={500}
         height={281}
         alt={altText}
+        placeholder="blur" 
+        blurDataURL={blurredImage}
         className={styles.allCornersRounded}
       />
     </div>

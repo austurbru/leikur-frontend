@@ -7,13 +7,25 @@
   width: 100%;
   background-color: white;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: space-around;
   align-items: center;
   color: white;
   padding: 0.5rem 10%;
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
 }
 
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+ @media screen and (max-width: 360px) 
+
+ {
+    .feedbackBar{
+      justify-content: space-around;
+    }
+} 
 
 /* .plainButton {
   margin-right: 10px;

@@ -1,3 +1,4 @@
+import { getPlaiceholder } from "plaiceholder";
 import { API_URL } from "@config/index";
 import { PagesEntity, Lesson } from "@models/strapi-types";
 import NavSlugs from "@models/nav-slugs";
@@ -59,6 +60,14 @@ export async function getStaticProps(context: { params: any; locale: any }) {
     for (let j = 0; j < lessons[i].pages.length; j++) {
       if (lessons[i].pages[j].pageInfo.slug === params.slug) {
         page = lessons[i].pages[j];
+
+        if (page.media?.image) {
+          const { base64 } = await getPlaiceholder(page.media?.image.url);
+          page.blurredImage = base64;
+        } else {
+          page.blurredImage = "";
+        }
+
         currentSlug = lessons[i].pages[j].pageInfo.slug;
 
         if (j > 0) {

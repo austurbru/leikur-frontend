@@ -5,11 +5,12 @@ import styles from "@styles/LessonPageContent/AudioImage.module.css";
 
 interface Props {
   imageSrcUrl: string;
+  blurredImage: string;
   audioSrcUrl: string;
   altText: string;
 }
 
-const AudioImage = ({ imageSrcUrl, audioSrcUrl, altText }: Props) => {
+const AudioImage = ({ imageSrcUrl, blurredImage, audioSrcUrl, altText }: Props) => {
   return (
     <div>
       <Image
@@ -18,6 +19,8 @@ const AudioImage = ({ imageSrcUrl, audioSrcUrl, altText }: Props) => {
         width={500}
         height={281}
         alt={altText}
+        placeholder="blur"
+        blurDataURL={blurredImage}
         className={styles.topCornersRounded}
       />
       <AudioPlayer audioSrcUrl={audioSrcUrl} roundedCorners={RoundedCorners.Bottom} />
