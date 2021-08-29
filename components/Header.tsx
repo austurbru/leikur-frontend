@@ -14,26 +14,31 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Link href="/">
-        <a>
-          <Image src={"/images/leikur-logo.png"} alt="logo" width="53px" height="50px" />
-        </a>
-      </Link>
-
-      <div className={styles.logo}>
+      <div className={styles.logoAndLeikur}>
         <Link href="/">
-          {/* <Image src={logo.png} /> */}
-          <a>Það er leikur að læra</a>
+          <a>
+            <Image src={"/images/leikur-logo.png"} alt="logo" width="53px" height="50px" />
+          </a>
         </Link>
+
+        <div className={styles.logo}>
+          <Link href="/">
+            {/* <Image src={logo.png} /> */}
+            <a>Það er leikur að læra</a>
+          </Link>
+        </div>
       </div>
       <nav>
         <ul>
+          <li>
+            <LanguageSelection />
+          </li>
           {user ? (
             // If logged in
             <>
-              <li>
+              {/* <li>
                 <Link href="/courses">{t("common:courses")}</Link>
-              </li>
+              </li> */}
               <li>
                 <button onClick={() => logout()} className="btn-secondary btn-icon">
                   <FaSignOutAlt />
@@ -54,9 +59,6 @@ const Header = () => {
               </li>
             </>
           )}
-          <li>
-            <LanguageSelection />
-          </li>
         </ul>
       </nav>
     </header>

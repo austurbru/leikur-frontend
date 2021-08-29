@@ -13,7 +13,14 @@
   font-weight: 700;
   font-style: normal;
   line-height: 20px;
+  box-shadow: -1px 3px 14px 4px rgb(0 0 0 / 25%);
 
+}
+
+.logoAndLeikur{
+  width:25rem;
+  display: flex;
+  align-items: center
 }
 
 .logoImage{
@@ -31,7 +38,7 @@
 }
 
 .header a:hover {
-  color: #000;
+  color: #41C2F1;
 }
 
 .header ul {
@@ -53,7 +60,6 @@
 }
 
 .logo a {
-
 
   color: var(--primary-app-color);
 }
@@ -78,4 +84,15 @@
   .logo {
     margin: 20px 0;
   }
+}
+
+/* ----------- Galaxy Tab 2 ----------- */
+
+/* Portrait and Landscape */
+@media 
+  (max-device-width: 800px) 
+   {
+   .header li{
+     margin-top: 2rem !important;
+    }
 }

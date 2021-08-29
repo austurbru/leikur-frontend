@@ -1,3 +1,8 @@
+.headerCenter{
+    padding: 20px;
+    width: 80%;
+}
+
 .container {
     padding: 20px;
     width: 80%;
@@ -5,7 +10,7 @@
 
 
 .progressBarContainer{
-    width: 80%;
+    width: 70%;
     align-items: center;
   }
 
@@ -23,9 +28,11 @@
     justify-content: space-around; 
     align-items: center;
     margin: auto;
-    width: 70%;
-    position: inherit;
- 
+    width: 100%;
+    /* position: inherit; */
+    /* padding: 20px;
+    width: 80%;
+     */
 }
 
 .buttonContainer {
