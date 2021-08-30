@@ -1,31 +1,49 @@
-.feedbackBar {
+.feedbackWrapper{
   position: fixed;
+  width: 100%;
   bottom: 0;
   left: 0;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.centerFeedbackBar{
+width: 100%;
+max-width: 900px;
+padding: 0 20px;
+}
+
+.feedbackBar {
+
   height: 5rem;
 
   width: 100%;
-  background-color: white;
+  max-width: 900px;
+  /* background-color: white; */
   display: flex;
   /* justify-content: space-between; */
   justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 0.5rem 10%;
-  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
+
+ 
 }
 
 
 /* ----------- Galaxy S3 ----------- */
 
 /* Portrait and Landscape */
- @media screen and (max-width: 360px) 
+ /* @media screen and (max-width: 360px) 
 
  {
     .feedbackBar{
-      justify-content: space-around;
-    }
-} 
+      /* justify-content: space-around; */
+    /* }
+}   */
 
 /* .plainButton {
   margin-right: 10px;

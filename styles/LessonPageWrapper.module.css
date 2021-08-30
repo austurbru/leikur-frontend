@@ -1,7 +1,10 @@
 .info {
     margin-bottom: 1rem;
   }
-  
+  .mainContainer{
+    margin-top: 90px;
+  }
+
   .container {
     margin-top: 3rem;
     margin-bottom: 5rem;

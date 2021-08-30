@@ -58,7 +58,7 @@ const LessonPageWrapper = ({ page, navSlugs, canContinue, feedback, notifyCannot
       <LessonPageHeader progress={progress} slug={page.pageInfo.slug}></LessonPageHeader>
       <LessonPageLayout>
         <div className={styles.info}></div>
-        <div>
+        <div className={styles.mainContainer}>
           <h2>{page.instructions}</h2>
           {children}
         </div>

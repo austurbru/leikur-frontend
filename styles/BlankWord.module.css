@@ -9,9 +9,7 @@
     font-size: large;
     border-radius: 10px;
     height: 40px;
-    padding: 3px;
-  
-
+    padding: 3px 10px;
   }
 
   .showingWordIncorrect{
@@ -25,8 +23,7 @@
     font-size: large;
     border-radius: 10px;
     height: 40px;
-    padding: 3px;
-   
+    padding: 3px 10px;  
   }
   
   .hidingWord{

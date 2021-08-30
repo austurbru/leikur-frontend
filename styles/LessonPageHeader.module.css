@@ -1,6 +1,9 @@
 .headerCenter{
-    padding: 20px;
-    width: 80%;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
 }
 
 .container {
@@ -18,7 +21,7 @@
     /* overflow: hidden; */
 
     z-index: 100;
-    position: fixed;
+
     top: 0;
     /* width: 100%; */
     background-color: var(--mainBackgroundColor);
@@ -34,7 +37,8 @@
     width: 80%;
      */
      /* max-width: 900px; */
-     left: -1%;
+     /* left: -1%; */
+     max-width: 900px;
     
 }
 

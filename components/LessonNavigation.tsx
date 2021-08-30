@@ -59,6 +59,8 @@ const LessonNavigation = ({ navSlugs, feedback, notifyContinue }: Props) => {
   return (
     <div>
       {currentFeedback !== Feedback.Hide && (
+        <div className={styles.feedbackWrapper}>
+        <div className={styles.centerFeedbackBar}>
         <div className={styles.feedbackBar} onClick={() => {}}>
           {navSlugs.previousSlug ? (
             /*             loading={backButtonIsLoading} */
@@ -80,6 +82,8 @@ const LessonNavigation = ({ navSlugs, feedback, notifyContinue }: Props) => {
           >
             {t("common:continue")}
           </Button>
+        </div>
+        </div>
         </div>
       )}
     </div>
