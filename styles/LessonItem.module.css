@@ -44,6 +44,10 @@
   margin: 10px;
 }
 
+.roundedCorners{
+  border-radius: 15px;
+}
+
 .info {
 margin: 2rem;
 width: 35%;

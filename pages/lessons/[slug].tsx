@@ -37,9 +37,6 @@ export async function getStaticProps(context: { params: any; locale: any }) {
   const { params } = context;
   const locale = context.locale;
 
-  console.log("Current locale in getStaticProps:");
-  console.log(locale);
-
   let lessons: Lesson[] = [];
   const resLocalized = await fetch(`${API_URL}/lessons?_locale=${locale}`);
 

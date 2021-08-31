@@ -29,12 +29,18 @@ padding: 0 20px;
   justify-content: space-between;
   align-items: center;
   color: white;
+ 
 
  
 }
 
 
 /* ----------- Galaxy S3 ----------- */
+/* @media only screen and (max-width: 600px) {
+  .feedbackBar {
+    background-color: rgb(17, 73, 92);
+  }
+} */
 
 /* Portrait and Landscape */
  /* @media screen and (max-width: 360px) 

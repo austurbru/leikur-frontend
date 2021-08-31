@@ -43,6 +43,10 @@
   margin: 10px;
 }
 
+.roundedCorners{
+  border-radius: 15px;
+}
+
 .info {
   flex: 2;
 }

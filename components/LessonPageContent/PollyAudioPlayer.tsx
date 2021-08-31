@@ -77,7 +77,6 @@ const PollyAudioPlayer = ({ textForSpeech, roundedCorners, isFemaleVoice }: Prop
       });
 
       setAudioUrl(url.toString());
-      console.log(url.toString());
 
       audioPlayer.current?.load;
 

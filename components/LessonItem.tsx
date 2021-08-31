@@ -29,8 +29,6 @@ const LessonItem = ({ lesson }: Props) => {
     //let progress = 0;
     if (user) {
       try {
-        console.log("user!.lessonsCompleted:");
-        console.log(user!.lessonsCompleted);
         const filterResult = user!.lessonsCompleted
           .filter(function (x) {
             return x !== undefined && x !== null;
@@ -47,9 +45,6 @@ const LessonItem = ({ lesson }: Props) => {
           const slugArray = user.currentPageSlug.split("-");
           const currentPageLessonKey = slugArray[0] + "-" + slugArray[1];
 
-          console.log(currentPageLessonKey);
-          console.log(`The user!.currentPageSlug is: ${user!.currentPageSlug}`);
-          console.log(`The user!.currentLessonProgress is: ${user!.currentLessonProgress}`);
           if (currentPageLessonKey === `lessons/${lesson.key}`) {
             setProgress(user!.currentLessonProgress);
             setSlug(`/${user!.currentPageSlug}`);
@@ -87,7 +82,6 @@ const LessonItem = ({ lesson }: Props) => {
       lessonColor = "yellow";
   }
 
-  console.log(`The slug is: ${slug}`);
   return (
     <div className={styles.lesson}>
       {/* Grid system */}
@@ -100,6 +94,7 @@ const LessonItem = ({ lesson }: Props) => {
           <Grid.Column width={4}>
             <div className={styles.img}>
               <Image
+                className={styles.roundedCorners}
                 src={lesson.image ? lesson.image.formats.thumbnail.url : "/images/default.png"}
                 width={170}
                 height={100}

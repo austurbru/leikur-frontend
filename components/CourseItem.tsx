@@ -8,6 +8,7 @@ import { Level } from "@models/strapi-types";
 import AuthContext from "@context/AuthContext";
 import ProgressBar from "@components/LessonPageContent/ProgressBar";
 import styles from "@styles/CourseItem.module.css";
+import { RoundedCorners } from '../models/enums';
 
 interface Props {
   course: Level;
@@ -24,11 +25,6 @@ const CourseItem = ({ course }: Props) => {
   if (user) {
     const lessonCount = course.lessons.length;
     const lessonsCompleted = user!.lessonsCompleted?.filter((item) => {
-      console.log(item);
-      if (!item) {
-        console.log("item is null here!");
-        console.log(lessonsCompleted);
-      }
       return item.charAt(0) === course.levelNo.toString();
     });
 
@@ -76,6 +72,7 @@ const CourseItem = ({ course }: Props) => {
           <Grid.Column width={4}>
             <div className={styles.img}>
               <Image
+                className={styles.roundedCorners}
                 src={course.image ? course.image.formats.thumbnail.url : "/images/default.png"}
                 width={170}
                 height={100}

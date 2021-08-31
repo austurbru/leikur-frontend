@@ -13,7 +13,6 @@ const WordCorrectPair = ({ wordCorrect, canClick, notifyCorrect, notifyIncorrect
   const [showWord, setShowWord] = useState(true);
 
   const handleClick = () => {
-    console.log(canClick);
     if (canClick === false) {
       return;
     }
