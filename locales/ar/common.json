@@ -14,5 +14,6 @@
   "true": "True",
   "false": "False",
   "nothingFound": "Sorry, there is nothing here",
-  "backHome": "Go Back Home"
+  "backHome": "Go Back Home",
+  "changePassword": "Change Password"
 }

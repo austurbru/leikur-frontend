@@ -64,6 +64,10 @@
   color: var(--primary-app-color);
 }
 
+.userDropdown {
+  margin-left: 20px;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

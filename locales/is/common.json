@@ -16,5 +16,6 @@
   "true": "Satt",
   "false": "Ósatt",
   "nothingFound": "Því miður er ekkert hér að finna.",
-  "backHome": "Aftur á heimaslóð"
+  "backHome": "Aftur á heimaslóð",
+  "changePassword": "Breyta lykilorði"
 }

@@ -6,6 +6,7 @@
     "*": ["common"],
     "/about": ["about"],
     "/account/login": ["login"],
-    "/account/register": ["register"]
+    "/account/register": ["register"],
+    "/account/changePassword": ["password"]
   }
 }

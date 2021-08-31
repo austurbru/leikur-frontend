@@ -1,16 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useContext } from "react";
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { FaSignInAlt } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { Popup, Dropdown } from "semantic-ui-react";
 import useTranslation from "next-translate/useTranslation";
 import LanguageSelection from "@components/LanguageSelection";
 import AuthContext from "@context/AuthContext";
 import styles from "@styles/Header.module.css";
 
 const Header = () => {
+  const router = useRouter();
   let { t } = useTranslation();
   const { user, logout } = useContext(AuthContext);
+
+  const changePassword = () => {
+    router.push("/account/changePassword");
+  };
 
   return (
     <header className={styles.header}>
@@ -23,7 +30,6 @@ const Header = () => {
 
         <div className={styles.logo}>
           <Link href="/">
-            {/* <Image src={logo.png} /> */}
             <a>Það er leikur að læra</a>
           </Link>
         </div>
@@ -35,17 +41,19 @@ const Header = () => {
           </li>
           {user ? (
             // If logged in
-            <>
-              {/* <li>
-                <Link href="/courses">{t("common:courses")}</Link>
-              </li> */}
-              <li>
-                <button onClick={() => logout()} className="btn-secondary btn-icon">
-                  <FaSignOutAlt />
-                  {t("common:logout")}
-                </button>
-              </li>
-            </>
+            <li>
+              <Popup
+                content={user?.username}
+                trigger={
+                  <Dropdown icon={{ name: "user", size: "large" }} className={styles.userDropdown}>
+                    <Dropdown.Menu>
+                      <Dropdown.Item icon="lock" text={t("common:changePassword")} onClick={() => changePassword()} />
+                      <Dropdown.Item icon="logout" text={t("common:logout")} onClick={() => logout()} />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                }
+              />
+            </li>
           ) : (
             // If logged out
             <>
