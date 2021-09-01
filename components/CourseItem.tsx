@@ -8,7 +8,6 @@ import { Level } from "@models/strapi-types";
 import AuthContext from "@context/AuthContext";
 import ProgressBar from "@components/LessonPageContent/ProgressBar";
 import styles from "@styles/CourseItem.module.css";
-import { RoundedCorners } from '../models/enums';
 
 interface Props {
   course: Level;
