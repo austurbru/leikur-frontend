@@ -1,5 +1,5 @@
 {
-  "locales": ["en", "is", "pl", "ar"],
+  "locales": ["en", "is", "es", "pl", "ar"],
   "defaultLocale": "en",
   "localeDetection": false,
   "pages": {
