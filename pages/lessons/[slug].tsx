@@ -14,6 +14,7 @@ interface Props {
 }
 
 const LessonPage = ({ page, navSlugs }: Props) => {
+
   const pageKey = page.pageInfo.slug;
 
   switch (page.__component) {
@@ -39,44 +40,46 @@ export async function getStaticProps(context: { params: any; locale: any }) {
   const { params } = context;
   const locale = context.locale;
 
-  let lessons: Lesson[] = [];
-  const resLocalized = await fetch(`${API_URL}/lessons?_locale=${locale}`);
-
-  lessons = await resLocalized.json();
-  if (lessons.length === 0) {
-    const resDefault = await fetch(`${API_URL}/lessons`);
-    lessons = await resDefault.json();
-  }
-
+  const lessonKey = params.slug.split("-")[0] + "-" + params.slug.split("-")[1];
+  const resLocalizedLessons = await fetch(`${API_URL}/lessons?key=${lessonKey}&_locale=${locale}`);
+  const resDefaultLessons = await fetch(`${API_URL}/lessons?key=${lessonKey}`);
+  const localizedLessons = await resLocalizedLessons.json();
+  const defaultLessons = await resDefaultLessons.json();
+  const localizedLesson = localizedLessons[0];
+  const defaultLesson = defaultLessons[0];
+  
   let page: any = null;
-  let breakFlag = false;
   let previousSlug = "";
   let nextSlug = "";
   let currentSlug = "";
 
-  //Double loop to find the lesson and the page that match the incoming slug
-  for (let i = 0; i < lessons.length && breakFlag === false; i++) {
-    for (let j = 0; j < lessons[i].pages.length; j++) {
-      if (lessons[i].pages[j].pageInfo.slug === params.slug) {
-        page = lessons[i].pages[j];
-
+  if (defaultLesson.pages !== undefined){
+    for (let j = 0; j < defaultLesson.pages.length ; j++) {
+      if (defaultLesson.pages[j].pageInfo.slug === params.slug) {
+        page = defaultLesson.pages[j];
+        try {
+          const localizedPage = localizedLesson.pages[j];
+          if (localizedPage?.pageInfo !== null){
+            page = localizedPage;
+          }
+        } catch (error) {
+          console.log(`Page: ${defaultLesson.pages[j].pageInfo.slug} is not found localized`)
+        }
         if (page.media?.image) {
           const { base64 } = await getPlaiceholder(page.media?.image.url);
           page.blurredImage = base64;
         } else {
           page.blurredImage = "";
         }
-
-        currentSlug = lessons[i].pages[j].pageInfo.slug;
-
+  
+        currentSlug = defaultLesson.pages[j].pageInfo.slug;
         if (j > 0) {
-          previousSlug = `/lessons/${lessons[i].pages[j - 1].pageInfo.slug}`;
+          previousSlug = `/lessons/${defaultLesson.pages[j - 1].pageInfo.slug}`;
         }
-
-        if (j < lessons[i].pages.length - 1) {
-          nextSlug = `/lessons/${lessons[i].pages[j + 1].pageInfo.slug}`;
+  
+        if (j < defaultLesson.pages.length - 1) {
+          nextSlug = `/lessons/${defaultLesson.pages[j + 1].pageInfo.slug}`;
         }
-        breakFlag = true;
         break;
       }
     }

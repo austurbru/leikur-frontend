@@ -25,8 +25,8 @@ padding: 0 20px;
   max-width: 900px;
   /* background-color: white; */
   display: flex;
-  /* justify-content: space-between; */
-  justify-content: space-around;
+  justify-content: space-between;
+  /* justify-content: space-around; */
   align-items: center;
   color: white;
  
@@ -35,12 +35,13 @@ padding: 0 20px;
 }
 
 
-/* ----------- Galaxy S3 ----------- */
-/* @media only screen and (max-width: 600px) {
+/*----------- Galaxy S3 ----------- */
+ @media only screen and (max-width: 600px) {
   .feedbackBar {
-    background-color: rgb(17, 73, 92);
+    /* background-color: rgb(17, 73, 92); */
+    justify-content: space-around;
   }
-} */
+}
 
 /* Portrait and Landscape */
  /* @media screen and (max-width: 360px) 
