@@ -34,6 +34,8 @@ export default LessonPage;
 
 //Function that creates individual Pages------------------------------------
 export async function getStaticProps(context: { params: any; locale: any }) {
+  //the props are coming from GetStaticPaths
+
   const { params } = context;
   const locale = context.locale;
 

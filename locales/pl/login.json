@@ -1,7 +1,7 @@
 {
-  "email": "Email Address",
-  "password": "Password",
-  "login": "Login",
-  "noAccount": "Don´t have an account?",
-  "register": "Register"
+  "email": "Adres e-mail",
+  "password": "Hasło",
+  "login": "Zaloguj sie",
+  "noAccount": "Nie masz konta?",
+  "register": "Zarejestruj się"
 }

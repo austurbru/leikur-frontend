@@ -1,10 +1,10 @@
 {
-  "username": "Username",
-  "email": "Email Address",
-  "password": "Password",
-  "confirmPassword": "Confirm Password",
-  "accountExists": "Already have an account?",
-  "passwordsDoNotMatch": "Passwords do not match!",
-  "login": "Login",
-  "register": "Register"
+  "username": "اسم المستخدم",
+  "email": "عنوان البريد الإلكتروني",
+  "password": "كلمه السر",
+  "confirmPassword": "أكد رقمك السري",
+  "accountExists": "هل لديك حساب بالفعل؟",
+  "passwordsDoNotMatch": "كلمة المرور غير مطابقة!",
+  "login": "تسجيل دخول",
+  "register": "يسجل"
 }

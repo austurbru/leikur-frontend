@@ -34,32 +34,33 @@ export async function getServerSideProps(context: { params?: any; locale?: any }
   const localizedRes = await fetch(`${API_URL}/lessons?levelNo=${levelNo}&_sort=lessonNo:ASC&_locale=${locale}`);
   const localizedLessons = await localizedRes.json();
 
+  //make an array of localized lessons
   const tempLessons = [...localizedLessons];
 
   for (let index = 0; index < defaultLessons.length; index++) {
     const lesson = defaultLessons[index];
+    //is there a localized lesson already in tempLesson?
     const itemIndex = localizedLessons.findIndex(
       (item: { levelNo: Number; lessonNo: Number }) =>
         item.levelNo === lesson.levelNo && item.lessonNo === lesson.lessonNo
     );
+    // If the lesson has not been translated then the lesson in default locale is pushed to the temp array
     if (itemIndex < 0) {
       tempLessons.push(lesson);
     }
   }
 
+  //Now we have the tempArray as a mix of localized and default lessons.
+  //Put the lessons in order
   const existingLessons = tempLessons.sort(function (a, b) {
     var x = a.levelNo - b.levelNo;
     return x == 0 ? a.lessonNo - b.lessonNo : x;
   });
 
+  //we return the existing lessons
   return {
     props: {
       lessons: existingLessons,
     },
   };
 }
-/*
-      {lessons.map((lesson) => (
-        <LessonItem key={lesson.id} lesson={lesson} />
-      ))}
-*/

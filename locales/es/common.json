@@ -12,10 +12,10 @@
   "login": "Entrar",
   "logout": "Salir",
   "aboutFooter": "Acerca de esta aplicación",
-  "example": "Example",
-  "true": "True",
-  "false": "False",
-  "nothingFound": "Sorry, there is nothing here",
-  "backHome": "Go Back Home",
-  "changePassword": "Change Password"
+  "example": "Ejemplo",
+  "true": "Verdadero",
+  "false": "Falso",
+  "nothingFound": "Perdon, no hay nada aquí!",
+  "backHome": "Volver a Home",
+  "changePassword": "Cambiar la contraseña"
 }

@@ -1,10 +1,10 @@
 {
-  "username": "Username",
-  "email": "Email Address",
-  "password": "Password",
-  "confirmPassword": "Confirm Password",
-  "accountExists": "Already have an account?",
-  "passwordsDoNotMatch": "Passwords do not match!",
-  "login": "Login",
-  "register": "Register"
+  "username": "Nazwa użytkownika",
+  "email": "Adres e-mail",
+  "password": "Hasło",
+  "confirmPassword": "Potwierdź hasło",
+  "accountExists": "Masz już konto?",
+  "passwordsDoNotMatch": "Hasła się nie zgadzają!",
+  "login": "Zaloguj sie",
+  "register": "Zarejestrować"
 }
