@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
-// import Image from "next/image";
+import Image from "next/image";
 import { Button, Grid } from "semantic-ui-react";
 import { SemanticCOLORS } from "semantic-ui-react/dist/commonjs/generic";
 import useTranslation from "next-translate/useTranslation";
 import { Level } from "@models/strapi-types";
 import AuthContext from "@context/AuthContext";
 import ProgressBar from "@components/LessonPageContent/ProgressBar";
-import CourseLabel from "components/LessonPageContent/CourseLabel";
 import styles from "@styles/CourseItem.module.css";
+import { FaBluetooth } from "react-icons/fa";
+import { GiRadioTower } from "react-icons/gi";
 
 interface Props {
   course: Level;
@@ -62,29 +63,38 @@ const CourseItem = ({ course }: Props) => {
       courseColor = "yellow";
   }
 
+  const backgroundBlue = {
+    backgroundColor: "blue",
+  };
+
   // Showing courses only if user is logged in
   if (!user) return null;
 
   return (
     <div className={styles.course}>
-      <Grid stackable columns={2}>
-        <Grid.Row with={16} className={styles.myColumns}>
-          {/* level number with the color */}
-          <Grid.Column width={1}>
-            <div className={styles.columnWhidth}>
-              <CourseLabel color={courseColor} courseNumber={course.levelNo} />
-              
+      <Grid stackable columns={3}>
+        <Grid.Row with={16}>
+          <Grid.Column width={1} className={"ui segment "} /*  color={courseColor}  */>
+            <div className={styles.courseNumber}  /* color={courseColor} */>
+              {" "}
+              {course.levelNo}
             </div>
-            {/*             <div className={styles.img}>
-              <Image
-                className={styles.roundedCorners}
-                src={course.image ? course.image.formats.thumbnail.url : "/images/default.png"}
-                width={170}
-                height={100}
-              />
-            </div> */}
           </Grid.Column>
-          <Grid.Column width={11}>
+          <Grid.Column
+          className={styles.line}
+         
+       
+            width={1}
+          /*   color={courseColor} */ /* className={"ui segment"} */ /* style={"levelColorsLessons"} */
+          >
+          {/*     <Button color={courseColor} 
+              className={styles.levelColorsLessons}>
+                
+                </Button> */}
+          </Grid.Column>
+
+       
+          <Grid.Column width={10}>
             <Grid.Row>
               <div className={styles.courseTitle}>{course.title}</div>
             </Grid.Row>
@@ -92,7 +102,6 @@ const CourseItem = ({ course }: Props) => {
               <p>{course.description}</p>
             </Grid.Row>
           </Grid.Column>
-
           <Grid.Column width={4}>
             <Grid.Row>
               <div className={styles.progressContainer}>
@@ -106,12 +115,8 @@ const CourseItem = ({ course }: Props) => {
             </Grid.Row>
             <Grid.Row>
               <div className={styles.buttonContainer}>
-                <Button color={courseColor} loading={isLoading} onClick={handleBeginCourse} className="ui basic button">
-                  <div className="spaceForTheIcon">
-                    <i className="angle double right icon "></i>
-
-                    {t("common:beginCourse")}
-                  </div>
+                <Button color={courseColor} loading={isLoading} onClick={handleBeginCourse}>
+                  {t("common:beginCourse")}
                 </Button>
               </div>
             </Grid.Row>

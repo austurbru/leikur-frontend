@@ -163,11 +163,14 @@ export const AuthProvider: React.FC = (props) => {
 
       const lessonsCompleted = filteredLessons;
 
+
+      //we call the API, our Own API
       const res = await fetch(`${NEXT_URL}/api/user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
+        //Send the body to the NEXT_URL
         body: JSON.stringify({ currentLesson, lessonsCompleted, currentPageSlug, currentLessonProgress }),
       });
 

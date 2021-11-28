@@ -13,8 +13,10 @@ const AboutPage = () => {
         <p>{t("about:version")} 1.0.0</p>
       </div>
       <main>
-        <div></div>
+        <div>
+        </div>
       </main>
+
     </Layout>
   );
 };

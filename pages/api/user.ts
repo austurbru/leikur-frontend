@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { API_URL } from "@config/index";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  // to get the user
   if (req.method === "GET") {
     //check to see if the cookie exists
     if (!req.headers.cookie) {
@@ -37,6 +38,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     //put the token into a variable and send it to strapi
     const { token } = cookie.parse(req.headers.cookie);
 
+
+    //Get authorization
     const strapiRes = await fetch(`${API_URL}/users/me`, {
       method: "GET",
       headers: {
@@ -48,9 +51,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (strapiRes.ok) {
       // Update User:
+      //this is what can be updated:--|IN STRAPI
 
       const { currentLesson, lessonsCompleted, currentPageSlug, currentLessonProgress } = req.body;
 
+      //we foward everything to Strapi:
       const strapiRes = await fetch(`${API_URL}/users/${user.id}`, {
         method: "PUT",
         headers: {
@@ -65,6 +70,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }),
       });
 
+
+      //If in strapi is ok send a message to the user context
       if (strapiRes.ok) {
         res.status(200).json({ message: "User has been updated" });
       } else {
