@@ -1,0 +1,101 @@
+.course {
+  background-color: rgb(255, 255, 255);
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 13px;
+  box-shadow: 3px 4px 7px rgba(121, 121, 121, 0.472);
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+}
+
+.progressBarContainer {
+  width: 100%;
+  padding-top: 1rem;
+
+  justify-items: center;
+  margin-right: 1rem;
+}
+
+.progressText {
+  color: var(--primary-app-color);
+  padding-top: 1rem;
+}
+
+.buttonContainer {
+  padding-top: 2rem;
+  text-align: right;
+}
+.spaceForTheIcon {
+  display: block;
+}
+.courseTitle {
+  padding-top: 6px;
+  color: var(--primary-app-color);
+  font-weight: bold;
+}
+
+.levelColorsLessons {
+  height: 80%;
+  width: 1%;
+  border: 1px solid;
+}
+
+.courseNumber {
+  font-size: 3em;
+  line-height: 3;
+  width: auto;
+  height: auto;
+  font-weight: 500;
+}
+
+.line {
+  border-left: 4px solid red;
+}
+
+/* }
+.img {
+  flex: 1;
+  margin: 10px;
+}
+
+.roundedCorners{
+  border-radius: 15px;
+} */
+
+.info {
+  flex: 2;
+}
+
+.columnWhidth {
+  /* background-color: aqua; */
+  max-width: 5em;
+  width: 2em;
+  height: 8em;
+}
+
+.myColumns {
+  /* background-color: brown; */
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /*   justify-content: inherit; */
+  align-items: stretch;
+  width: 100% !important;
+}
+
+@media (max-width: 600px) {
+  .event {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info {
+    margin-bottom: 20px;
+  }
+}

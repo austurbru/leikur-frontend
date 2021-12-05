@@ -101,7 +101,7 @@ export const AuthProvider: React.FC = (props) => {
 
       const loggedInUser: User = data.user;
 
-      if (loggedInUser?.currentPageSlug.trim().length > 0) {
+      if (loggedInUser?.currentPageSlug?.trim()?.length > 0) {
         router.push(`/${loggedInUser.currentPageSlug}`);
         return;
       }
@@ -162,7 +162,6 @@ export const AuthProvider: React.FC = (props) => {
       });
 
       const lessonsCompleted = filteredLessons;
-
 
       //we call the API, our Own API
       const res = await fetch(`${NEXT_URL}/api/user`, {

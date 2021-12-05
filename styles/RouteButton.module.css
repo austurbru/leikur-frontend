@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+  width: 175px;
+  margin: 0;
+  height: 40px;
+  align-items: stretch;
+  align-content: center;
+  padding-top: 10px;
+}
+
+.centerContent {
+  align-items: center;
+  justify-content: center;
+}
+.container:hover {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.isLoading {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.iconAndText {
+  display: flex;
+}
